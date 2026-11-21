@@ -5,13 +5,61 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>شفرة — الأعمال</title>
 <meta name="description" content="معرض أعمال شفرة: مواقع، تطبيقات، داشبورد ومشاريع طلاب. فلتر حسب النوع وشوف تفاصيل كل مشروع.">
+<meta name="theme-color" content="#0D0F12">
+<link rel="canonical" href="https://example.com/works.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="شفرة">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:title" content="شفرة — الأعمال">
+<meta property="og:description" content="معرض أعمال شفرة: مواقع، تطبيقات، داشبورد ومشاريع طلاب. فلتر حسب النوع وشوف تفاصيل كل مشروع.">
+<meta property="og:url" content="https://example.com/works.html">
+<meta property="og:image" content="https://example.com/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="شفرة — الأعمال">
+<meta name="twitter:description" content="معرض أعمال شفرة: مواقع، تطبيقات، داشبورد ومشاريع طلاب. فلتر حسب النوع وشوف تفاصيل كل مشروع.">
+<meta name="twitter:image" content="https://example.com/assets/og-image.jpg">
 <link rel="icon" href="assets/shafra-icon.png">
 <link rel="apple-touch-icon" href="assets/shafra-icon.png">
-<link rel="stylesheet" href="tokens.css">
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="marketing.css">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/marketing.css">
+<script>try{if(sessionStorage.getItem('shafra_loaded'))document.documentElement.classList.add('no-loading');}catch(e){}</script>
+<link rel="stylesheet" href="css/transition.css">
+<link rel="stylesheet" href="css/loading.css">
 </head>
 <body style="background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh">
+<div id="site-transition-bar" aria-hidden="true"></div>
+<div id="site-transition-dim" aria-hidden="true"></div>
+<span id="site-transition-label" class="mono" aria-hidden="true">loading…</span>
+<div id="site-loading" role="status" aria-live="polite" aria-label="جاري تحميل شفرة">
+  <div class="site-loading-glow" aria-hidden="true"></div>
+  <img src="assets/shafra-logo.png" alt="شفرة" width="260" height="158" class="site-loading-logo">
+  <div class="site-loading-bar">
+    <div class="site-loading-segs">
+      <div class="site-loading-track"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="site-loading-fill"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="site-loading-row">
+      <span class="site-loading-msgwrap"><span class="mono site-loading-caret-prefix">&gt;</span><span class="msg">نجهّز الكود</span><span class="site-loading-caret"></span></span>
+      <span class="mono site-loading-pct" dir="ltr"><span class="pct">0</span>%</span>
+    </div>
+  </div>
+  <div class="site-loading-coffee">
+    <svg width="56" height="56" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+      <g class="steam steam-a"><rect x="5" y="1" width="1" height="2" fill="#9AA1AC"></rect><rect x="8" y="0" width="1" height="2" fill="#9AA1AC"></rect></g>
+      <g class="steam steam-b"><rect x="6" y="2" width="1" height="2" fill="#9AA1AC"></rect><rect x="9" y="1" width="1" height="2" fill="#9AA1AC"></rect></g>
+      <rect x="3" y="5" width="9" height="1" fill="#2A1A10"></rect>
+      <rect x="3" y="6" width="9" height="7" fill="#B8F34A"></rect>
+      <rect x="4" y="13" width="7" height="1" fill="#B8F34A"></rect>
+      <rect x="12" y="7" width="2" height="1" fill="#B8F34A"></rect><rect x="13" y="8" width="1" height="3" fill="#B8F34A"></rect><rect x="12" y="11" width="2" height="1" fill="#B8F34A"></rect>
+      <rect x="4" y="7" width="1" height="4" fill="#D4FF7A"></rect>
+      <rect x="2" y="14" width="12" height="1" fill="#2A2645"></rect>
+    </svg>
+    <span>لحظة… نصب القهوة ونجهّز لك الشغل</span>
+  </div>
+</div>
 
   <!-- NAV -->
   <header style="border-bottom: 1px solid #22262D">
@@ -62,7 +110,7 @@
     <div id="grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px">
 
       <!-- سفرة -->
-      <a href="projects/sofrah.html" data-cats="site" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .35s">
+      <a href="projects/project.html?id=sofrah" data-cats="site" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .35s">
         <div style="height: 220px; background: #FAF5EB; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 11px">
           <div style="display: flex; justify-content: space-between; align-items: center; background: #32127A; border-radius: 8px; padding: 9px 13px">
             <span style="color: #FAF5EB; font-weight: 700; font-size: 14px">سفرة</span>
@@ -87,7 +135,7 @@
       </a>
 
       <!-- تحدي المدن -->
-      <a href="#" data-cats="site app" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .43s">
+      <a href="projects/project.html?id=city-challenge" data-cats="site app" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .43s">
         <div style="height: 220px; background: #101317; display: flex; align-items: center; justify-content: center; gap: 18px">
           <div class="float" style="width: 92px; height: 180px; border-radius: 18px; border: 2px solid #2C323B; padding: 12px 9px; box-sizing: border-box; display: flex; flex-direction: column; gap: 7px">
             <div style="height: 8px; width: 60%; border-radius: 3px; background: #2C323B"></div>
@@ -115,7 +163,7 @@
       </a>
 
       <!-- لوحة تحكم 1 -->
-      <a href="#" data-cats="dash" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .51s">
+      <a href="projects/project.html?id=dash-1" data-cats="dash" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .51s">
         <div style="height: 220px; background: #101317; padding: 20px; box-sizing: border-box; display: flex; gap: 12px">
           <div style="width: 26%; border-radius: 8px; background: #1A1E24; padding: 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px">
             <div style="height: 8px; border-radius: 3px; background: var(--accent); width: 70%"></div>
@@ -147,7 +195,7 @@
       </a>
 
       <!-- موقع 2 -->
-      <a href="#" data-cats="site" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .59s">
+      <a href="projects/project.html?id=site-2" data-cats="site" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .59s">
         <div style="height: 220px; background: #101317; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px">
           <div style="display: flex; gap: 6px"><span style="width: 9px; height: 9px; border-radius: 50%; background: #3A404A"></span><span style="width: 9px; height: 9px; border-radius: 50%; background: #3A404A"></span><span style="width: 9px; height: 9px; border-radius: 50%; background: #3A404A"></span></div>
           <div style="height: 14px; width: 55%; border-radius: 4px; background: #2C323B"></div>
@@ -166,7 +214,7 @@
       </a>
 
       <!-- تطبيق 2 -->
-      <a href="#" data-cats="app" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .67s">
+      <a href="projects/project.html?id=app-2" data-cats="app" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .67s">
         <div style="height: 220px; background: #101317; display: flex; align-items: center; justify-content: center; gap: 18px">
           <div class="float" style="width: 92px; height: 180px; border-radius: 18px; border: 2px solid #2C323B; padding: 12px 9px; box-sizing: border-box; display: flex; flex-direction: column; gap: 7px">
             <div style="height: 8px; width: 60%; border-radius: 3px; background: #2C323B"></div>
@@ -193,7 +241,7 @@
       </a>
 
       <!-- لوحة تحكم 2 -->
-      <a href="#" data-cats="dash" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .75s">
+      <a href="projects/project.html?id=dash-2" data-cats="dash" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .75s">
         <div style="height: 220px; background: #101317; padding: 20px; box-sizing: border-box; display: flex; gap: 12px">
           <div style="width: 26%; border-radius: 8px; background: #1A1E24; padding: 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px">
             <div style="height: 8px; border-radius: 3px; background: var(--accent); width: 70%"></div>
@@ -225,7 +273,7 @@
       </a>
 
       <!-- مشروع طلاب 1 -->
-      <a href="#" data-cats="student" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .83s">
+      <a href="projects/project.html?id=student-1" data-cats="student" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .83s">
         <div dir="ltr" class="codelines" style="height: 220px; background: #101317; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 9px">
           <div class="mono" style="font-size: 12px; color: #8C939E">project / main</div>
           <div style="height: 9px; width: 55%; border-radius: 3px; background: #C792EA"></div>
@@ -246,7 +294,7 @@
       </a>
 
       <!-- مشروع طلاب 2 -->
-      <a href="#" data-cats="student" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .91s">
+      <a href="projects/project.html?id=student-2" data-cats="student" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .91s">
         <div dir="ltr" class="codelines" style="height: 220px; background: #101317; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 9px">
           <div class="mono" style="font-size: 12px; color: #8C939E">project / main</div>
           <div style="height: 9px; width: 55%; border-radius: 3px; background: #C792EA"></div>
@@ -312,5 +360,7 @@
       });
     })();
   </script>
+<script src="js/transition.js"></script>
+<script src="js/loading.js"></script>
 </body>
 </html>

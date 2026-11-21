@@ -1,0 +1,12 @@
+# شفرة — robots.txt
+# TODO: حدّث رابط sitemap بدومين الموقع الحقيقي بعد النشر على Vercel
+
+User-agent: *
+Allow: /
+Disallow: /login.html
+Disallow: /team.html
+Disallow: /accounts.html
+Disallow: /profile.html
+Disallow: /404.html
+
+Sitemap: https://example.com/sitemap.xml

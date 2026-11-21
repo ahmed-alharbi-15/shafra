@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>شفرة — ملف الموظف</title>
+<meta name="description" content="بوابة الفريق في شفرة — بروفايل الموظف: الالتزام بالمواعيد، سجل التسليمات، والمهام الحالية.">
+<meta name="theme-color" content="#0D0F12">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/shafra-icon.png">
+<link rel="apple-touch-icon" href="assets/shafra-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/portal.css">
+<script>try{if(sessionStorage.getItem('shafra_loaded'))document.documentElement.classList.add('no-loading');}catch(e){}</script>
+<link rel="stylesheet" href="css/transition.css">
+<link rel="stylesheet" href="css/loading.css">
+</head>
+<body>
+<div id="site-transition-bar" aria-hidden="true"></div>
+<div id="site-transition-dim" aria-hidden="true"></div>
+<span id="site-transition-label" class="mono" aria-hidden="true">loading…</span>
+<div id="site-loading" role="status" aria-live="polite" aria-label="جاري تحميل شفرة">
+  <div class="site-loading-glow" aria-hidden="true"></div>
+  <img src="assets/shafra-logo.png" alt="شفرة" width="260" height="158" class="site-loading-logo">
+  <div class="site-loading-bar">
+    <div class="site-loading-segs">
+      <div class="site-loading-track"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="site-loading-fill"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="site-loading-row">
+      <span class="site-loading-msgwrap"><span class="mono site-loading-caret-prefix">&gt;</span><span class="msg">نجهّز الكود</span><span class="site-loading-caret"></span></span>
+      <span class="mono site-loading-pct" dir="ltr"><span class="pct">0</span>%</span>
+    </div>
+  </div>
+  <div class="site-loading-coffee">
+    <svg width="56" height="56" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+      <g class="steam steam-a"><rect x="5" y="1" width="1" height="2" fill="#9AA1AC"></rect><rect x="8" y="0" width="1" height="2" fill="#9AA1AC"></rect></g>
+      <g class="steam steam-b"><rect x="6" y="2" width="1" height="2" fill="#9AA1AC"></rect><rect x="9" y="1" width="1" height="2" fill="#9AA1AC"></rect></g>
+      <rect x="3" y="5" width="9" height="1" fill="#2A1A10"></rect>
+      <rect x="3" y="6" width="9" height="7" fill="#B8F34A"></rect>
+      <rect x="4" y="13" width="7" height="1" fill="#B8F34A"></rect>
+      <rect x="12" y="7" width="2" height="1" fill="#B8F34A"></rect><rect x="13" y="8" width="1" height="3" fill="#B8F34A"></rect><rect x="12" y="11" width="2" height="1" fill="#B8F34A"></rect>
+      <rect x="4" y="7" width="1" height="4" fill="#D4FF7A"></rect>
+      <rect x="2" y="14" width="12" height="1" fill="#2A2645"></rect>
+    </svg>
+    <span>لحظة… نصب القهوة ونجهّز لك الشغل</span>
+  </div>
+</div>
+<div dir="rtl" style="min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch">
+
+  <!-- MOBILE TOPBAR -->
+  <div class="portal-topbar-mobile">
+    <a href="index.html" class="logo-link" style="display: flex; align-items: center; text-decoration: none"><img src="assets/shafra-logo.png" alt="شفرة — الرئيسية"></a>
+    <span style="font-size: 13px; color: #9AA1AC; padding: 4px 10px; border-radius: 99px; border: 1px solid #333943">بوابة الفريق</span>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside data-portal-sidebar style="flex: 1 1 240px; max-width: 100%; background: #111418; border-left: 1px solid #22262D; padding: 24px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
+    <a href="index.html" class="logo-link" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; text-decoration: none; color: #F2F3F5; padding: 0 8px">
+      <img src="assets/shafra-logo.png" alt="شفرة — الرئيسية" width="79" height="48" style="display: block; flex: none; width: 79px; height: 48px">
+      <span style="font-size: 13px; color: #9AA1AC; padding: 4px 10px; border-radius: 99px; border: 1px solid #333943">بوابة الفريق</span>
+    </a>
+
+    <nav aria-label="أقسام البوابة" style="display: flex; flex-direction: column; gap: 4px">
+      <a href="team.html" class="side-btn" style="display: flex; align-items: center; gap: 12px; width: 100%; min-height: 46px; padding: 0 12px; border-radius: 10px; font-size: 15px; background: transparent; color: #B4BAC4; font-weight: 500; text-decoration: none; box-sizing: border-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"></path><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"></path></svg>
+        <span style="flex: 1; text-align: right">المهام</span>
+        <span class="mono" id="count-tasks" style="font-size: 12px; opacity: .8"></span>
+      </a>
+      <a href="team.html#people" class="side-btn" style="display: flex; align-items: center; gap: 12px; width: 100%; min-height: 46px; padding: 0 12px; border-radius: 10px; font-size: 15px; background: transparent; color: #B4BAC4; font-weight: 500; text-decoration: none; box-sizing: border-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"></path><circle cx="17" cy="9" r="2.5"></circle><path d="M17 14.5c2.3.2 4 1.8 4.5 4.5"></path></svg>
+        <span style="flex: 1; text-align: right">الموظفين</span>
+        <span class="mono" id="count-people" style="font-size: 12px; opacity: .8"></span>
+      </a>
+      <a href="accounts.html" class="side-btn" style="display: flex; align-items: center; gap: 12px; width: 100%; min-height: 46px; padding: 0 12px; border-radius: 10px; font-size: 15px; background: transparent; color: #B4BAC4; font-weight: 500; text-decoration: none; box-sizing: border-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"></rect><circle cx="12" cy="12" r="2.5"></circle><path d="M6 9.5v5M18 9.5v5"></path></svg>
+        <span style="flex: 1; text-align: right">الحسابات</span>
+        <span class="mono" id="count-money" style="font-size: 12px; opacity: .8"></span>
+      </a>
+    </nav>
+
+    <span aria-hidden="true" style="margin-top: auto; display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 12px; background: #15181D; border: 1px solid var(--accent); color: #F2F3F5; text-align: right; width: 100%; box-sizing: border-box">
+      <span style="width: 36px; height: 36px; border-radius: 10px; background: #1E2228; display: inline-flex; align-items: center; justify-content: center; color: var(--accent); font-weight: 700">أ</span>
+      <span style="display: flex; flex-direction: column; min-width: 0">
+        <span style="font-size: 14px; font-weight: 600">أحمد الحربي</span>
+        <span style="font-size: 12px; color: #9AA1AC">أدمن · ملفي الشخصي</span>
+      </span>
+    </span>
+  </aside>
+
+  <!-- CONTENT -->
+  <main data-portal-main style="flex: 999 1 560px; min-width: 0; padding: 32px clamp(16px, 3vw, 40px) 64px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
+    <div class="view-in" style="display: flex; flex-direction: column; gap: 24px">
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+        <a href="team.html#people" class="ghost" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid #333943; background: transparent; color: #D7DBE1; font-size: 14px; text-decoration: none">→ رجوع للموظفين</a>
+        <div id="others" role="group" aria-label="اختيار الموظف" style="display: flex; flex-wrap: wrap; gap: 8px"></div>
+      </div>
+
+      <section style="padding: 28px; background: #15181D; border: 1px solid #262A31; border-radius: 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px">
+        <span class="float" id="p-initial" style="width: 88px; height: 88px; border-radius: 22px; background: #1E2228; border: 1px solid #333943; display: inline-flex; align-items: center; justify-content: center; color: var(--accent); font-weight: 700; font-size: 36px"></span>
+        <div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 8px; min-width: 0">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+            <h1 id="p-name" style="margin: 0; font-size: 30px; font-weight: 700"></h1>
+            <span id="p-badge" style="font-size: 13px; padding: 4px 12px; border-radius: 99px"></span>
+          </div>
+          <p id="p-title" style="margin: 0; font-size: 17px; color: #D7DBE1"></p>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; font-size: 14px; color: #9AA1AC">
+            <span class="mono" dir="ltr" id="p-role"></span>
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span class="dot" id="p-dot" style="width: 10px; height: 10px; border-radius: 50%"></span><span id="p-status"></span></span>
+            <span>منضم من: <span id="p-joined"></span></span>
+          </div>
+        </div>
+        <a id="p-tasks-link" href="team.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 10px; border: 0; background: var(--accent); color: #0D0F12; font-weight: 600; font-size: 14px; text-decoration: none">مهامه الحالية (<span id="p-open-count"></span>)</a>
+      </section>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
+        <div class="stat" style="padding: 20px; background: #15181D; border: 1px solid #262A31; border-radius: 14px; display: flex; flex-direction: column; gap: 10px">
+          <span style="color: #9AA1AC; font-size: 13px">الالتزام بمواعيد التسليم</span>
+          <span class="mono" style="font-size: 32px"><span id="p-onpct"></span>%</span>
+          <div id="p-onbar" style="width: 100%; height: 8px; border-radius: 99px"></div>
+          <span style="font-size: 13px; color: #D7DBE1">التقييم: <span id="p-grade"></span></span>
+        </div>
+        <div class="stat" style="padding: 20px; background: #15181D; border: 1px solid #262A31; border-radius: 14px; display: flex; flex-direction: column; gap: 10px">
+          <span style="color: #9AA1AC; font-size: 13px">حضور الاجتماعات</span>
+          <span class="mono" style="font-size: 32px"><span id="p-meetpct"></span>%</span>
+          <div id="p-meetbar" style="width: 100%; height: 8px; border-radius: 99px"></div>
+          <span style="font-size: 13px; color: #D7DBE1"><span id="p-meettext"></span> اجتماع</span>
+        </div>
+        <div class="stat" style="padding: 20px; background: #15181D; border: 1px solid #262A31; border-radius: 14px; display: flex; flex-direction: column; gap: 10px">
+          <span style="color: #9AA1AC; font-size: 13px">المهام المسلّمة</span>
+          <span class="mono" style="font-size: 32px" id="p-donecount"></span>
+          <span style="font-size: 13px; color: #D7DBE1">ومفتوحة الحين: <span id="p-opencount2"></span></span>
+        </div>
+        <div class="stat" style="padding: 20px; background: #15181D; border: 1px solid #262A31; border-radius: 14px; display: flex; flex-direction: column; gap: 10px">
+          <span style="color: #9AA1AC; font-size: 13px">متوسط التأخير (للمتأخر)</span>
+          <span class="mono" style="font-size: 32px" id="p-avglate"></span>
+          <span style="font-size: 13px; color: #D7DBE1">يوم</span>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
+        <section style="padding: 24px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; display: flex; flex-direction: column; gap: 14px">
+          <h2 style="margin: 0; font-size: 18px; font-weight: 600">وظيفته ومسؤولياته</h2>
+          <ul id="p-duties" style="margin: 0; padding: 0 18px 0 0; display: flex; flex-direction: column; gap: 8px; color: #D7DBE1; font-size: 15px; line-height: 1.7"></ul>
+          <div dir="ltr" class="chips" id="p-skills" style="display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; padding-top: 6px"></div>
+        </section>
+        <section style="padding: 24px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; display: flex; flex-direction: column; gap: 12px">
+          <h2 style="margin: 0; font-size: 18px; font-weight: 600">شغله الحالي</h2>
+          <div id="p-open-list" style="display: flex; flex-direction: column; gap: 10px"></div>
+          <p id="p-no-open" style="display: none; margin: 0; color: #9AA1AC; font-size: 14px">ما عنده مهام مفتوحة.</p>
+        </section>
+      </div>
+
+      <section style="background: #15181D; border: 1px solid #262A31; border-radius: 16px; overflow: hidden">
+        <div style="padding: 18px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; border-bottom: 1px solid #262A31">
+          <h2 style="margin: 0; font-size: 18px; font-weight: 600">سجل التسليمات</h2>
+          <span style="font-size: 12px; color: #9AA1AC; padding: 3px 10px; border-radius: 99px; border: 1px dashed #4A515C">بيانات تجريبية</span>
+        </div>
+        <div class="table-scroll" style="overflow-x: auto">
+          <table style="width: 100%; border-collapse: collapse; font-size: 14px">
+            <thead>
+              <tr style="color: #9AA1AC; font-size: 13px; text-align: right">
+                <th scope="col" style="padding: 12px 20px; font-weight: 500">المهمة</th>
+                <th scope="col" style="padding: 12px 20px; font-weight: 500">المشروع</th>
+                <th scope="col" style="padding: 12px 20px; font-weight: 500">الموعد</th>
+                <th scope="col" style="padding: 12px 20px; font-weight: 500">سلّمها</th>
+                <th scope="col" style="padding: 12px 20px; font-weight: 500">الالتزام</th>
+              </tr>
+            </thead>
+            <tbody id="p-hist"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="p-admin-perms" style="display: none; padding: 20px 24px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; align-items: center; gap: 12px; flex-wrap: wrap">
+        <span style="font-size: 15px; font-weight: 600">صلاحيات الأدمن:</span>
+        <div class="tags" style="display: flex; flex-wrap: wrap; gap: 8px">
+          <span style="font-size: 13px; padding: 5px 12px; border-radius: 99px; background: #1E2228; color: #C9CED6">إضافة وتوزيع المهام</span>
+          <span style="font-size: 13px; padding: 5px 12px; border-radius: 99px; background: #1E2228; color: #C9CED6">إدارة الموظفين</span>
+          <span style="font-size: 13px; padding: 5px 12px; border-radius: 99px; background: #1E2228; color: #C9CED6">الحسابات والدخل</span>
+          <span style="font-size: 13px; padding: 5px 12px; border-radius: 99px; background: #1E2228; color: #C9CED6">نشر الأعمال في الموقع</span>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- MOBILE BOTTOM NAV -->
+  <nav class="portal-bottomnav" aria-label="تنقل البوابة">
+    <a href="team.html" aria-current="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"></path><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"></path></svg>
+      <span>المهام</span>
+    </a>
+    <a href="team.html#people" aria-current="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"></path><circle cx="17" cy="9" r="2.5"></circle><path d="M17 14.5c2.3.2 4 1.8 4.5 4.5"></path></svg>
+      <span>الموظفين</span>
+    </a>
+    <a href="accounts.html" aria-current="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"></rect><circle cx="12" cy="12" r="2.5"></circle><path d="M6 9.5v5M18 9.5v5"></path></svg>
+      <span>الحسابات</span>
+    </a>
+    <button type="button" aria-current="page">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-4.5 4.5-6.5 8-6.5s6.5 2 8 6.5"></path></svg>
+      <span>ملفي</span>
+    </button>
+  </nav>
+</div>
+
+<script src="js/portal-data.js"></script>
+<script>
+(function () {
+  const D = PortalData;
+  const DAY = 86400000;
+
+  function currentId() {
+    const q = new URLSearchParams(location.search).get('id');
+    return (q && D.byId(q)) ? q : 'ahmed';
+  }
+
+  function render() {
+    const id = currentId();
+    const P = D.byId(id) || D.people[0];
+    document.title = 'شفرة — ملف ' + P.name;
+
+    document.getElementById('count-tasks').textContent = String(D.tasks.length);
+    document.getElementById('count-people').textContent = String(D.people.length);
+    document.getElementById('count-money').textContent = String(D.moneyEntries.length);
+
+    document.getElementById('others').innerHTML = D.people.map(function (q) {
+      const on = q.id === P.id;
+      const style = 'display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px 0 8px; border-radius: 99px; font-size: 14px; ' +
+        (on ? 'border: 1px solid var(--accent); background: #1E2228; color: #F2F3F5' : 'border: 1px solid #333943; background: transparent; color: #B4BAC4');
+      return '<a href="profile.html?id=' + q.id + '" style="' + style + '; text-decoration: none"><span style="width:28px;height:28px;border-radius:8px;background:#262A31;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;font-size:13px">' + q.initial + '</span>' + q.name + '</a>';
+    }).join('');
+
+    document.getElementById('p-initial').textContent = P.initial;
+    document.getElementById('p-name').textContent = P.name;
+    document.getElementById('p-badge').textContent = P.admin ? 'أدمن' : 'موظف';
+    document.getElementById('p-badge').setAttribute('style', 'font-size:13px;padding:4px 12px;border-radius:99px;' + (P.admin ? 'background:var(--accent);color:#0D0F12;font-weight:600' : 'border:1px solid #333943;color:#C9CED6'));
+    document.getElementById('p-title').textContent = P.title;
+    document.getElementById('p-role').textContent = P.role;
+    document.getElementById('p-dot').style.background = D.dotColor[P.status] || '#6E7681';
+    document.getElementById('p-status').textContent = P.status;
+    document.getElementById('p-joined').textContent = P.joined;
+    document.getElementById('p-tasks-link').href = 'team.html?assignee=' + P.id;
+
+    const openT = D.tasks.filter((t) => t.assignee === P.id && D.statusOf(t) !== 'done');
+    document.getElementById('p-open-count').textContent = String(openT.length);
+    document.getElementById('p-opencount2').textContent = String(openT.length);
+
+    const openList = document.getElementById('p-open-list');
+    if (openT.length) {
+      openList.innerHTML = openT.map((t) => '<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;background:#1A1E24">' +
+        '<span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px">' + t.title + '</span><span style="font-size:12px;color:#9AA1AC">' + t.project + '</span></span>' +
+        '<span style="font-size:13px;color:#D7DBE1;white-space:nowrap">التسليم: ' + t.due + '</span></div>').join('');
+      document.getElementById('p-no-open').style.display = 'none';
+    } else {
+      openList.innerHTML = '';
+      document.getElementById('p-no-open').style.display = '';
+    }
+
+    const hist = P.history.map(function (h) {
+      const diff = Math.round((new Date(h.done) - new Date(h.due)) / DAY);
+      const late = diff > 0;
+      const label = diff > 0 ? 'متأخر ' + D.daysLabel(diff) : (diff < 0 ? 'قبل الموعد ب' + D.daysLabel(-diff) : 'في الموعد');
+      return { title: h.title, project: h.project, due: D.formatArabicDate(h.due), done: D.formatArabicDate(h.done), label, late, diff };
+    });
+    const onTime = hist.filter((h) => h.diff <= 0).length;
+    const onPct = hist.length ? Math.round(onTime / hist.length * 100) : 0;
+    const lates = hist.filter((h) => h.diff > 0);
+    const avgLate = lates.length ? (lates.reduce((n, h) => n + h.diff, 0) / lates.length).toFixed(1) : '0';
+    const meetPct = Math.round(P.meetings.attended / P.meetings.total * 100);
+    const ring = (pct) => 'width:100%;height:8px;border-radius:99px;background:linear-gradient(to left, var(--accent) ' + pct + '%, #262A31 ' + pct + '%)';
+    const grade = onPct >= 90 ? 'ممتاز' : onPct >= 75 ? 'جيد' : 'يحتاج تحسين';
+
+    document.getElementById('p-onpct').textContent = String(onPct);
+    document.getElementById('p-onbar').setAttribute('style', ring(onPct));
+    document.getElementById('p-grade').textContent = grade;
+    document.getElementById('p-meetpct').textContent = String(meetPct);
+    document.getElementById('p-meetbar').setAttribute('style', ring(meetPct));
+    document.getElementById('p-meettext').textContent = P.meetings.attended + ' من ' + P.meetings.total;
+    document.getElementById('p-donecount').textContent = String(hist.length);
+    document.getElementById('p-avglate').textContent = avgLate;
+
+    document.getElementById('p-duties').innerHTML = P.duties.map((d) => '<li>' + d + '</li>').join('');
+    document.getElementById('p-skills').innerHTML = P.skills.map((k) => '<span class="mono" style="font-size:12px;padding:4px 9px;border-radius:7px;border:1px solid #333943;color:#C9CED6">' + k + '</span>').join('');
+
+    document.getElementById('p-hist').innerHTML = hist.map((h) => '<tr><td style="padding:12px 20px;border-top:1px solid #1E2228">' + h.title + '</td>' +
+      '<td style="padding:12px 20px;border-top:1px solid #1E2228;color:#B4BAC4">' + h.project + '</td>' +
+      '<td style="padding:12px 20px;border-top:1px solid #1E2228;color:#B4BAC4">' + h.due + '</td>' +
+      '<td style="padding:12px 20px;border-top:1px solid #1E2228;color:#B4BAC4">' + h.done + '</td>' +
+      '<td style="padding:12px 20px;border-top:1px solid #1E2228"><span style="font-size:12px;padding:3px 10px;border-radius:99px;white-space:nowrap;border:1px solid ' + (h.late ? '#FFB547' : 'var(--accent)') + ';color:' + (h.late ? '#FFB547' : 'var(--accent)') + '">' + h.label + '</span></td></tr>').join('');
+
+    document.getElementById('p-admin-perms').style.display = P.admin ? 'flex' : 'none';
+  }
+
+  window.addEventListener('popstate', render);
+  render();
+})();
+</script>
+<script src="js/transition.js"></script>
+<script src="js/loading.js"></script>
+</body>
+</html>

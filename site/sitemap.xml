@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TODO: استبدل https://example.com بدومين الموقع الحقيقي بعد نشره على Vercel -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://example.com/</loc></url>
+  <url><loc>https://example.com/works.html</loc></url>
+  <url><loc>https://example.com/contact.html</loc></url>
+  <url><loc>https://example.com/projects/project.html?id=sofrah</loc></url>
+  <url><loc>https://example.com/projects/project.html?id=city-challenge</loc></url>
+  <url><loc>https://example.com/projects/project.html?id=dash-1</loc></url>
+  <url><loc>https://example.com/projects/project.html?id=site-2</loc></url>
+  <url><loc>https://example.com/projects/project.html?id=app-2</loc></url>
+  <url><loc>https://example.com/projects/project.html?id=dash-2</loc></url>
+  <url><loc>https://example.com/projects/project.html?id=student-1</loc></url>
+  <url><loc>https://example.com/projects/project.html?id=student-2</loc></url>
+</urlset>

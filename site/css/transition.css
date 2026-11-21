@@ -1,0 +1,27 @@
+/* شفرة — انتقال الصفحات (نسخة Bar، من design/TransitionBar.dc.html).
+   شريط تقدم أعلى الشاشة يظهر لحظة الانتقال بين الصفحات، بدون مكتبات. */
+
+#site-transition-bar {
+  position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 10000;
+  background: #B8F34A; box-shadow: 0 0 12px #B8F34A;
+  transform-origin: right center; transform: scaleX(0); opacity: 0;
+  transition: transform .5s cubic-bezier(.2,.7,.2,1), opacity .25s linear;
+  pointer-events: none;
+}
+#site-transition-bar.site-transition-active { opacity: 1; }
+
+#site-transition-dim {
+  position: fixed; inset: 0; z-index: 9998; background: #0D0F12; opacity: 0;
+  transition: opacity .4s ease; pointer-events: none;
+}
+#site-transition-dim.site-transition-active { opacity: .35; }
+
+#site-transition-label {
+  position: fixed; top: 18px; left: 50%; transform: translateX(-50%); z-index: 10000;
+  font-size: 12px; color: #6E7681; opacity: 0; transition: opacity .25s linear; pointer-events: none;
+}
+#site-transition-label.site-transition-active { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  #site-transition-bar, #site-transition-dim, #site-transition-label { transition: none !important; }
+}

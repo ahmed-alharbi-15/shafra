@@ -2,6 +2,7 @@
    Page-specific entrance-animation variants live in marketing.css / portal.css. */
 
 body { margin: 0; }
+html, body { overflow-x: hidden; }
 a { color: #F2F3F5; }
 a:hover { color: #FFFFFF; }
 button { font-family: inherit; cursor: pointer; }
@@ -98,7 +99,32 @@ tbody tr:hover { background: #1A1E24; }
 .mnav-panel a:hover { background: #1E2228; color: #F2F3F5; }
 .mnav-panel .cta { margin-top: 6px; justify-content: center; background: #B8F34A; color: #0D0F12; font-weight: 600; }
 
+.table-scroll table { min-width: 560px; }
+.portal-topbar-mobile { display: none; }
+.portal-bottomnav { display: none; }
+
 @media (max-width: 760px) {
+  .table-scroll table { min-width: 0; }
+  [data-portal-sidebar] { display: none !important; }
+  [data-portal-main] { padding-bottom: calc(80px + env(safe-area-inset-bottom)) !important; }
+  .portal-topbar-mobile {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 14px 16px; border-bottom: 1px solid #22262D; background: #111418;
+    position: sticky; top: 0; z-index: 40;
+  }
+  .portal-topbar-mobile img { display: block; height: 32px; width: auto; }
+  .portal-bottomnav {
+    display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; gap: 4px;
+    background: #111418; border-top: 1px solid #22262D;
+    padding: 6px 6px calc(6px + env(safe-area-inset-bottom));
+  }
+  .portal-bottomnav > a, .portal-bottomnav > button {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    min-height: 52px; border: 0; border-radius: 10px; background: transparent; color: #9AA1AC;
+    font-size: 11px; font-family: inherit; text-decoration: none;
+  }
+  .portal-bottomnav > [aria-current="page"] { color: var(--accent); background: #1A1E24; }
+
   .dnav { display: none !important; }
   .logo-link img { height: 34px !important; width: auto !important; }
   .mnav { display: block; }

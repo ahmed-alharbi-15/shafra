@@ -1,0 +1,70 @@
+/* شفرة — شاشة التحميل (من design/Loading.dc.html، نسخة A).
+   تظهر مرة وحدة لكل جلسة (sessionStorage)، تتحكم فيها loading.js. */
+
+#site-loading {
+  position: fixed; inset: 0; z-index: 9999;
+  box-sizing: border-box; padding: 40px 24px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px;
+  background: #0D0F12;
+  background-image: radial-gradient(#1A1E24 1.2px, transparent 1.2px); background-size: 28px 28px;
+  color: #F2F3F5; font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  overflow: hidden;
+}
+html.no-loading #site-loading { display: none; }
+#site-loading.hide { animation: site-loading-hide .5s ease forwards; pointer-events: none; }
+@keyframes site-loading-hide { to { opacity: 0; visibility: hidden; } }
+
+.site-loading-glow {
+  position: absolute; width: 620px; height: 620px; max-width: 140vw; border-radius: 50%;
+  background: radial-gradient(circle, rgba(184,243,74,.14), rgba(184,243,74,0) 65%);
+  pointer-events: none;
+  animation: site-loading-glowpulse 2.6s ease-in-out infinite;
+}
+@keyframes site-loading-glowpulse { 0%, 100% { opacity: .6; } 50% { opacity: 1; } }
+
+.site-loading-logo {
+  position: relative; display: block; width: min(260px, 62vw); height: auto;
+  animation: site-loading-flicker .9s steps(1) 1 both, site-loading-logoglow 2.6s ease-in-out .9s infinite;
+}
+@keyframes site-loading-flicker {
+  0% { opacity: 0; } 10% { opacity: .6; } 20% { opacity: .1; } 30% { opacity: .8; }
+  40% { opacity: .2; } 50%, 100% { opacity: 1; }
+}
+@keyframes site-loading-logoglow {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(184,243,74,.55)); }
+  50% { filter: drop-shadow(0 0 14px rgba(184,243,74,.6)); }
+}
+
+.site-loading-bar { position: relative; width: min(100%, 420px); display: flex; flex-direction: column; gap: 14px; }
+.site-loading-segs, .site-loading-track, .site-loading-fill {
+  grid-template-columns: repeat(20, minmax(0, 1fr)); gap: 4px;
+}
+.site-loading-segs {
+  position: relative; display: grid; padding: 6px; border: 1px solid #262A31; border-radius: 10px; background: #111418;
+}
+.site-loading-track { display: grid; }
+.site-loading-track span { height: 14px; border-radius: 2px; background: #1E2228; }
+.site-loading-fill {
+  position: absolute; inset: 6px; display: grid;
+  clip-path: inset(0 0 0 100%);
+  animation: site-loading-fill 3.2s steps(20, end) forwards;
+}
+.site-loading-fill span { height: 14px; border-radius: 2px; background: #B8F34A; box-shadow: 0 0 8px rgba(184,243,74,.35); }
+@keyframes site-loading-fill { to { clip-path: inset(0 0 0 0%); } }
+
+.site-loading-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.site-loading-msgwrap { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; color: #D7DBE1; }
+.site-loading-caret-prefix { color: #B8F34A; }
+.site-loading-caret { display: inline-block; width: 9px; height: 17px; background: #B8F34A; animation: site-loading-blink 1s steps(1) infinite; }
+@keyframes site-loading-blink { 50% { opacity: 0; } }
+.site-loading-pct { font-size: 15px; color: #9AA1AC; }
+
+.site-loading-coffee { position: relative; display: flex; align-items: center; gap: 12px; color: #9AA1AC; font-size: 14px; }
+.site-loading-coffee .steam { animation: site-loading-steam 1s ease-in-out infinite; }
+.site-loading-coffee .steam-b { animation-delay: .5s; }
+@keyframes site-loading-steam { 0%, 100% { opacity: .2; } 50% { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  #site-loading, #site-loading * { animation: none !important; }
+  .site-loading-fill { clip-path: inset(0 0 0 0) !important; }
+}

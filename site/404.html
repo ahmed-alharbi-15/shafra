@@ -5,13 +5,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>شفرة — الصفحة غير موجودة</title>
 <meta name="description" content="الصفحة اللي تدور عليها مو موجودة. ارجع للرئيسية أو شوف أعمالنا.">
+<meta name="theme-color" content="#0D0F12">
+<meta name="robots" content="noindex">
 <link rel="icon" href="assets/shafra-icon.png">
 <link rel="apple-touch-icon" href="assets/shafra-icon.png">
-<link rel="stylesheet" href="tokens.css">
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="marketing.css">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/marketing.css">
+<script>try{if(sessionStorage.getItem('shafra_loaded'))document.documentElement.classList.add('no-loading');}catch(e){}</script>
+<link rel="stylesheet" href="css/transition.css">
+<link rel="stylesheet" href="css/loading.css">
 </head>
 <body style="background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh">
+<div id="site-transition-bar" aria-hidden="true"></div>
+<div id="site-transition-dim" aria-hidden="true"></div>
+<span id="site-transition-label" class="mono" aria-hidden="true">loading…</span>
+<div id="site-loading" role="status" aria-live="polite" aria-label="جاري تحميل شفرة">
+  <div class="site-loading-glow" aria-hidden="true"></div>
+  <img src="assets/shafra-logo.png" alt="شفرة" width="260" height="158" class="site-loading-logo">
+  <div class="site-loading-bar">
+    <div class="site-loading-segs">
+      <div class="site-loading-track"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="site-loading-fill"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="site-loading-row">
+      <span class="site-loading-msgwrap"><span class="mono site-loading-caret-prefix">&gt;</span><span class="msg">نجهّز الكود</span><span class="site-loading-caret"></span></span>
+      <span class="mono site-loading-pct" dir="ltr"><span class="pct">0</span>%</span>
+    </div>
+  </div>
+  <div class="site-loading-coffee">
+    <svg width="56" height="56" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+      <g class="steam steam-a"><rect x="5" y="1" width="1" height="2" fill="#9AA1AC"></rect><rect x="8" y="0" width="1" height="2" fill="#9AA1AC"></rect></g>
+      <g class="steam steam-b"><rect x="6" y="2" width="1" height="2" fill="#9AA1AC"></rect><rect x="9" y="1" width="1" height="2" fill="#9AA1AC"></rect></g>
+      <rect x="3" y="5" width="9" height="1" fill="#2A1A10"></rect>
+      <rect x="3" y="6" width="9" height="7" fill="#B8F34A"></rect>
+      <rect x="4" y="13" width="7" height="1" fill="#B8F34A"></rect>
+      <rect x="12" y="7" width="2" height="1" fill="#B8F34A"></rect><rect x="13" y="8" width="1" height="3" fill="#B8F34A"></rect><rect x="12" y="11" width="2" height="1" fill="#B8F34A"></rect>
+      <rect x="4" y="7" width="1" height="4" fill="#D4FF7A"></rect>
+      <rect x="2" y="14" width="12" height="1" fill="#2A2645"></rect>
+    </svg>
+    <span>لحظة… نصب القهوة ونجهّز لك الشغل</span>
+  </div>
+</div>
 
   <!-- NAV -->
   <header style="border-bottom: 1px solid #22262D">
@@ -57,5 +92,7 @@
       <span class="mono" dir="ltr">© 2026 Shafra</span>
     </div>
   </footer>
+<script src="js/transition.js"></script>
+<script src="js/loading.js"></script>
 </body>
 </html>

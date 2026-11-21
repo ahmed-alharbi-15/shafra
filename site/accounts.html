@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>شفرة — الحسابات والدخل الشهري</title>
+<meta name="description" content="بوابة الفريق في شفرة — الدخل الشهري وسجل الدفعات لكل مشروع.">
+<meta name="theme-color" content="#0D0F12">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/shafra-icon.png">
+<link rel="apple-touch-icon" href="assets/shafra-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/portal.css">
+<script>try{if(sessionStorage.getItem('shafra_loaded'))document.documentElement.classList.add('no-loading');}catch(e){}</script>
+<link rel="stylesheet" href="css/transition.css">
+<link rel="stylesheet" href="css/loading.css">
+</head>
+<body>
+<div id="site-transition-bar" aria-hidden="true"></div>
+<div id="site-transition-dim" aria-hidden="true"></div>
+<span id="site-transition-label" class="mono" aria-hidden="true">loading…</span>
+<div id="site-loading" role="status" aria-live="polite" aria-label="جاري تحميل شفرة">
+  <div class="site-loading-glow" aria-hidden="true"></div>
+  <img src="assets/shafra-logo.png" alt="شفرة" width="260" height="158" class="site-loading-logo">
+  <div class="site-loading-bar">
+    <div class="site-loading-segs">
+      <div class="site-loading-track"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="site-loading-fill"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="site-loading-row">
+      <span class="site-loading-msgwrap"><span class="mono site-loading-caret-prefix">&gt;</span><span class="msg">نجهّز الكود</span><span class="site-loading-caret"></span></span>
+      <span class="mono site-loading-pct" dir="ltr"><span class="pct">0</span>%</span>
+    </div>
+  </div>
+  <div class="site-loading-coffee">
+    <svg width="56" height="56" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+      <g class="steam steam-a"><rect x="5" y="1" width="1" height="2" fill="#9AA1AC"></rect><rect x="8" y="0" width="1" height="2" fill="#9AA1AC"></rect></g>
+      <g class="steam steam-b"><rect x="6" y="2" width="1" height="2" fill="#9AA1AC"></rect><rect x="9" y="1" width="1" height="2" fill="#9AA1AC"></rect></g>
+      <rect x="3" y="5" width="9" height="1" fill="#2A1A10"></rect>
+      <rect x="3" y="6" width="9" height="7" fill="#B8F34A"></rect>
+      <rect x="4" y="13" width="7" height="1" fill="#B8F34A"></rect>
+      <rect x="12" y="7" width="2" height="1" fill="#B8F34A"></rect><rect x="13" y="8" width="1" height="3" fill="#B8F34A"></rect><rect x="12" y="11" width="2" height="1" fill="#B8F34A"></rect>
+      <rect x="4" y="7" width="1" height="4" fill="#D4FF7A"></rect>
+      <rect x="2" y="14" width="12" height="1" fill="#2A2645"></rect>
+    </svg>
+    <span>لحظة… نصب القهوة ونجهّز لك الشغل</span>
+  </div>
+</div>
+<div dir="rtl" style="min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch">
+
+  <!-- MOBILE TOPBAR -->
+  <div class="portal-topbar-mobile">
+    <a href="index.html" class="logo-link" style="display: flex; align-items: center; text-decoration: none"><img src="assets/shafra-logo.png" alt="شفرة — الرئيسية"></a>
+    <span style="font-size: 13px; color: #9AA1AC; padding: 4px 10px; border-radius: 99px; border: 1px solid #333943">بوابة الفريق</span>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside data-portal-sidebar style="flex: 1 1 240px; max-width: 100%; background: #111418; border-left: 1px solid #22262D; padding: 24px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
+    <a href="index.html" class="logo-link" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; text-decoration: none; color: #F2F3F5; padding: 0 8px">
+      <img src="assets/shafra-logo.png" alt="شفرة — الرئيسية" width="79" height="48" style="display: block; flex: none; width: 79px; height: 48px">
+      <span style="font-size: 13px; color: #9AA1AC; padding: 4px 10px; border-radius: 99px; border: 1px solid #333943">بوابة الفريق</span>
+    </a>
+
+    <nav aria-label="أقسام البوابة" style="display: flex; flex-direction: column; gap: 4px">
+      <a href="team.html" class="side-btn" style="display: flex; align-items: center; gap: 12px; width: 100%; min-height: 46px; padding: 0 12px; border-radius: 10px; font-size: 15px; background: transparent; color: #B4BAC4; font-weight: 500; text-decoration: none; box-sizing: border-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"></path><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"></path></svg>
+        <span style="flex: 1; text-align: right">المهام</span>
+        <span class="mono" id="count-tasks" style="font-size: 12px; opacity: .8"></span>
+      </a>
+      <a href="team.html#people" class="side-btn" style="display: flex; align-items: center; gap: 12px; width: 100%; min-height: 46px; padding: 0 12px; border-radius: 10px; font-size: 15px; background: transparent; color: #B4BAC4; font-weight: 500; text-decoration: none; box-sizing: border-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"></path><circle cx="17" cy="9" r="2.5"></circle><path d="M17 14.5c2.3.2 4 1.8 4.5 4.5"></path></svg>
+        <span style="flex: 1; text-align: right">الموظفين</span>
+        <span class="mono" id="count-people" style="font-size: 12px; opacity: .8"></span>
+      </a>
+      <button type="button" aria-current="page" style="display: flex; align-items: center; gap: 12px; width: 100%; min-height: 46px; padding: 0 12px; border-radius: 10px; border: 0; font-size: 15px; background: #1E2228; color: #F2F3F5; font-weight: 600">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"></rect><circle cx="12" cy="12" r="2.5"></circle><path d="M6 9.5v5M18 9.5v5"></path></svg>
+        <span style="flex: 1; text-align: right">الحسابات</span>
+        <span class="mono" id="count-money" style="font-size: 12px; opacity: .8"></span>
+      </button>
+    </nav>
+
+    <a href="profile.html?id=ahmed" aria-label="ملفي الشخصي" style="margin-top: auto; display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 12px; background: #15181D; border: 1px solid #22262D; color: #F2F3F5; text-align: right; width: 100%; box-sizing: border-box; text-decoration: none">
+      <span style="width: 36px; height: 36px; border-radius: 10px; background: #1E2228; display: inline-flex; align-items: center; justify-content: center; color: var(--accent); font-weight: 700">أ</span>
+      <span style="display: flex; flex-direction: column; min-width: 0">
+        <span style="font-size: 14px; font-weight: 600">أحمد الحربي</span>
+        <span style="font-size: 12px; color: #9AA1AC">أدمن · ملفي الشخصي</span>
+      </span>
+    </a>
+  </aside>
+
+  <!-- CONTENT -->
+  <main data-portal-main style="flex: 999 1 560px; min-width: 0; padding: 32px clamp(16px, 3vw, 40px) 64px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
+    <div class="view-in" style="display: flex; flex-direction: column; gap: 28px">
+      <div style="display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <p style="margin: 0; color: var(--accent); font-size: 13px; font-weight: 500"><span class="mono">//</span> الدخل</p>
+          <h1 style="margin: 0; font-size: 32px; font-weight: 700">الحسابات</h1>
+        </div>
+        <div id="month-pills" role="group" aria-label="اختيار الشهر" style="display: flex; flex-wrap: wrap; gap: 8px"></div>
+      </div>
+
+      <form id="money-form" class="pulse-border" style="padding: 22px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; display: flex; flex-direction: column; gap: 16px">
+        <h2 style="margin: 0; font-size: 18px; font-weight: 600">إضافة دفعة جديدة</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; align-items: end">
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #B4BAC4">اسم المشروع
+            <input id="f-name" type="text" placeholder="مثلاً: موقع مطعم" style="min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid #333943; background: #0F1215; color: #F2F3F5; font-size: 15px">
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #B4BAC4">القسم
+            <select id="f-cat" style="min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid #333943; background: #0F1215; color: #F2F3F5; font-size: 15px; font-family: inherit">
+              <option value="site">مواقع</option>
+              <option value="app">تطبيقات</option>
+              <option value="dash">داشبورد</option>
+              <option value="student">مشاريع طلاب</option>
+            </select>
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #B4BAC4">المبلغ (ريال)
+            <input id="f-amount" type="number" min="0" inputmode="decimal" placeholder="0" style="min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid #333943; background: #0F1215; color: #F2F3F5; font-size: 15px">
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #B4BAC4">الشهر
+            <select id="f-month" style="min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid #333943; background: #0F1215; color: #F2F3F5; font-size: 15px; font-family: inherit"></select>
+          </label>
+          <button type="submit" style="min-height: 44px; padding: 0 20px; border-radius: 10px; border: 0; background: var(--accent); color: #0D0F12; font-weight: 600; font-size: 15px">إضافة</button>
+        </div>
+        <p id="f-err" role="alert" style="display: none; margin: 0; color: #FFB547; font-size: 14px">اكتب اسم المشروع ومبلغ أكبر من صفر.</p>
+      </form>
+
+      <div id="cat-totals" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px"></div>
+
+      <div style="background: #15181D; border: 1px solid #262A31; border-radius: 16px; overflow: hidden">
+        <div class="table-scroll" style="overflow-x: auto">
+          <table style="width: 100%; border-collapse: collapse; font-size: 15px">
+            <thead>
+              <tr style="color: #9AA1AC; font-size: 13px; text-align: right">
+                <th scope="col" style="padding: 14px 20px; font-weight: 500; border-bottom: 1px solid #262A31">المشروع</th>
+                <th scope="col" style="padding: 14px 20px; font-weight: 500; border-bottom: 1px solid #262A31">القسم</th>
+                <th scope="col" style="padding: 14px 20px; font-weight: 500; border-bottom: 1px solid #262A31">المبلغ</th>
+                <th scope="col" style="padding: 14px 20px; font-weight: 500; border-bottom: 1px solid #262A31; width: 60px"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">حذف</span></th>
+              </tr>
+            </thead>
+            <tbody id="money-rows"></tbody>
+          </table>
+        </div>
+        <p id="money-empty" style="display: none; margin: 0; padding: 28px 20px; text-align: center; color: #9AA1AC">ما فيه دفعات في هذا الشهر. أضف أول دفعة من الفورم فوق.</p>
+
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 20px; background: #101317; border-top: 1px solid #262A31">
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <span style="font-size: 15px; font-weight: 600">الدخل الشهري — <span id="month-label"></span></span>
+            <span style="font-size: 13px; color: #9AA1AC"><span id="month-count"></span> دفعات · إجمالي كل الشهور: <span class="mono" id="all-total"></span> ر.س</span>
+          </div>
+          <span class="mono" style="font-size: 36px; color: var(--accent)"><span id="month-total"></span> <span style="font-size: 16px; color: #9AA1AC">ر.س</span></span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- MOBILE BOTTOM NAV -->
+  <nav class="portal-bottomnav" aria-label="تنقل البوابة">
+    <a href="team.html" aria-current="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"></path><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"></path></svg>
+      <span>المهام</span>
+    </a>
+    <a href="team.html#people" aria-current="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"></path><circle cx="17" cy="9" r="2.5"></circle><path d="M17 14.5c2.3.2 4 1.8 4.5 4.5"></path></svg>
+      <span>الموظفين</span>
+    </a>
+    <button type="button" aria-current="page">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"></rect><circle cx="12" cy="12" r="2.5"></circle><path d="M6 9.5v5M18 9.5v5"></path></svg>
+      <span>الحسابات</span>
+    </button>
+    <a href="profile.html?id=ahmed" aria-current="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-4.5 4.5-6.5 8-6.5s6.5 2 8 6.5"></path></svg>
+      <span>ملفي</span>
+    </a>
+  </nav>
+</div>
+
+<script src="js/portal-data.js"></script>
+<script>
+(function () {
+  const D = PortalData;
+  const state = { month: '2026-11', form: { name: '', cat: 'site', amount: '', month: '2026-11' } };
+  let nextId = Math.max.apply(null, D.moneyEntries.map((e) => e.id)) + 1;
+
+  const pillStyle = (on) => on
+    ? 'display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 16px; border-radius: 99px; font-size: 14px; font-weight: 600; border: 1px solid var(--accent); background: var(--accent); color: #0D0F12; cursor: pointer'
+    : 'display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 16px; border-radius: 99px; font-size: 14px; font-weight: 500; border: 1px solid #333943; background: transparent; color: #D7DBE1; cursor: pointer';
+
+  document.getElementById('count-tasks').textContent = String(D.tasks.length);
+  document.getElementById('count-people').textContent = String(D.people.length);
+  document.getElementById('count-money').textContent = String(D.moneyEntries.length);
+
+  const monthSelect = document.getElementById('f-month');
+  monthSelect.innerHTML = D.monthDefs.map((m) => '<option value="' + m.id + '">' + m.label + '</option>').join('');
+  monthSelect.value = state.form.month;
+
+  function renderMonthPills() {
+    document.getElementById('month-pills').innerHTML = D.monthDefs.map(function (m) {
+      return '<button type="button" data-month="' + m.id + '" style="' + pillStyle(state.month === m.id) + '">' + m.label + '</button>';
+    }).join('');
+  }
+
+  function renderCatTotals() {
+    const monthEntries = D.moneyEntries.filter((e) => e.month === state.month);
+    document.getElementById('cat-totals').innerHTML = Object.keys(D.catLabels).map(function (k) {
+      const list = monthEntries.filter((e) => e.cat === k);
+      const total = D.fmt(list.reduce((n, e) => n + e.amount, 0));
+      return '<div class="stat" style="padding:18px 20px;background:#15181D;border:1px solid #262A31;border-radius:14px;display:flex;flex-direction:column;gap:6px">' +
+        '<span style="color:#9AA1AC;font-size:13px">' + D.catLabels[k] + ' <span class="mono" style="font-size:12px">(' + list.length + ')</span></span>' +
+        '<span class="mono" style="font-size:24px">' + total + ' <span style="font-size:14px;color:#9AA1AC">ر.س</span></span></div>';
+    }).join('');
+  }
+
+  function renderTable() {
+    const monthEntries = D.moneyEntries.filter((e) => e.month === state.month);
+    document.getElementById('money-rows').innerHTML = monthEntries.map(function (e) {
+      return '<tr class="view-in"><td style="padding:12px 20px;border-bottom:1px solid #1E2228">' + e.name + '</td>' +
+        '<td style="padding:12px 20px;border-bottom:1px solid #1E2228"><span style="font-size:13px;padding:3px 10px;border-radius:99px;background:#1E2228;color:#C9CED6">' + D.catLabels[e.cat] + '</span></td>' +
+        '<td class="mono" style="padding:12px 20px;border-bottom:1px solid #1E2228">' + D.fmt(e.amount) + ' <span style="font-size:13px;color:#9AA1AC">ر.س</span></td>' +
+        '<td style="padding:6px 12px;border-bottom:1px solid #1E2228"><button type="button" class="ghost" data-remove="' + e.id + '" aria-label="حذف الدفعة" style="width:40px;height:40px;border-radius:9px;border:1px solid #333943;background:transparent;color:#9AA1AC;display:inline-flex;align-items:center;justify-content:center">' +
+        '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"></path></svg></button></td></tr>';
+    }).join('');
+    document.getElementById('money-empty').style.display = monthEntries.length ? 'none' : '';
+    document.getElementById('month-label').textContent = (D.monthDefs.find((m) => m.id === state.month) || {}).label || '';
+    document.getElementById('month-count').textContent = String(monthEntries.length);
+    document.getElementById('month-total').textContent = D.fmt(monthEntries.reduce((n, e) => n + e.amount, 0));
+    document.getElementById('all-total').textContent = D.fmt(D.moneyEntries.reduce((n, e) => n + e.amount, 0));
+  }
+
+  function renderAll() { renderMonthPills(); renderCatTotals(); renderTable(); }
+
+  document.getElementById('month-pills').addEventListener('click', function (e) {
+    const btn = e.target.closest('[data-month]');
+    if (!btn) return;
+    state.month = btn.getAttribute('data-month');
+    monthSelect.value = state.month;
+    renderAll();
+  });
+
+  document.getElementById('money-rows').addEventListener('click', function (e) {
+    const btn = e.target.closest('[data-remove]');
+    if (!btn) return;
+    // TODO(backend): أرسل DELETE /api/income/:id بدل الحذف من الذاكرة.
+    const id = Number(btn.getAttribute('data-remove'));
+    const idx = D.moneyEntries.findIndex((x) => x.id === id);
+    if (idx !== -1) D.moneyEntries.splice(idx, 1);
+    document.getElementById('count-money').textContent = String(D.moneyEntries.length);
+    renderAll();
+  });
+
+  document.getElementById('money-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = document.getElementById('f-name').value.trim();
+    const cat = document.getElementById('f-cat').value;
+    const amount = parseFloat(document.getElementById('f-amount').value);
+    const month = monthSelect.value;
+    const err = document.getElementById('f-err');
+    if (!name || !(amount > 0)) { err.style.display = ''; return; }
+    err.style.display = 'none';
+    // TODO(backend): أرسل POST /api/income بدل الإضافة في الذاكرة.
+    D.moneyEntries.push({ id: nextId++, name, cat, amount, month });
+    document.getElementById('f-name').value = '';
+    document.getElementById('f-amount').value = '';
+    document.getElementById('count-money').textContent = String(D.moneyEntries.length);
+    state.month = month;
+    renderAll();
+  });
+
+  renderAll();
+})();
+</script>
+<script src="js/transition.js"></script>
+<script src="js/loading.js"></script>
+</body>
+</html>
