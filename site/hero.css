@@ -1,0 +1,37 @@
+/* شفرة — مشهد الـ Hero (من assets/hero-scene.html). خاص بالرئيسية فقط. */
+
+@keyframes ledFlick{0%,18%,22%,24%,61%,100%{opacity:1}19%,21%,23%{opacity:.18}62%,70%{opacity:.12}71%,72%{opacity:1}73%,74%{opacity:.2}}
+@keyframes ledGlow{0%,18%,24%,61%,100%{opacity:1}19%,23%,62%,74%{opacity:.05}}
+.led{animation:ledFlick 7s steps(1) infinite}
+.ledglow{animation:ledGlow 7s steps(1) infinite}
+@keyframes sipA{0%,62%,100%{transform:translate(0,0)}68%,82%{transform:translate(-22px,-14px)}88%{transform:translate(0,0)}}
+@keyframes sipB{0%,30%,100%{transform:translate(0,0)}36%,50%{transform:translate(-22px,-14px)}56%{transform:translate(0,0)}}
+.sipA{animation:sipA 9s ease-in-out infinite}
+.sipB{animation:sipB 11s ease-in-out infinite}
+@keyframes steam{0%{transform:translateY(0);opacity:0}30%{opacity:.7}100%{transform:translateY(-6px);opacity:0}}
+.steam{animation:steam 2.4s steps(6) infinite}.st2{animation-delay:.8s}.st3{animation-delay:1.6s}
+@keyframes scroll{from{transform:translateY(0)}to{transform:translateY(-48px)}}
+.scroll{animation:scroll 14s steps(48) infinite}.s2{animation-duration:11s}
+@keyframes win{0%,100%{opacity:1}50%{opacity:.2}}
+.win{animation:win 5s steps(1) infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(1px)}}
+.bob{animation:bob 1.6s steps(1) infinite}.sipBh{animation-duration:1.2s;animation-delay:.3s}
+@keyframes type{0%,100%{transform:translateY(0)}25%{transform:translateY(-1px)}50%{transform:translateY(0)}75%{transform:translateY(-1px)}}
+.type{animation:type .5s steps(1) infinite}.sipBt{animation-duration:.42s}
+@keyframes cur{50%{opacity:0}}.cur{animation:cur 1s steps(1) infinite}
+@keyframes sway{0%,100%{transform:skewX(0)}50%{transform:skewX(-4deg)}}
+.plant{transform-origin:241px 90px;animation:sway 4s ease-in-out infinite}
+@keyframes star{0%,86%{transform:translate(0,0);opacity:0}88%{opacity:1}96%{transform:translate(-30px,18px);opacity:0}100%{opacity:0}}
+.star{animation:star 9s linear infinite}
+@keyframes lampf{0%,100%{opacity:1}47%{opacity:1}48%{opacity:.6}49%{opacity:1}}
+@keyframes armA{0%,62%,100%{transform:translate(0,0)}68%,82%{transform:translate(-8px,-11px)}88%{transform:translate(0,0)}}
+@keyframes armB{0%,30%,100%{transform:translate(0,0)}36%,50%{transform:translate(-8px,-11px)}56%{transform:translate(0,0)}}
+.armsipA{animation:armA 9s ease-in-out infinite}.armsipB{animation:armB 11s ease-in-out infinite}
+@keyframes vapA{0%,61%,89%,100%{opacity:1}62%,88%{opacity:0}}@keyframes vapB{0%,29%,57%,100%{opacity:1}30%,56%{opacity:0}}
+.vapsipA{animation:vapA 9s steps(1) infinite}.vapsipB{animation:vapB 11s steps(1) infinite}
+
+.hero-art{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+@media (prefers-reduced-motion: reduce){
+  .led,.ledglow,.sipA,.sipB,.steam,.scroll,.win,.bob,.type,.cur,.plant,.star,.armsipA,.armsipB,.vapsipA,.vapsipB{animation:none}
+}

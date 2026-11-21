@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>شفرة — انتقال: شريط علوي</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0D0F12}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+</style>
+</helmet>
+<div dir="rtl" style="width: 1440px; height: 900px; background: #0D0F12; color: #F2F3F5; font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif; position: relative; overflow: hidden">
+  <div style="position: absolute; inset: 0; opacity: {{ aO }}">
+    <div style="height: 76px; border-bottom: 1px solid #22262D; display: flex; flex-direction: row-reverse; align-items: center; justify-content: space-between; padding: 0 120px">
+      <img src="../assets/shafra-logo.png" alt="" width="72" height="44" style="display: block; width: 72px; height: 44px">
+      <div style="display: flex; gap: 28px; color: #9AA1AC; font-size: 15px"><span>الأعمال</span><span>الخدمات</span><span>تواصل</span></div>
+    </div>
+    <div style="max-width: 1200px; margin: 0 auto; padding: 48px 24px; display: flex; flex-direction: column; gap: 14px">
+      <span class="mono" style="color: #B8F34A; font-size: 14px">// صفحة الأعمال</span>
+      <div style="height: 56px; width: 60%; border-radius: 10px; background: #1E2228"></div><div style="height: 16px; width: 40%; border-radius: 6px; background: #1A1E24"></div><div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; padding-top: 16px"><div style="height: 220px; border-radius: 16px; background: #15181D; border: 1px solid #262A31"></div><div style="height: 220px; border-radius: 16px; background: #15181D; border: 1px solid #262A31"></div><div style="height: 220px; border-radius: 16px; background: #15181D; border: 1px solid #262A31"></div></div>
+    </div>
+  </div>
+  <div style="position: absolute; inset: 0; opacity: {{ bO }}">
+    <div style="height: 76px; border-bottom: 1px solid #22262D; display: flex; flex-direction: row-reverse; align-items: center; justify-content: space-between; padding: 0 120px">
+      <img src="../assets/shafra-logo.png" alt="" width="72" height="44" style="display: block; width: 72px; height: 44px">
+      <div style="display: flex; gap: 28px; color: #9AA1AC; font-size: 15px"><span>الأعمال</span><span>الخدمات</span><span>تواصل</span></div>
+    </div>
+    <div style="max-width: 1200px; margin: 0 auto; padding: 48px 24px; display: flex; flex-direction: column; gap: 14px">
+      <span class="mono" style="color: #B8F34A; font-size: 14px">// صفحة المشروع</span>
+      <div style="height: 64px; width: 30%; border-radius: 10px; background: #1E2228"></div><div style="height: 300px; border-radius: 20px; background: #15181D; border: 1px solid #262A31; padding: 22px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px"><div style="display: flex; justify-content: space-between; align-items: center; background: #32127A; border-radius: 10px; padding: 12px 16px"><span style="color: #FAF5EB; font-weight: 700; font-size: 16px">سفرة</span><span style="width: 70px; height: 20px; border-radius: 6px; background: #F28500"></span></div><div style="height: 16px; width: 45%; border-radius: 5px; background: #2C323B"></div><div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; flex: 1"><div style="border-radius: 10px; background: #1E2228"></div><div style="border-radius: 10px; background: #1E2228"></div><div style="border-radius: 10px; background: #1E2228"></div><div style="border-radius: 10px; background: #1E2228"></div></div></div><div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px"><div style="height: 90px; border-radius: 14px; background: #15181D; border: 1px solid #262A31"></div><div style="height: 90px; border-radius: 14px; background: #15181D; border: 1px solid #262A31"></div></div>
+    </div>
+  </div>
+  <div aria-hidden="true" style="position: absolute; top: 0; right: 0; left: 0; height: 3px">
+    <div style="position: absolute; top: 0; right: 0; height: 3px; width: {{ barW }}%; background: #B8F34A; box-shadow: 0 0 12px #B8F34A; opacity: {{ barO }}"></div>
+  </div>
+  <div aria-hidden="true" style="position: absolute; inset: 76px 0 0 0; background: #0D0F12; opacity: {{ dim }}; pointer-events: none"></div>
+  <span class="mono" style="position: absolute; top: 18px; left: 50%; transform: translateX(-50%); font-size: 12px; color: #6E7681; opacity: {{ barO }}">loading…</span>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { t: 0 }; }
+  componentDidMount() { const t0 = Date.now(); this.timer = setInterval(() => this.setState({ t: (Date.now() - t0) / 1000 }), 50); }
+  componentWillUnmount() { clearInterval(this.timer); }
+  renderVals() {
+    const T = 3.6; const t = this.state.t % (2 * T); const second = t >= T; const u = t % T;
+    const swapAt = 1.7;
+    const showB = (u >= swapAt) !== second;
+    const aO = showB ? 0 : 1, bO = showB ? 1 : 0;
+    let barW = 0, barO = 0, dim = 0;
+    if (u > 0.8 && u < 1.7) { const k = (u - 0.8) / 0.9; barW = 85 * (1 - Math.pow(1 - k, 3)); barO = 1; dim = 0.35 * Math.min(1, k * 3); }
+    else if (u >= 1.7 && u < 2.1) { barW = 100; barO = 1 - (u - 1.7) / 0.4; dim = 0.35 * (1 - (u - 1.7) / 0.4); }
+    return { aO, bO, barW: barW.toFixed(1), barO: barO.toFixed(2), dim: dim.toFixed(2) };
+  }
+}
+</script>
+</body>
+</html>

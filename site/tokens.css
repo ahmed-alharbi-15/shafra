@@ -1,0 +1,56 @@
+/* شفرة — design tokens (from StyleGuide.dc.html) */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* colors — backgrounds */
+  --bg: #0D0F12;          --bg-sidebar: #111418;
+  --bg-inset: #101317;    --bg-input: #0F1215;
+  --surface: #15181D;     --surface-2: #1A1E24;   --surface-3: #1E2228;
+
+  /* colors — borders */
+  --line: #22262D;        --border: #262A31;
+  --border-strong: #333943; --border-hover: #3A404A;
+
+  /* colors — text */
+  --text: #F2F3F5;        --text-2: #D7DBE1;      --text-3: #B4BAC4;
+  --muted: #9AA1AC;       --faint: #6E7681;
+
+  /* colors — brand & status */
+  --accent: #B8F34A;      --on-accent: #0D0F12;
+  --info: #5CE1E6;        --warn: #FFB547;        --code: #C792EA;
+
+  /* type */
+  --font: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --fs-display: clamp(40px, 5.4vw, 68px);
+  --fs-h1: clamp(36px, 4.8vw, 60px);
+  --fs-h2: clamp(30px, 3.6vw, 44px);
+  --fs-h3: 22px;  --fs-lead: 19px;  --fs-body: 15px;
+  --fs-sm: 14px;  --fs-xs: 13px;    --fs-2xs: 12px;
+  --lh-tight: 1.15;  --lh-body: 1.8;
+
+  /* space */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 20px;
+  --s-6: 24px; --s-7: 28px; --s-8: 40px; --s-9: 56px; --s-10: 88px;
+  --container: 1200px;  --gutter: 24px;
+
+  /* radius */
+  --r-sm: 8px;  --r-md: 10px; --r-lg: 12px; --r-xl: 16px;
+  --r-2xl: 18px; --r-3xl: 24px; --r-pill: 99px;
+
+  /* shadow */
+  --shadow-btn: 0 10px 24px -12px rgba(0,0,0,.7);
+  --shadow-card: 0 18px 40px -20px rgba(0,0,0,.8);
+  --shadow-mock: 0 30px 60px rgba(0,0,0,.35);
+  --ring: 0 0 0 3px rgba(184,243,74,.18);
+
+  /* motion */
+  --ease: cubic-bezier(.2,.7,.2,1);
+  --t-fast: .2s;  --t-base: .25s;  --t-enter: .8s;
+
+  /* sizes */
+  --tap: 44px;  --btn-lg: 52px;  --logo: 40px;
+}
+
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); }
+html { direction: rtl; }

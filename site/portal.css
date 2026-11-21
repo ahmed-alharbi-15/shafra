@@ -1,0 +1,12 @@
+/* شفرة — entrance-animation variants for the team portal pages (team / accounts). */
+
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.view-in { animation: rise .45s cubic-bezier(.2,.7,.2,1); }
+@keyframes grow { from { width: 0; } }
+.bar { animation: grow .9s cubic-bezier(.2,.7,.2,1); transition: width .4s ease; }
+.pop { animation: slideUp .5s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes slideUp { from { transform: translateY(24px); } to { transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .view-in, .pop, .bar { opacity: 1 !important; animation: none !important; transition: none !important; }
+}

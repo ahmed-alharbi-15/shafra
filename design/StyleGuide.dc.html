@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>شفرة — دليل التصميم</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0D0F12}
+a{color:#B8F34A}a:hover{color:#D4FF7A}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.spec th,.spec td{padding:12px 16px;border-bottom:1px solid #22262D;text-align:right;vertical-align:middle}
+.spec th{color:#9AA1AC;font-weight:500;font-size:13px;background:#111418}
+.spec td{font-size:14px;color:#D7DBE1}
+.spec tr:last-child td{border-bottom:0}
+@keyframes riseX{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@supports (animation-timeline: view()){.reveal{}}
+.sw{transition:transform .2s}.sw:hover{transform:translateY(-3px)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+
+@keyframes logoBlink{50%{opacity:.1}}
+.logo-blink{}
+.logo-link svg{transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.logo-link:hover svg{transform:scale(1.05)}
+</style>
+</helmet>
+<div dir="rtl" style="background: #0D0F12; color: #F2F3F5; font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif; min-height: 100vh">
+<div style="max-width: 1200px; margin: 0 auto; padding: 64px 24px 96px; display: flex; flex-direction: column; gap: 72px">
+
+  <!-- HEADER -->
+  <header style="display: flex; flex-direction: column; gap: 18px">
+    <div style="display: flex; align-items: center"><img src="../assets/shafra-logo.png" alt="شفرة" width="105" height="64" style="display: block; flex: none; width: 105px; height: 64px"></div>
+    <h1 style="margin: 0; font-size: clamp(36px, 4.8vw, 60px); font-weight: 700; letter-spacing: -0.02em">دليل التصميم</h1>
+    <p style="margin: 0; color: #B4BAC4; font-size: 18px; line-height: 1.8; max-width: 46rem">كل الألوان والخطوط والمقاسات والمكونات والحركات المستخدمة في الموقع وبوابة الفريق، جاهزة للتنفيذ بـ HTML و CSS. القيم هنا هي نفس القيم المستخدمة في الصفحات.</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px">
+      <span style="font-size: 13px; padding: 6px 12px; border-radius: 99px; background: #1E2228; color: #C9CED6">الاتجاه: RTL · lang="ar"</span>
+      <span style="font-size: 13px; padding: 6px 12px; border-radius: 99px; background: #1E2228; color: #C9CED6">عرض التصميم: 1440px</span>
+      <span style="font-size: 13px; padding: 6px 12px; border-radius: 99px; background: #1E2228; color: #C9CED6">عرض المحتوى: 1200px</span>
+      <span style="font-size: 13px; padding: 6px 12px; border-radius: 99px; background: #1E2228; color: #C9CED6">الوضع: داكن</span>
+    </div>
+    <nav aria-label="أقسام الدليل" style="display: flex; flex-wrap: wrap; gap: 6px 18px; padding-top: 8px; font-size: 15px">
+      <a href="#colors">الألوان</a><a href="#type">الخطوط</a><a href="#space">المسافات</a><a href="#radius">الزوايا والظلال</a><a href="#components">المكونات</a><a href="#images">الصور والأيقونات</a><a href="#responsive">التجاوب</a><a href="#motion">الحركة</a><a href="#code">الكود</a>
+    </nav>
+  </header>
+
+  <!-- COLORS -->
+  <section id="colors" class="reveal" style="display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <p class="mono" style="margin: 0; color: #B8F34A; font-size: 14px">01 // الألوان</p>
+      <h2 style="margin: 0; font-size: 34px; font-weight: 700">لوحة الألوان</h2>
+      <p style="margin: 0; color: #B4BAC4; font-size: 16px; line-height: 1.8">لون أساسي واحد فقط (الليموني) للأزرار والتمييز، والباقي درجات رمادية داكنة. كل نصوص الواجهة تحقق تباين 4.5:1 أو أكثر على الخلفية.</p>
+    </div>
+    <sc-for list="{{ colorGroups }}" as="g" hint-placeholder-count="5">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <h3 style="margin: 0; font-size: 18px; font-weight: 600; color: #D7DBE1">{{ g.title }}</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px">
+          <sc-for list="{{ g.items }}" as="c" hint-placeholder-count="4">
+            <div class="sw" style="background: #15181D; border: 1px solid #262A31; border-radius: 14px; overflow: hidden">
+              <div style="{{ c.swatch }}"></div>
+              <div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px">
+                <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline">
+                  <span style="font-size: 15px; font-weight: 600">{{ c.name }}</span>
+                  <span class="mono" style="font-size: 13px; color: #D7DBE1">{{ c.hex }}</span>
+                </div>
+                <span class="mono" dir="ltr" style="font-size: 12px; color: #9AA1AC; text-align: right">{{ c.token }}</span>
+                <span style="font-size: 13px; color: #9AA1AC; line-height: 1.6">{{ c.use }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </section>
+
+  <!-- TYPE -->
+  <section id="type" class="reveal" style="display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <p class="mono" style="margin: 0; color: #B8F34A; font-size: 14px">02 // الخطوط</p>
+      <h2 style="margin: 0; font-size: 34px; font-weight: 700">الخطوط والأحجام</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px">
+      <div style="padding: 28px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; display: flex; flex-direction: column; gap: 14px">
+        <span style="color: #9AA1AC; font-size: 13px">الخط الأساسي — كل النصوص العربية</span>
+        <span style="font-size: 44px; font-weight: 700; line-height: 1.2">IBM Plex Sans Arabic</span>
+        <span style="font-size: 20px; color: #D7DBE1">نكتب الشفرة اللي تشغّل فكرتك</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <span style="font-size: 14px; padding: 6px 12px; border-radius: 8px; border: 1px solid #333943; font-weight: 400">400 عادي</span>
+          <span style="font-size: 14px; padding: 6px 12px; border-radius: 8px; border: 1px solid #333943; font-weight: 500">500 متوسط</span>
+          <span style="font-size: 14px; padding: 6px 12px; border-radius: 8px; border: 1px solid #333943; font-weight: 600">600 شبه عريض</span>
+          <span style="font-size: 14px; padding: 6px 12px; border-radius: 8px; border: 1px solid #333943; font-weight: 700">700 عريض</span>
+        </div>
+        <code class="mono" dir="ltr" style="font-size: 12px; color: #9AA1AC; text-align: right">font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;</code>
+      </div>
+      <div style="padding: 28px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; display: flex; flex-direction: column; gap: 14px">
+        <span style="color: #9AA1AC; font-size: 13px">الخط الثانوي — الكود، الأرقام، العناوين الصغيرة</span>
+        <span class="mono" dir="ltr" style="font-size: 40px; line-height: 1.2; text-align: right">JetBrains Mono</span>
+        <span class="mono" dir="ltr" style="font-size: 18px; color: #B8F34A; text-align: right">// 01 02 03 &lt;/&gt; 3,500</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <span class="mono" style="font-size: 14px; padding: 6px 12px; border-radius: 8px; border: 1px solid #333943; font-weight: 400">400</span>
+          <span class="mono" style="font-size: 14px; padding: 6px 12px; border-radius: 8px; border: 1px solid #333943; font-weight: 500">500</span>
+        </div>
+        <code class="mono" dir="ltr" style="font-size: 12px; color: #9AA1AC; text-align: right">font-family: 'JetBrains Mono', ui-monospace, monospace;</code>
+      </div>
+    </div>
+
+    <div style="background: #15181D; border: 1px solid #262A31; border-radius: 16px; overflow: hidden">
+      <div style="overflow-x: auto">
+        <table class="spec" style="width: 100%; min-width: 820px; border-collapse: collapse">
+          <thead><tr><th scope="col">الاستخدام</th><th scope="col">الحجم</th><th scope="col">الوزن</th><th scope="col">ارتفاع السطر</th><th scope="col">مثال</th></tr></thead>
+          <tbody>
+            <sc-for list="{{ typeScale }}" as="t" hint-placeholder-count="8">
+              <tr>
+                <td style="white-space: nowrap">{{ t.name }}</td>
+                <td class="mono" dir="ltr" style="font-size: 12.5px; color: #C9CED6; white-space: nowrap; text-align: right">{{ t.size }}</td>
+                <td class="mono">{{ t.weight }}</td>
+                <td class="mono">{{ t.lh }}</td>
+                <td><span style="{{ t.sample }}">{{ t.example }}</span></td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPACING -->
+  <section id="space" class="reveal" style="display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <p class="mono" style="margin: 0; color: #B8F34A; font-size: 14px">03 // المسافات</p>
+      <h2 style="margin: 0; font-size: 34px; font-weight: 700">مقياس المسافات والتخطيط</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px">
+      <div style="padding: 24px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; display: flex; flex-direction: column; gap: 10px">
+        <sc-for list="{{ spaces }}" as="sp" hint-placeholder-count="10">
+          <div style="display: flex; align-items: center; gap: 14px">
+            <span class="mono" style="width: 44px; font-size: 13px; color: #D7DBE1">{{ sp.v }}</span>
+            <span style="{{ sp.bar }}"></span>
+            <span style="font-size: 13px; color: #9AA1AC">{{ sp.use }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="background: #15181D; border: 1px solid #262A31; border-radius: 16px; overflow: hidden">
+        <table class="spec" style="width: 100%; border-collapse: collapse">
+          <thead><tr><th scope="col">العنصر</th><th scope="col">القيمة</th></tr></thead>
+          <tbody>
+            <sc-for list="{{ layout }}" as="l" hint-placeholder-count="10">
+              <tr><td>{{ l.k }}</td><td class="mono" dir="ltr" style="text-align: right; font-size: 13px">{{ l.v }}</td></tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- RADIUS & SHADOW -->
+  <section id="radius" class="reveal" style="display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <p class="mono" style="margin: 0; color: #B8F34A; font-size: 14px">04 // الزوايا والظلال</p>
+      <h2 style="margin: 0; font-size: 34px; font-weight: 700">انحناء الزوايا والظلال</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px">
+      <sc-for list="{{ radii }}" as="r" hint-placeholder-count="8">
+        <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start">
+          <div style="{{ r.box }}"></div>
+          <span class="mono" style="font-size: 14px">{{ r.v }}</span>
+          <span style="font-size: 13px; color: #9AA1AC; line-height: 1.6">{{ r.use }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; padding-top: 8px">
+      <sc-for list="{{ shadows }}" as="sh" hint-placeholder-count="4">
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <div style="{{ sh.box }}"></div>
+          <span style="font-size: 15px; font-weight: 600">{{ sh.name }}</span>
+          <code class="mono" dir="ltr" style="font-size: 12px; color: #9AA1AC; text-align: right; line-height: 1.6">{{ sh.v }}</code>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- COMPONENTS -->
+  <section id="components" class="reveal" style="display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <p class="mono" style="margin: 0; color: #B8F34A; font-size: 14px">05 // المكونات</p>
+      <h2 style="margin: 0; font-size: 34px; font-weight: 700">الأزرار والحقول والكروت</h2>
+      <p style="margin: 0; color: #B4BAC4; font-size: 16px; line-height: 1.8">أقل ارتفاع لأي شي ينضغط: 44px (مناسب للمس على الجوال).</p>
+    </div>
+
+    <div style="padding: 28px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; display: flex; flex-direction: column; gap: 22px">
+      <h3 style="margin: 0; font-size: 18px; font-weight: 600">الأزرار</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px">
+        <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start">
+          <button type="button" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border-radius: 12px; border: 0; background: #B8F34A; color: #0D0F12; font-weight: 600; font-size: 16px; font-family: inherit">زر أساسي كبير</button>
+          <span class="mono" dir="ltr" style="font-size: 12px; color: #9AA1AC; text-align: right; line-height: 1.7">h 52 · padding 0 26 · radius 12<br>16px / 600 · bg accent · text #0D0F12</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start">
+          <button type="button" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 10px; border: 0; background: #B8F34A; color: #0D0F12; font-weight: 600; font-size: 15px; font-family: inherit">زر أساسي</button>
+          <span class="mono" dir="ltr" style="font-size: 12px; color: #9AA1AC; text-align: right; line-height: 1.7">h 44 · padding 0 20 · radius 10<br>15px / 600</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start">
+          <button type="button" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border-radius: 12px; border: 1px solid #333943; background: transparent; color: #F2F3F5; font-weight: 500; font-size: 16px; font-family: inherit">زر ثانوي</button>
+          <span class="mono" dir="ltr" style="font-size: 12px; color: #9AA1AC; text-align: right; line-height: 1.7">h 52 / 44 · border 1 #333943<br>bg transparent · 16px / 500</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start">
+          <div style="display: flex; gap: 8px">
+            <button type="button" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 99px; border: 1px solid #B8F34A; background: #B8F34A; color: #0D0F12; font-weight: 600; font-size: 15px; font-family: inherit">مفعّل</button>
+            <button type="button" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 99px; border: 1px solid #333943; background: transparent; color: #D7DBE1; font-weight: 500; font-size: 15px; font-family: inherit">عادي</button>
+          </div>
+          <span class="mono" dir="ltr" style="font-size: 12px; color: #9AA1AC; text-align: right; line-height: 1.7">filter pill · h 44 (40 in portal)<br>padding 0 18 · radius 99</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start">
+          <button type="button" aria-label="مثال زر أيقونة" style="width: 44px; height: 44px; border-radius: 10px; border: 1px solid #333943; background: transparent; color: #D7DBE1; display: inline-flex; align-items: center; justify-content: center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+          </button>
+          <span class="mono" dir="ltr" style="font-size: 12px; color: #9AA1AC; text-align: right; line-height: 1.7">icon button · 44×44 · radius 10<br>icon 18 · stroke 2</span>
+        </div>
+      </div>
+      <p style="margin: 0; font-size: 14px; color: #9AA1AC; line-height: 1.8">الحالات: عند المرور يرتفع 2px مع ظل الزر · عند الضغط يصغر إلى 0.96 · التركيز (focus) حلقة 3px بلون الأساسي بشفافية 18%.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px">
+      <div style="padding: 28px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; display: flex; flex-direction: column; gap: 16px">
+        <h3 style="margin: 0; font-size: 18px; font-weight: 600">الحقول</h3>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #B4BAC4">
+          عنوان الحقل (13px)
+          <input type="text" placeholder="نص توضيحي" style="min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid #333943; background: #0F1215; color: #F2F3F5; font-size: 15px; font-family: inherit">
+        </label>
+        <span class="mono" dir="ltr" style="font-size: 12px; color: #9AA1AC; text-align: right; line-height: 1.7">h 44 · padding 0 14 · radius 10 · 15px<br>bg #0F1215 · border 1 #333943 · label gap 6</span>
+        <h3 style="margin: 8px 0 0; font-size: 18px; font-weight: 600">التاقات</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+          <span style="font-size: 13px; padding: 4px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">تاق تصنيف</span>
+          <span class="mono" style="font-size: 12.5px; padding: 5px 10px; border-radius: 8px; border: 1px solid #333943; color: #C9CED6">Tech chip</span>
+          <span style="font-size: 12px; padding: 3px 10px; border-radius: 99px; border: 1px solid #5CE1E6; color: #5CE1E6">حالة</span>
+        </div>
+        <span class="mono" dir="ltr" style="font-size: 12px; color: #9AA1AC; text-align: right; line-height: 1.7">tag: 13px · padding 4 10 · radius 99 · bg #1E2228<br>chip: mono 12.5px · padding 5 10 · radius 8 · border #333943</span>
+      </div>
+
+      <div style="padding: 28px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; display: flex; flex-direction: column; gap: 16px">
+        <h3 style="margin: 0; font-size: 18px; font-weight: 600">كرت مشروع</h3>
+        <div style="border: 1px dashed #4A515C; border-radius: 18px; overflow: hidden">
+          <div style="height: 120px; background: #101317; display: flex; align-items: center; justify-content: center; color: #9AA1AC; font-size: 13px" class="mono">thumbnail · h 240 (home) / 220 (works)</div>
+          <div style="padding: 16px; display: flex; flex-direction: column; gap: 6px; border-top: 1px dashed #4A515C">
+            <span style="font-size: 13px; color: #9AA1AC">تاقات ← عنوان 22/600 ← وصف 15/1.8 ← تقنيات mono 12.5</span>
+          </div>
+        </div>
+        <table class="spec" style="width: 100%; border-collapse: collapse">
+          <tbody>
+            <tr><td>الخلفية / الحد</td><td class="mono" dir="ltr" style="text-align: right; font-size: 13px">#15181D / 1px #262A31</td></tr>
+            <tr><td>الانحناء</td><td class="mono" dir="ltr" style="text-align: right; font-size: 13px">18 (project) · 16 (service) · 14 (stat)</td></tr>
+            <tr><td>الحشوة الداخلية</td><td class="mono" dir="ltr" style="text-align: right; font-size: 13px">24 · 28 · 32 (team)</td></tr>
+            <tr><td>المسافة بين الكروت</td><td class="mono" dir="ltr" style="text-align: right; font-size: 13px">16 – 20</td></tr>
+            <tr><td>عند المرور</td><td class="mono" dir="ltr" style="text-align: right; font-size: 13px">translateY(-4px) · border #3A404A</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMAGES -->
+  <section id="images" class="reveal" style="display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <p class="mono" style="margin: 0; color: #B8F34A; font-size: 14px">06 // الصور والأيقونات</p>
+      <h2 style="margin: 0; font-size: 34px; font-weight: 700">مقاسات الصور المطلوبة</h2>
+      <p style="margin: 0; color: #B4BAC4; font-size: 16px; line-height: 1.8">المقاسات بضعف حجم العرض عشان تطلع واضحة على شاشات Retina. صدّرها WebP بجودة 80 تقريباً، وارفعها على Cloudinary.</p>
+    </div>
+    <div style="background: #15181D; border: 1px solid #262A31; border-radius: 16px; overflow: hidden">
+      <div style="overflow-x: auto">
+        <table class="spec" style="width: 100%; min-width: 760px; border-collapse: collapse">
+          <thead><tr><th scope="col">الصورة</th><th scope="col">المكان</th><th scope="col">مقاس التصدير</th><th scope="col">النسبة</th><th scope="col">الصيغة</th></tr></thead>
+          <tbody>
+            <sc-for list="{{ images }}" as="im" hint-placeholder-count="10">
+              <tr>
+                <td style="font-weight: 500">{{ im.name }}</td>
+                <td style="color: #9AA1AC">{{ im.where }}</td>
+                <td class="mono" dir="ltr" style="text-align: right">{{ im.size }}</td>
+                <td class="mono" dir="ltr" style="text-align: right">{{ im.ratio }}</td>
+                <td class="mono" dir="ltr" style="text-align: right">{{ im.fmt }}</td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div style="padding: 24px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 28px">
+      <div style="display: flex; align-items: end; gap: 18px; color: #B8F34A">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="M11 18l-6-6 6-6"></path></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"></path><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"></path></svg>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"></rect><path d="M10.5 18.5h3"></path></svg>
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18"></path></svg>
+      </div>
+      <p style="margin: 0; flex: 1 1 320px; font-size: 14px; color: #B4BAC4; line-height: 1.8">الأيقونات خطية (outline) بإطار 24×24، سمك الخط 1.7 للكبيرة و2 للصغيرة، أطراف دائرية. الأحجام: <span class="mono">18</span> داخل الأزرار · <span class="mono">20</span> القائمة الجانبية · <span class="mono">28–30</span> كروت الخدمات. لونها يتبع النص أو اللون الأساسي.</p>
+    </div>
+  </section>
+
+  <!-- RESPONSIVE -->
+  <section id="responsive" class="reveal" style="display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <p class="mono" style="margin: 0; color: #B8F34A; font-size: 14px">07 // التجاوب</p>
+      <h2 style="margin: 0; font-size: 34px; font-weight: 700">مقاسات الشاشات</h2>
+      <p style="margin: 0; color: #B4BAC4; font-size: 16px; line-height: 1.8">التخطيط مرن: الشبكات تستخدم <span class="mono" dir="ltr">repeat(auto-fit, minmax(…))</span> والصفوف <span class="mono" dir="ltr">flex-wrap</span>، فتتكيف بدون breakpoints كثيرة. اختبر على هذي المقاسات:</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px">
+      <sc-for list="{{ screens }}" as="sc" hint-placeholder-count="4">
+        <div style="padding: 22px; background: #15181D; border: 1px solid #262A31; border-radius: 14px; display: flex; flex-direction: column; gap: 8px">
+          <span style="font-size: 16px; font-weight: 600">{{ sc.name }}</span>
+          <span class="mono" style="font-size: 22px; color: #B8F34A">{{ sc.w }}</span>
+          <span style="font-size: 13px; color: #9AA1AC; line-height: 1.7">{{ sc.note }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- MOTION -->
+  <section id="motion" class="reveal" style="display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <p class="mono" style="margin: 0; color: #B8F34A; font-size: 14px">08 // الحركة</p>
+      <h2 style="margin: 0; font-size: 34px; font-weight: 700">الأنيميشن</h2>
+      <p style="margin: 0; color: #B4BAC4; font-size: 16px; line-height: 1.8">منحنى الحركة الأساسي <span class="mono" dir="ltr">cubic-bezier(.2,.7,.2,1)</span>. كل الحركات تتوقف إذا المستخدم مفعّل <span class="mono" dir="ltr">prefers-reduced-motion</span>.</p>
+    </div>
+    <div style="background: #15181D; border: 1px solid #262A31; border-radius: 16px; overflow: hidden">
+      <div style="overflow-x: auto">
+        <table class="spec" style="width: 100%; min-width: 760px; border-collapse: collapse">
+          <thead><tr><th scope="col">الحركة</th><th scope="col">وين</th><th scope="col">المدة</th><th scope="col">التفاصيل</th></tr></thead>
+          <tbody>
+            <sc-for list="{{ motion }}" as="m" hint-placeholder-count="12">
+              <tr>
+                <td style="font-weight: 500">{{ m.name }}</td>
+                <td style="color: #9AA1AC">{{ m.where }}</td>
+                <td class="mono" dir="ltr" style="text-align: right">{{ m.dur }}</td>
+                <td class="mono" dir="ltr" style="text-align: right; font-size: 12.5px; color: #B4BAC4">{{ m.detail }}</td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- CODE -->
+  <section id="code" class="reveal" style="display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <p class="mono" style="margin: 0; color: #B8F34A; font-size: 14px">09 // الكود</p>
+      <h2 style="margin: 0; font-size: 34px; font-weight: 700">متغيرات CSS جاهزة</h2>
+      <p style="margin: 0; color: #B4BAC4; font-size: 16px; line-height: 1.8">انسخها في أول ملف CSS واستخدمها بدل الأرقام المباشرة.</p>
+    </div>
+    <pre class="mono" dir="ltr" style="margin: 0; padding: 26px; background: #101317; border: 1px solid #262A31; border-radius: 16px; font-size: 13.5px; line-height: 1.8; color: #D7DBE1; overflow-x: auto; text-align: left">@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap');
+
+:root {
+  /* colors — backgrounds */
+  --bg: #0D0F12;          --bg-sidebar: #111418;
+  --bg-inset: #101317;    --bg-input: #0F1215;
+  --surface: #15181D;     --surface-2: #1A1E24;   --surface-3: #1E2228;
+
+  /* colors — borders */
+  --line: #22262D;        --border: #262A31;
+  --border-strong: #333943; --border-hover: #3A404A;
+
+  /* colors — text */
+  --text: #F2F3F5;        --text-2: #D7DBE1;      --text-3: #B4BAC4;
+  --muted: #9AA1AC;       --faint: #6E7681;
+
+  /* colors — brand &amp; status */
+  --accent: #B8F34A;      --on-accent: #0D0F12;
+  --info: #5CE1E6;        --warn: #FFB547;        --code: #C792EA;
+
+  /* type */
+  --font: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --fs-display: clamp(40px, 5.4vw, 68px);
+  --fs-h1: clamp(36px, 4.8vw, 60px);
+  --fs-h2: clamp(30px, 3.6vw, 44px);
+  --fs-h3: 22px;  --fs-lead: 19px;  --fs-body: 15px;
+  --fs-sm: 14px;  --fs-xs: 13px;    --fs-2xs: 12px;
+  --lh-tight: 1.15;  --lh-body: 1.8;
+
+  /* space */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 20px;
+  --s-6: 24px; --s-7: 28px; --s-8: 40px; --s-9: 56px; --s-10: 88px;
+  --container: 1200px;  --gutter: 24px;
+
+  /* radius */
+  --r-sm: 8px;  --r-md: 10px; --r-lg: 12px; --r-xl: 16px;
+  --r-2xl: 18px; --r-3xl: 24px; --r-pill: 99px;
+
+  /* shadow */
+  --shadow-btn: 0 10px 24px -12px rgba(0,0,0,.7);
+  --shadow-card: 0 18px 40px -20px rgba(0,0,0,.8);
+  --shadow-mock: 0 30px 60px rgba(0,0,0,.35);
+  --ring: 0 0 0 3px rgba(184,243,74,.18);
+
+  /* motion */
+  --ease: cubic-bezier(.2,.7,.2,1);
+  --t-fast: .2s;  --t-base: .25s;  --t-enter: .8s;
+
+  /* sizes */
+  --tap: 44px;  --btn-lg: 52px;  --logo: 40px;
+}
+
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); }
+html { direction: rtl; }</pre>
+  </section>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":7200}}'>
+class Component extends DCLogic {
+  _motionStart() {
+    try { if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; } catch (e) {}
+    const doc = (this._root && this._root.ownerDocument) || document;
+    const O = (k) => 1 - Math.pow(1 - k, 3);
+    const IO = (k) => 0.5 - Math.cos(Math.PI * k) / 2;
+    const EZ = { out: O, inout: IO, linear: (k) => k, pop: (k) => { const c = 1.70158 * 1.4; return 1 + (c + 1) * Math.pow(k - 1, 3) + c * Math.pow(k - 1, 2); } };
+    const idx = (el) => Array.prototype.indexOf.call(el.parentNode.children, el);
+    const dcls = (el) => { const m = (el.className && String(el.className.baseVal !== undefined ? el.className.baseVal : el.className).match(/\bd([1-5])\b/)); return m ? [0, .05, .18, .32, .46, .6][+m[1]] : 0; };
+    const inl = (el) => { const v = parseFloat(el.style.animationDelay); return isNaN(v) ? 0 : v; };
+    const S = [
+      { q: '.rise', kf: [[0, { transform: 'translateY(24px)', opacity: '0' }], [1, { transform: 'translateY(0px)', opacity: '1' }]], d: .8, ez: 'out', delay: dcls },
+      { q: '.pop', kf: [[0, { transform: 'translateY(24px)', opacity: '0' }], [1, { transform: 'translateY(0px)', opacity: '1' }]], d: .6, ez: 'out', delay: inl },
+      { q: '.view-in', kf: [[0, { transform: 'translateY(16px)', opacity: '0' }], [1, { transform: 'translateY(0px)', opacity: '1' }]], d: .45, ez: 'out' },
+      { q: '.reveal, .reveal2', kf: [[0, { transform: 'translateY(32px)', opacity: '0' }], [1, { transform: 'translateY(0px)', opacity: '1' }]], d: .9, ez: 'out', reveal: true },
+      { q: '.stat .mono', kf: [[0, { transform: 'translateY(14px)', opacity: '0' }], [1, { transform: 'translateY(0px)', opacity: '1' }]], d: .7, ez: 'out', delay: () => .2 },
+      { q: '.tags>span, .chips>span', kf: [[0, { transform: 'scale(0.85)', opacity: '0' }], [1, { transform: 'scale(1)', opacity: '1' }]], d: .5, ez: 'pop', delay: (el) => .3 + idx(el) * .06, reveal: true },
+      { q: '.stars>svg', kf: [[0, { transform: 'scale(0.3) rotate(-40deg)', opacity: '0' }], [1, { transform: 'scale(1) rotate(0deg)', opacity: '1' }]], d: .5, ez: 'pop', delay: (el) => idx(el) * .1, reveal: true },
+      { q: '.bar', kf: [[0, { transform: 'scaleX(0)' }], [1, { transform: 'scaleX(1)' }]], d: .9, ez: 'out', origin: 'right' },
+      { q: '.float, .quote', kf: [[0, { transform: 'translateY(0px)' }], [.5, { transform: 'translateY(-8px)' }], [1, { transform: 'translateY(0px)' }]], d: 5, ez: 'inout', loop: true },
+      { q: '.float2', kf: [[0, { transform: 'translateY(0px)' }], [.5, { transform: 'translateY(-8px)' }], [1, { transform: 'translateY(0px)' }]], d: 5, ez: 'inout', loop: true, delay: () => 1.2 },
+      { q: '.glow', kf: [[0, { boxShadow: '0px 0px 0px 0px rgba(184,243,74,0)' }], [.5, { boxShadow: '0px 0px 28px 2px rgba(184,243,74,0.35)' }], [1, { boxShadow: '0px 0px 0px 0px rgba(184,243,74,0)' }]], d: 3.2, ez: 'inout', loop: true },
+      { q: '.ticker-track', kf: [[0, { transform: 'translateX(-50%)' }], [1, { transform: 'translateX(0%)' }]], d: 28, ez: 'linear', loop: true },
+      { q: '.bars>div', kf: [[0, { transform: 'scaleY(0.35)' }], [.5, { transform: 'scaleY(1)' }], [1, { transform: 'scaleY(0.35)' }]], d: 3.2, ez: 'inout', loop: true, delay: (el) => idx(el) * .25, origin: 'bottom' },
+      { q: '.codelines>div:not(:first-child)', kf: [[0, { transform: 'scaleX(0.15)' }], [.6, { transform: 'scaleX(1)' }], [1, { transform: 'scaleX(1)' }]], d: 2.8, ez: 'out', loop: true, delay: (el) => Math.max(0, idx(el) - 1) * .15, origin: 'left' },
+      { q: '.shim>div', kf: [[0, { backgroundPosition: '150% 0%' }], [1, { backgroundPosition: '-50% 0%' }]], d: 2.4, ez: 'inout', loop: true, delay: (el) => idx(el) * .2 },
+      { q: '.steps>li>span', kf: [[0, { opacity: '0.35' }], [.12, { opacity: '1' }], [.3, { opacity: '1' }], [.45, { opacity: '0.35' }], [1, { opacity: '0.35' }]], d: 4, ez: 'linear', loop: true, delay: (el) => idx(el.parentNode) * 1 },
+      { q: '.dot', kf: [[0, { boxShadow: '0px 0px 0px 0px rgba(242,243,245,0.45)' }], [.8, { boxShadow: '0px 0px 0px 9px rgba(242,243,245,0)' }], [1, { boxShadow: '0px 0px 0px 9px rgba(242,243,245,0)' }]], d: 1.8, ez: 'out', loop: true },
+      { q: '.pulse-border', kf: [[0, { borderColor: 'rgb(38,42,49)' }], [.5, { borderColor: 'rgb(74,81,92)' }], [1, { borderColor: 'rgb(38,42,49)' }]], d: 3, ez: 'inout', loop: true },
+      { q: '.logo-blink', kf: [[0, { opacity: '1' }], [.5, { opacity: '0.1' }], [1, { opacity: '0.1' }]], d: 1.1, ez: 'linear', loop: true, step: true },
+      { q: '.caret', kf: [[0, { opacity: '1' }], [.5, { opacity: '0' }], [1, { opacity: '0' }]], d: 1, ez: 'linear', loop: true, step: true }
+    ];
+    const num = /-?\d*\.?\d+/g;
+    const mix = (a, b, k) => { const nb = b.match(num) || []; let i = 0; return a.replace(num, (x) => { const y = parseFloat(nb[i++]); return isNaN(y) ? x : String(+(parseFloat(x) + (y - parseFloat(x)) * k).toFixed(3)); }); };
+    const sample = (kf, p, ez) => {
+      let i = 0; while (i < kf.length - 2 && p > kf[i + 1][0]) i++;
+      const [o0, v0] = kf[i], [o1, v1] = kf[i + 1];
+      const k = EZ[ez](Math.max(0, Math.min(1, (p - o0) / ((o1 - o0) || 1))));
+      const out = {}; for (const prop in v0) out[prop] = mix(v0[prop], v1[prop], k); return out;
+    };
+    const items = new Map();
+    const t0 = performance.now();
+    const scan = () => {
+      S.forEach((sp) => {
+        doc.querySelectorAll(sp.q).forEach((el) => {
+          if (items.has(el)) return;
+          if (sp.origin) el.style.transformOrigin = sp.origin;
+          items.set(el, { sp, start: sp.reveal ? null : performance.now(), delay: sp.delay ? sp.delay(el) : 0, done: false });
+        });
+      });
+    };
+    scan();
+    const mo = new MutationObserver(() => { scan(); });
+    mo.observe(doc.body, { childList: true, subtree: true });
+    const vh = () => (doc.defaultView || window).innerHeight;
+    const tick = (now) => {
+      items.forEach((it, el) => {
+        if (!el.isConnected) { items.delete(el); return; }
+        if (it.done) return;
+        const sp = it.sp;
+        if (it.start === null) {
+          const r = el.getBoundingClientRect();
+          if (r.top < vh() * 0.92 && r.bottom > 0) it.start = now; else return;
+        }
+        const tt = (now - it.start) / 1000 - it.delay;
+        if (tt < 0) { if (!sp.loop) { const v = sp.kf[0][1]; for (const p in v) el.style[p] = v[p]; } return; }
+        let p = tt / sp.d;
+        if (sp.loop) p = p % 1; else if (p >= 1) { for (const prop in sp.kf[0][1]) el.style[prop] = ''; if (sp.q === '.bar') el.style.transform = ''; it.done = true; return; }
+        if (sp.step) { const v = p < .5 ? sp.kf[0][1] : sp.kf[1][1]; for (const prop in v) el.style[prop] = v[prop]; return; }
+        const v = sample(sp.kf, p, sp.ez); for (const prop in v) el.style[prop] = v[prop];
+      });
+      this._raf = requestAnimationFrame(tick);
+    };
+    this._raf = requestAnimationFrame(tick);
+    this._mo = mo;
+  }
+  _motionStop() { cancelAnimationFrame(this._raf); if (this._mo) this._mo.disconnect(); }
+  componentDidMount() { this._motionStart(); }
+  componentWillUnmount() { this._motionStop(); }
+
+  renderVals() {
+    const sw = (hex, border) => 'height: 84px; background: ' + hex + (border ? '; border-bottom: 1px solid #333943' : '');
+    const colorGroups = [
+      { title: 'الخلفيات', items: [
+        { name: 'الخلفية الرئيسية', hex: '#0D0F12', token: '--bg', use: 'خلفية كل الصفحات', swatch: sw('#0D0F12', true) },
+        { name: 'القائمة الجانبية', hex: '#111418', token: '--bg-sidebar', use: 'سايدبار بوابة الفريق ورؤوس الجداول', swatch: sw('#111418', true) },
+        { name: 'خلفية داخلية', hex: '#101317', token: '--bg-inset', use: 'صور المشاريع المصغرة، صندوق الكود، شريط الدخل الشهري', swatch: sw('#101317', true) },
+        { name: 'خلفية الحقول', hex: '#0F1215', token: '--bg-input', use: 'الـ input والـ select', swatch: sw('#0F1215', true) }
+      ] },
+      { title: 'الأسطح (الكروت)', items: [
+        { name: 'سطح ١', hex: '#15181D', token: '--surface', use: 'كل الكروت والصناديق', swatch: sw('#15181D', true) },
+        { name: 'سطح ٢', hex: '#1A1E24', token: '--surface-2', use: 'عناصر داخل الكروت، hover الصفوف', swatch: sw('#1A1E24') },
+        { name: 'سطح ٣', hex: '#1E2228', token: '--surface-3', use: 'خلفية التاقات والصور الرمزية، التبويب المفعّل', swatch: sw('#1E2228') }
+      ] },
+      { title: 'الحدود', items: [
+        { name: 'فاصل', hex: '#22262D', token: '--line', use: 'خطوط فصل الأقسام والهيدر', swatch: sw('#22262D') },
+        { name: 'حد الكرت', hex: '#262A31', token: '--border', use: 'حدود الكروت', swatch: sw('#262A31') },
+        { name: 'حد قوي', hex: '#333943', token: '--border-strong', use: 'الأزرار الثانوية والحقول والـ chips', swatch: sw('#333943') },
+        { name: 'حد عند المرور', hex: '#3A404A', token: '--border-hover', use: 'hover الكروت', swatch: sw('#3A404A') }
+      ] },
+      { title: 'النصوص', items: [
+        { name: 'نص أساسي', hex: '#F2F3F5', token: '--text', use: 'العناوين والنص المهم', swatch: sw('#F2F3F5') },
+        { name: 'نص ثانوي', hex: '#D7DBE1', token: '--text-2', use: 'نص الكود والأزرار الثانوية', swatch: sw('#D7DBE1') },
+        { name: 'نص الوصف', hex: '#B4BAC4', token: '--text-3', use: 'الفقرات والأوصاف', swatch: sw('#B4BAC4') },
+        { name: 'نص خافت', hex: '#9AA1AC', token: '--muted', use: 'العناوين الصغيرة والتواريخ (تباين 7:1)', swatch: sw('#9AA1AC') },
+        { name: 'نص معطّل', hex: '#6E7681', token: '--faint', use: 'الأعمال المنجزة المشطوبة فقط', swatch: sw('#6E7681') }
+      ] },
+      { title: 'الأساسي والحالات', items: [
+        { name: 'الأساسي (ليموني)', hex: '#B8F34A', token: '--accent', use: 'الأزرار الرئيسية، الروابط، التمييز. النص فوقه #0D0F12', swatch: sw('#B8F34A') },
+        { name: 'معلومة / قيد التنفيذ', hex: '#5CE1E6', token: '--info', use: 'حالة قيد التنفيذ، أولوية متوسطة', swatch: sw('#5CE1E6') },
+        { name: 'تنبيه / نجوم', hex: '#FFB547', token: '--warn', use: 'أولوية عالية، مشغول، نجوم التقييم، أخطاء الفورم', swatch: sw('#FFB547') },
+        { name: 'كود', hex: '#C792EA', token: '--code', use: 'الكلمات المحجوزة في نافذة الكود', swatch: sw('#C792EA') }
+      ] }
+    ];
+
+    const typeScale = [
+      { name: 'عنوان الواجهة (Hero)', size: 'clamp(40px, 5.4vw, 68px)', weight: '700', lh: '1.15', sample: 'font-size: 28px; font-weight: 700', example: 'نكتب الشفرة' },
+      { name: 'عنوان صفحة مشروع', size: 'clamp(44px, 6vw, 80px)', weight: '700', lh: '1.1', sample: 'font-size: 28px; font-weight: 700', example: 'سفرة' },
+      { name: 'عنوان صفحة (H1)', size: 'clamp(36px, 4.8vw, 60px)', weight: '700', lh: '1.2', sample: 'font-size: 26px; font-weight: 700', example: 'أعمالنا' },
+      { name: 'عنوان قسم (H2)', size: 'clamp(30px, 3.6vw, 44px)', weight: '700', lh: '1.3', sample: 'font-size: 24px; font-weight: 700', example: 'آخر اللي بنيناه' },
+      { name: 'عنوان البوابة', size: '32px', weight: '700', lh: '1.3', sample: 'font-size: 22px; font-weight: 700', example: 'المهام' },
+      { name: 'عنوان كرت (H3)', size: '22px', weight: '600', lh: '1.4', sample: 'font-size: 22px; font-weight: 600', example: 'مواقع' },
+      { name: 'عنوان كرت صغير', size: '18–20px', weight: '600', lh: '1.4', sample: 'font-size: 19px; font-weight: 600', example: 'نسمع فكرتك' },
+      { name: 'نص مقدمة (Lead)', size: '17–19px', weight: '400', lh: '1.8', sample: 'font-size: 18px; color: #B4BAC4', example: 'نصمم ونبرمج مواقع' },
+      { name: 'نص أساسي', size: '15px', weight: '400', lh: '1.8', sample: 'font-size: 15px; color: #B4BAC4', example: 'منصة عربية لاكتشاف الوجهات' },
+      { name: 'روابط القائمة', size: '15px', weight: '400', lh: '1.5', sample: 'font-size: 15px; color: #B4BAC4', example: 'الأعمال' },
+      { name: 'نص صغير / تاق', size: '13–14px', weight: '400–500', lh: '1.6', sample: 'font-size: 13px; color: #C9CED6', example: 'مشروع طلاب' },
+      { name: 'عنوان صغير (Eyebrow)', size: '14px mono', weight: '400', lh: '1.5', sample: "font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #B8F34A", example: '// أعمال مختارة' },
+      { name: 'أرقام الإحصائيات', size: '28px mono', weight: '400', lh: '1.2', sample: "font-family: 'JetBrains Mono', monospace; font-size: 28px", example: '12' },
+      { name: 'الدخل الشهري', size: '36px mono', weight: '400', lh: '1.2', sample: "font-family: 'JetBrains Mono', monospace; font-size: 28px; color: #B8F34A", example: '13,500' },
+      { name: 'تقنيات / تفاصيل', size: '12–12.5px mono', weight: '400', lh: '1.6', sample: "font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #9AA1AC", example: 'HTML · CSS · JS' }
+    ];
+
+    const spaceUse = { 4: 'بين النجوم', 8: 'بين التاقات', 12: 'بين الأزرار', 16: 'بين الكروت (صغيرة)', 20: 'بين الكروت', 24: 'حشوة الكرت / هامش الصفحة', 28: 'حشوة كرت الخدمة', 40: 'بين عنوان القسم ومحتواه', 56: 'بين عمودي الواجهة', 88: 'حشوة القسم العمودية' };
+    const spaces = [4, 8, 12, 16, 20, 24, 28, 40, 56, 88].map((v) => ({
+      v: v + 'px',
+      use: spaceUse[v],
+      bar: 'height: 14px; border-radius: 3px; background: #B8F34A; opacity: .85; width: ' + Math.round(v * 1.6) + 'px; flex: none'
+    }));
+    const layout = [
+      { k: 'أقصى عرض للمحتوى', v: 'max-width: 1200px' },
+      { k: 'هامش الصفحة الجانبي', v: '24px' },
+      { k: 'حشوة القسم', v: '88px 24px (96 hero/contact · 80 project)' },
+      { k: 'ارتفاع الهيدر', v: '~76px (padding 18 + logo 40)' },
+      { k: 'خط فصل الأقسام', v: 'border-top: 1px solid #22262D' },
+      { k: 'شبكة الخدمات', v: 'auto-fit, minmax(250px, 1fr) · gap 16' },
+      { k: 'شبكة المشاريع', v: 'auto-fit/fill, minmax(320px, 1fr) · gap 20' },
+      { k: 'شبكة الآراء', v: 'auto-fit, minmax(280px, 1fr) · gap 16' },
+      { k: 'سايدبار البوابة', v: 'flex: 1 1 240px' },
+      { k: 'محتوى البوابة', v: 'flex: 999 1 560px · padding 32 clamp(16px,3vw,40px)' }
+    ];
+
+    const radiiData = [
+      [8, 'chips التقنيات'], [10, 'أزرار 44 والحقول والشعار'], [12, 'زر كبير 52'], [14, 'كروت الإحصائيات'],
+      [16, 'كروت الخدمات والمهام'], [18, 'كروت المشاريع والفريق'], [24, 'صندوق التواصل وصورة المشروع'], [99, 'التاقات وأزرار الفلتر']
+    ];
+    const radii = radiiData.map(([v, use]) => ({
+      v: v === 99 ? '99px (pill)' : v + 'px',
+      use,
+      box: 'width: 96px; height: 64px; background: #1E2228; border: 1px solid #3A404A; border-radius: ' + (v === 99 ? 99 : v) + 'px'
+    }));
+    const shBase = 'height: 90px; border-radius: 14px; background: #1A1E24; border: 1px solid #262A31; ';
+    const shadows = [
+      { name: 'ظل الزر (hover)', v: '0 10px 24px -12px rgba(0,0,0,.7)', box: shBase + 'box-shadow: 0 10px 24px -12px rgba(0,0,0,.9)' },
+      { name: 'ظل الكرت (hover)', v: '0 18px 40px -20px rgba(0,0,0,.8)', box: shBase + 'box-shadow: 0 18px 40px -20px rgba(0,0,0,.95)' },
+      { name: 'ظل صورة المشروع', v: '0 30px 60px rgba(0,0,0,.35)', box: shBase + 'box-shadow: 0 30px 60px rgba(0,0,0,.5)' },
+      { name: 'حلقة التركيز', v: '0 0 0 3px rgba(184,243,74,.18)', box: shBase + 'box-shadow: 0 0 0 3px rgba(184,243,74,.35)' }
+    ];
+
+    const images = [
+      { name: 'صورة كرت المشروع', where: 'الرئيسية + الأعمال', size: '1200 × 760', ratio: '~16:10', fmt: 'WebP' },
+      { name: 'صورة المشروع الرئيسية', where: 'أعلى صفحة المشروع', size: '2400 × 1400', ratio: '12:7', fmt: 'WebP' },
+      { name: 'لقطات المعرض', where: 'صفحة المشروع', size: '1600 × 1200', ratio: '4:3', fmt: 'WebP' },
+      { name: 'لقطة جوال', where: 'كروت التطبيقات', size: '780 × 1688', ratio: '390:844', fmt: 'WebP / PNG' },
+      { name: 'صورة الفريق', where: 'قسم الفريق (64px)', size: '256 × 256', ratio: '1:1', fmt: 'WebP' },
+      { name: 'صورة العميل', where: 'آراء العملاء (42px)', size: '168 × 168', ratio: '1:1', fmt: 'WebP' },
+      { name: 'الشعار', where: 'الهيدر (40px)', size: 'SVG', ratio: '1:1', fmt: 'SVG' },
+      { name: 'Favicon', where: 'تبويب المتصفح', size: '32 × 32 · 180 × 180', ratio: '1:1', fmt: 'ICO / PNG' },
+      { name: 'أيقونة التطبيق', where: 'iOS / Android', size: '1024 × 1024', ratio: '1:1', fmt: 'PNG' },
+      { name: 'صورة المشاركة (OG)', where: 'واتساب / X / لينكدإن', size: '1200 × 630', ratio: '1.91:1', fmt: 'JPG / PNG' }
+    ];
+
+    const screens = [
+      { name: 'جوال', w: '360 – 430px', note: 'التصميم المرجعي 390. كل شي عمود واحد، القائمة تلتف، الجداول تمرر أفقياً.' },
+      { name: 'تابلت', w: '768 – 1024px', note: 'كروت المشاريع عمودين، البوابة: السايدبار فوق المحتوى.' },
+      { name: 'لابتوب', w: '1280 – 1440px', note: 'التصميم المرجعي 1440. المحتوى بعرض 1200 في المنتصف.' },
+      { name: 'شاشة كبيرة', w: '1920px+', note: 'المحتوى يبقى 1200 والخلفية تمتد.' }
+    ];
+
+    const motion = [
+      { name: 'ظهور (rise)', where: 'عناصر الواجهة', dur: '.8s', detail: 'translateY(24px)→0 + fade · stagger .05/.18/.32/.46/.6s' },
+      { name: 'كتابة الكود', where: 'نافذة الكود', dur: '.45s', detail: 'per line · delay i×140ms + 700ms · caret blink 1s steps(1)' },
+      { name: 'ظهور مع التمرير', where: 'كل الأقسام', dur: 'scroll', detail: 'animation-timeline: view() · range entry 0–45%' },
+      { name: 'شريط التقنيات', where: 'تحت الواجهة', dur: '28s', detail: 'linear infinite · pause on hover' },
+      { name: 'توهج الزر', where: 'زر شوف أعمالنا', dur: '3.2s', detail: 'box-shadow 0 0 28px accent/.35 · infinite' },
+      { name: 'طفو', where: 'الشعار، الصور الرمزية، الجوال', dur: '5s', detail: 'translateY 0→-8px · ease-in-out infinite' },
+      { name: 'أعمدة الداشبورد', where: 'صور المشاريع', dur: '1.6s', detail: 'scaleY .35→1 · alternate · stagger .25s' },
+      { name: 'لمعان', where: 'صور سفرة', dur: '2.4s', detail: 'shimmer gradient · stagger .2s' },
+      { name: 'ظهور الكروت', where: 'الأعمال، المهام', dur: '.5–.6s', detail: 'rise · stagger 70–80ms لكل كرت' },
+      { name: 'النجوم', where: 'آراء العملاء', dur: '.5s', detail: 'scale .3→1 + rotate · stagger .1s' },
+      { name: 'نبض الحالة', where: 'نقطة حالة الموظف', dur: '1.8s', detail: 'ring 0→9px fade · infinite' },
+      { name: 'شريط الإنجاز', where: 'المهام', dur: '.9s / .4s', detail: 'width 0→x% on mount · transition .4s on change' },
+      { name: 'المرور على زر', where: 'كل الأزرار', dur: '.22s', detail: 'translateY(-2px) + shadow · active scale(.96)' },
+      { name: 'المرور على كرت', where: 'كل الكروت', dur: '.25s', detail: 'translateY(-4px) + border #3A404A + icon wiggle .6s' }
+    ];
+
+    return { colorGroups, typeScale, spaces, layout, radii, shadows, images, screens, motion };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+/* شفرة — entrance-animation variants for the marketing pages (index / works / project). */
+
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes slideUp { from { transform: translateY(24px); } to { transform: none; } }
+.rise { animation: slideUp .8s cubic-bezier(.2,.7,.2,1) both; }
+.pop { animation: slideUp .6s cubic-bezier(.2,.7,.2,1) both; }
+.d1 { animation-delay: .05s; } .d2 { animation-delay: .18s; } .d3 { animation-delay: .32s; } .d4 { animation-delay: .46s; } .d5 { animation-delay: .6s; }
+
+@keyframes typeIn { from { opacity: .35; transform: translateX(-8px); } to { opacity: 1; transform: none; } }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes ticker { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@keyframes glow { 0%,100% { box-shadow: 0 0 0 0 rgba(184,243,74,0); } 50% { box-shadow: 0 0 28px 2px rgba(184,243,74,.35); } }
+
+.ln { display: block; animation: typeIn .45s ease-out both; animation-delay: calc(var(--i) * 140ms + 700ms); }
+.caret { display: inline-block; width: 9px; height: 18px; vertical-align: -3px; margin-left: 4px; animation: blink 1s steps(1) infinite; }
+.floaty { animation: floaty 6s ease-in-out infinite; }
+.glow { animation: glow 3.2s ease-in-out infinite; }
+.ticker-track { display: flex; width: max-content; animation: ticker 28s linear infinite; }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+
+.pill { cursor: pointer; font-family: inherit; transition: background .15s, color .15s, border-color .15s; }
+
+@supports (animation-timeline: view()) {
+  .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 45%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise, .pop, .ln, .reveal { opacity: 1 !important; animation: none !important; transform: none !important; }
+  .caret, .floaty, .glow, .ticker-track { animation: none !important; }
+}

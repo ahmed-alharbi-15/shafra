@@ -1,0 +1,912 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>شفرة — ملف الأدمن</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0D0F12}
+a{color:#F2F3F5}a:hover{color:#FFFFFF}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+button{font-family:inherit;cursor:pointer}
+input{font-family:inherit}
+.side-btn{transition:background .15s,color .15s}
+.side-btn:hover{background:#1A1E24;color:#F2F3F5}
+.ghost:hover{border-color:#4A515C;color:#F2F3F5}
+.work-row:hover{background:#1A1E24}
+input[type=checkbox]{accent-color:#B8F34A}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes grow{from{width:0}}
+.view-in{}
+@keyframes slideUp{from{transform:translateY(24px)}to{transform:none}}
+.pop{}
+.bar{transition:width .4s ease}
+@media (prefers-reduced-motion: reduce){.view-in,.pop,.bar{opacity:1!important;transition:none!important}}
+
+/* ===== motion everywhere ===== */
+@keyframes riseX{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes barUp{0%{transform:scaleY(.35)}100%{transform:scaleY(1)}}
+@keyframes lineW{0%{transform:scaleX(.15)}60%,100%{transform:scaleX(1)}}
+@keyframes shimmer{0%{background-position:150% 0}100%{background-position:-50% 0}}
+@keyframes stepGlow{0%,100%{opacity:.35}12%,30%{opacity:1}}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(242,243,245,.45)}80%,100%{box-shadow:0 0 0 9px rgba(242,243,245,0)}}
+@keyframes drift{from{background-position:0 0}to{background-position:56px 56px}}
+@keyframes borderPulse{0%,100%{border-color:#262A31}50%{border-color:#4A515C}}
+@keyframes tagIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-10deg) scale(1.12)}75%{transform:rotate(8deg) scale(1.12)}}
+a,button,input,select{transition:transform .22s cubic-bezier(.2,.7,.2,1),box-shadow .22s,background-color .2s,border-color .2s,color .2s,opacity .2s}
+button:hover,a[style*="min-height"]:hover{transform:translateY(-2px);box-shadow:0 10px 24px -12px rgba(0,0,0,.7)}
+a:active,button:active{transform:scale(.96)!important}
+input:focus,select:focus{transform:translateY(-1px);box-shadow:0 0 0 3px rgba(184,243,74,.18)}
+.nav-link{position:relative}
+.nav-link::after{content:"";position:absolute;right:4px;left:4px;bottom:4px;height:2px;border-radius:2px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.nav-link:hover::after{transform:scaleX(1)}
+.card-hover svg,.hov-card svg{transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.card-hover:hover svg,.hov-card:hover svg{animation:wiggle .6s ease-in-out}
+.hov-card{transition:transform .25s cubic-bezier(.2,.7,.2,1),border-color .25s,box-shadow .25s}
+.hov-card:hover{transform:translateY(-4px);border-color:#3A404A!important;box-shadow:0 18px 40px -20px rgba(0,0,0,.8)}
+.card-hover:hover{box-shadow:0 18px 40px -20px rgba(0,0,0,.8)}
+.tags>span,.chips>span{transition:transform .2s,border-color .2s,color .2s}
+.tags>span:nth-child(2),.chips>span:nth-child(2){}.tags>span:nth-child(3),.chips>span:nth-child(3){}.chips>span:nth-child(4){}.chips>span:nth-child(5){}.chips>span:nth-child(6){}
+.chips>span:hover,.tags>span:hover{transform:translateY(-2px);border-color:#B8F34A;color:#F2F3F5}
+.bars>div{transform-origin:bottom;}
+.bars>div:nth-child(2){}.bars>div:nth-child(3){}.bars>div:nth-child(4){}.bars>div:nth-child(5){}
+.codelines>div{transform-origin:left;}
+.codelines>div:first-child{}
+.codelines>div:nth-child(3){}.codelines>div:nth-child(4){}.codelines>div:nth-child(5){}.codelines>div:nth-child(6){}.codelines>div:nth-child(7){}.codelines>div:nth-child(8){}
+.shim>div{background-image:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%)!important;background-size:250% 100%;}
+.shim>div:nth-child(2){}.shim>div:nth-child(3){}.shim>div:nth-child(4){}
+.float{}
+.float2{}
+.steps>li>span{}
+.steps>li:nth-child(2)>span{}.steps>li:nth-child(3)>span{}.steps>li:nth-child(4)>span{}
+.steps>li{transition:background .3s}.steps>li:hover{background:#15181D}
+.dot{}
+.herobg{background-image:radial-gradient(#1C2026 1.2px,transparent 1.2px);background-size:28px 28px;}
+.pulse-border{}
+.stat{transition:transform .25s,border-color .25s}.stat:hover{transform:translateY(-3px);border-color:#3A404A!important}
+.stat .mono{display:inline-block;}
+.work-row{transition:background .2s,transform .2s}.work-row:hover{transform:translateX(-4px)}
+input[type=checkbox]{transition:transform .15s}input[type=checkbox]:checked{animation:tagIn .3s cubic-bezier(.3,1.6,.5,1)}
+tbody tr{transition:background .2s}tbody tr:hover{background:#1A1E24}
+.side-btn:hover{transform:translateX(-4px)}
+@supports (animation-timeline: view()){
+  .reveal2{}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition:none!important}
+  .rise,.ln,.reveal,.reveal2,.pop{opacity:1!important;transform:none!important}
+}
+
+@keyframes logoBlink{50%{opacity:.1}}
+.logo-blink{}
+.logo-link svg{transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.logo-link:hover svg{transform:scale(1.05)}
+</style>
+</helmet>
+<div dir="rtl" style="background: #0D0F12; color: #F2F3F5; font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif; min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch">
+
+  <!-- SIDEBAR -->
+  <aside style="flex: 1 1 240px; max-width: 100%; background: #111418; border-left: 1px solid #22262D; padding: 24px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
+    <a href="Main.dc.html" class="logo-link" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; text-decoration: none; color: #F2F3F5; padding: 0 8px">
+      <img src="../assets/shafra-logo.png" alt="شفرة — الرئيسية" width="79" height="48" style="display: block; flex: none; width: 79px; height: 48px">
+      <span style="font-size: 13px; color: #9AA1AC; padding: 4px 10px; border-radius: 99px; border: 1px solid #333943">بوابة الفريق</span>
+    </a>
+
+    <nav aria-label="أقسام البوابة" style="display: flex; flex-direction: column; gap: 4px">
+      <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="2">
+        <button type="button" class="side-btn" onClick="{{ tab.pick }}" aria-current="{{ tab.current }}" style="{{ tab.style }}">
+          <sc-if value="{{ tab.isTasks }}" hint-placeholder-val="{{ true }}">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"></path><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"></path></svg>
+          </sc-if>
+          <sc-if value="{{ tab.isPeople }}" hint-placeholder-val="{{ false }}">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"></path><circle cx="17" cy="9" r="2.5"></circle><path d="M17 14.5c2.3.2 4 1.8 4.5 4.5"></path></svg>
+          </sc-if>
+          <sc-if value="{{ tab.isMoney }}" hint-placeholder-val="{{ false }}">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"></rect><circle cx="12" cy="12" r="2.5"></circle><path d="M6 9.5v5M18 9.5v5"></path></svg>
+          </sc-if>
+          <span style="flex: 1; text-align: right">{{ tab.label }}</span>
+          <span class="mono" style="font-size: 12px; opacity: .8">{{ tab.count }}</span>
+        </button>
+      </sc-for>
+    </nav>
+
+    <button type="button" onClick="{{ myProfile }}" aria-label="ملفي الشخصي" style="margin-top: auto; display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 12px; background: #15181D; border: 1px solid #22262D; color: #F2F3F5; text-align: right; width: 100%">
+      <span style="width: 36px; height: 36px; border-radius: 10px; background: #1E2228; display: inline-flex; align-items: center; justify-content: center; color: {{accent}}; font-weight: 700">أ</span>
+      <span style="display: flex; flex-direction: column; min-width: 0">
+        <span style="font-size: 14px; font-weight: 600">أحمد الحربي</span>
+        <span style="font-size: 12px; color: #9AA1AC">أدمن · ملفي الشخصي</span>
+      </span>
+    </button>
+  </aside>
+
+  <!-- CONTENT -->
+  <main style="flex: 999 1 560px; min-width: 0; padding: 32px clamp(16px, 3vw, 40px) 64px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
+
+    <!-- ===================== TASKS ===================== -->
+    <sc-if value="{{ isTasks }}" hint-placeholder-val="{{ true }}">
+      <div class="view-in" style="display: flex; flex-direction: column; gap: 28px">
+        <div style="display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <p class="mono" style="margin: 0; color: {{accent}}; font-size: 13px">// المهام المطلوبة</p>
+            <h1 style="margin: 0; font-size: 32px; font-weight: 700">المهام</h1>
+          </div>
+          <sc-if value="{{ hasAssignee }}" hint-placeholder-val="{{ false }}">
+            <button type="button" class="ghost" onClick="{{ clearAssignee }}" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #333943; background: transparent; color: #D7DBE1; font-size: 14px">
+              مهام: {{ assigneeName }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-label="إزالة الفلتر" role="img"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+            </button>
+          </sc-if>
+        </div>
+
+        <!-- stats -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px">
+          <div class="stat" style="padding: 18px 20px; background: #15181D; border: 1px solid #262A31; border-radius: 14px; display: flex; flex-direction: column; gap: 6px">
+            <span style="color: #9AA1AC; font-size: 13px">المهام المفتوحة</span>
+            <span class="mono" style="font-size: 28px">{{ stats.open }}</span>
+          </div>
+          <div class="stat" style="padding: 18px 20px; background: #15181D; border: 1px solid #262A31; border-radius: 14px; display: flex; flex-direction: column; gap: 6px">
+            <span style="color: #9AA1AC; font-size: 13px">الأعمال المنجزة</span>
+            <span class="mono" style="font-size: 28px">{{ stats.doneItems }}<span style="color: #6E7681; font-size: 18px"> / {{ stats.allItems }}</span></span>
+          </div>
+          <div class="stat" style="padding: 18px 20px; background: #15181D; border: 1px solid #262A31; border-radius: 14px; display: flex; flex-direction: column; gap: 6px">
+            <span style="color: #9AA1AC; font-size: 13px">المهام المكتملة</span>
+            <span class="mono" style="font-size: 28px">{{ stats.complete }}</span>
+          </div>
+          <div class="stat" style="padding: 18px 20px; background: #15181D; border: 1px solid #262A31; border-radius: 14px; display: flex; flex-direction: column; gap: 6px">
+            <span style="color: #9AA1AC; font-size: 13px">الموظفين</span>
+            <span class="mono" style="font-size: 28px">{{ stats.people }}</span>
+          </div>
+        </div>
+
+        <!-- status filter -->
+        <div role="group" aria-label="تصفية حسب الحالة" style="display: flex; flex-wrap: wrap; gap: 8px">
+          <sc-for list="{{ statusFilters }}" as="f" hint-placeholder-count="4">
+            <button type="button" onClick="{{ f.pick }}" aria-pressed="{{ f.pressed }}" style="{{ f.style }}">{{ f.label }} <span class="mono" style="font-size: 12px; opacity: .75">{{ f.count }}</span></button>
+          </sc-for>
+        </div>
+
+        <!-- task list -->
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <sc-for list="{{ tasks }}" as="t" hint-placeholder-count="3">
+            <article class="pop" style="background: #15181D; border: 1px solid #262A31; border-radius: 16px; overflow: hidden; animation-delay: {{ t.delay }}">
+              <div style="padding: 20px 22px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px">
+                <button type="button" onClick="{{ t.toggleOpen }}" aria-expanded="{{ t.expanded }}" aria-label="إظهار أو إخفاء قائمة الأعمال" style="width: 44px; height: 44px; flex: none; border-radius: 10px; border: 1px solid #333943; background: transparent; color: #D7DBE1; display: inline-flex; align-items: center; justify-content: center">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="{{ t.chevStyle }}"><path d="M6 9l6 6 6-6"></path></svg>
+                </button>
+                <div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+                  <div class="tags" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+                    <span style="font-size: 12px; padding: 3px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">{{ t.project }}</span>
+                    <span style="{{ t.statusStyle }}">{{ t.status }}</span>
+                    <span style="{{ t.prioStyle }}">أولوية {{ t.priority }}</span>
+                  </div>
+                  <h2 style="margin: 0; font-size: 19px; font-weight: 600">{{ t.title }}</h2>
+                </div>
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap">
+                  <div style="display: flex; flex-direction: column; gap: 6px; width: 150px">
+                    <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9AA1AC">
+                      <span>الإنجاز</span>
+                      <span class="mono">{{ t.doneCount }}/{{ t.total }}</span>
+                    </div>
+                    <div style="height: 6px; border-radius: 99px; background: #262A31; overflow: hidden">
+                      <div class="bar" style="{{ t.barStyle }}"></div>
+                    </div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 8px">
+                    <span style="width: 32px; height: 32px; border-radius: 9px; background: #1E2228; display: inline-flex; align-items: center; justify-content: center; color: {{accent}}; font-weight: 700; font-size: 14px">{{ t.initial }}</span>
+                    <span style="display: flex; flex-direction: column">
+                      <span style="font-size: 13px; font-weight: 500">{{ t.assigneeName }}</span>
+                      <span style="font-size: 12px; color: #9AA1AC">التسليم: {{ t.due }}</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <sc-if value="{{ t.open }}" hint-placeholder-val="{{ true }}">
+                <div style="border-top: 1px solid #22262D; padding: 14px 22px 18px; display: flex; flex-direction: column; gap: 4px">
+                  <p style="margin: 0 0 6px; color: #9AA1AC; font-size: 13px">قائمة الأعمال</p>
+                  <sc-for list="{{ t.items }}" as="w" hint-placeholder-count="3">
+                    <label class="work-row" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 10px; border-radius: 10px; cursor: pointer">
+                      <input type="checkbox" checked="{{ w.done }}" onChange="{{ w.toggle }}" style="width: 18px; height: 18px; margin: 0">
+                      <span style="{{ w.textStyle }}">{{ w.text }}</span>
+                    </label>
+                  </sc-for>
+                  <div style="display: flex; gap: 8px; padding-top: 8px; flex-wrap: wrap">
+                    <label style="flex: 1 1 220px; display: flex">
+                      <span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">عمل جديد تحت المهمة</span>
+                      <input type="text" value="{{ t.draft }}" onChange="{{ t.onDraft }}" placeholder="أضف عمل جديد تحت هذي المهمة…" style="flex: 1; min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid #333943; background: #0F1215; color: #F2F3F5; font-size: 14px; outline-color: {{accent}}">
+                    </label>
+                    <button type="button" onClick="{{ t.addItem }}" style="min-height: 44px; padding: 0 18px; border-radius: 10px; border: 0; background: {{accent}}; color: #0D0F12; font-weight: 600; font-size: 14px">إضافة</button>
+                  </div>
+                </div>
+              </sc-if>
+            </article>
+          </sc-for>
+
+          <sc-if value="{{ noTasks }}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 24px 0; text-align: center; color: #9AA1AC">ما فيه مهام بهذي الحالة.</p>
+          </sc-if>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ===================== MONEY ===================== -->
+    <sc-if value="{{ isMoney }}" hint-placeholder-val="{{ false }}">
+      <div class="view-in" style="display: flex; flex-direction: column; gap: 28px">
+        <div style="display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <p class="mono" style="margin: 0; color: {{accent}}; font-size: 13px">// الدخل</p>
+            <h1 style="margin: 0; font-size: 32px; font-weight: 700">الحسابات</h1>
+          </div>
+          <div role="group" aria-label="اختيار الشهر" style="display: flex; flex-wrap: wrap; gap: 8px">
+            <sc-for list="{{ money.months }}" as="m" hint-placeholder-count="4">
+              <button type="button" onClick="{{ m.pick }}" aria-pressed="{{ m.pressed }}" style="{{ m.style }}">{{ m.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- add form -->
+        <form onSubmit="{{ money.submit }}" class="pulse-border" style="padding: 22px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; display: flex; flex-direction: column; gap: 16px">
+          <h2 style="margin: 0; font-size: 18px; font-weight: 600">إضافة دفعة جديدة</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; align-items: end">
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #B4BAC4">
+              اسم المشروع
+              <input type="text" value="{{ money.form.name }}" onChange="{{ money.setName }}" placeholder="مثلاً: موقع مطعم" style="min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid #333943; background: #0F1215; color: #F2F3F5; font-size: 15px">
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #B4BAC4">
+              القسم
+              <select value="{{ money.form.cat }}" onChange="{{ money.setCat }}" style="min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid #333943; background: #0F1215; color: #F2F3F5; font-size: 15px; font-family: inherit">
+                <option value="site">مواقع</option>
+                <option value="app">تطبيقات</option>
+                <option value="dash">داشبورد</option>
+                <option value="student">مشاريع طلاب</option>
+              </select>
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #B4BAC4">
+              المبلغ (ريال)
+              <input type="number" min="0" inputmode="decimal" value="{{ money.form.amount }}" onChange="{{ money.setAmount }}" placeholder="0" style="min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid #333943; background: #0F1215; color: #F2F3F5; font-size: 15px">
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #B4BAC4">
+              الشهر
+              <select value="{{ money.form.month }}" onChange="{{ money.setMonth }}" style="min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid #333943; background: #0F1215; color: #F2F3F5; font-size: 15px; font-family: inherit">
+                <option value="2026-09">سبتمبر ٢٠٢٦</option>
+                <option value="2026-10">أكتوبر ٢٠٢٦</option>
+                <option value="2026-11">نوفمبر ٢٠٢٦</option>
+                <option value="2026-12">ديسمبر ٢٠٢٦</option>
+              </select>
+            </label>
+            <button type="submit" style="min-height: 44px; padding: 0 20px; border-radius: 10px; border: 0; background: {{accent}}; color: #0D0F12; font-weight: 600; font-size: 15px">إضافة</button>
+          </div>
+          <sc-if value="{{ money.hasError }}" hint-placeholder-val="{{ false }}">
+            <p role="alert" style="margin: 0; color: #FFB547; font-size: 14px">اكتب اسم المشروع ومبلغ أكبر من صفر.</p>
+          </sc-if>
+        </form>
+
+        <!-- per-category totals -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px">
+          <sc-for list="{{ money.byCat }}" as="c" hint-placeholder-count="4">
+            <div class="stat" style="padding: 18px 20px; background: #15181D; border: 1px solid #262A31; border-radius: 14px; display: flex; flex-direction: column; gap: 6px">
+              <span style="color: #9AA1AC; font-size: 13px">{{ c.label }} <span class="mono" style="font-size: 12px">({{ c.count }})</span></span>
+              <span class="mono" style="font-size: 24px">{{ c.total }} <span style="font-size: 14px; color: #9AA1AC">ر.س</span></span>
+            </div>
+          </sc-for>
+        </div>
+
+        <!-- table -->
+        <div style="background: #15181D; border: 1px solid #262A31; border-radius: 16px; overflow: hidden">
+          <div style="overflow-x: auto">
+            <table style="width: 100%; min-width: 560px; border-collapse: collapse; font-size: 15px">
+              <thead>
+                <tr style="color: #9AA1AC; font-size: 13px; text-align: right">
+                  <th scope="col" style="padding: 14px 20px; font-weight: 500; border-bottom: 1px solid #262A31">المشروع</th>
+                  <th scope="col" style="padding: 14px 20px; font-weight: 500; border-bottom: 1px solid #262A31">القسم</th>
+                  <th scope="col" style="padding: 14px 20px; font-weight: 500; border-bottom: 1px solid #262A31">المبلغ</th>
+                  <th scope="col" style="padding: 14px 20px; font-weight: 500; border-bottom: 1px solid #262A31; width: 60px"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">حذف</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <sc-for list="{{ money.rows }}" as="r" hint-placeholder-count="4">
+                  <tr class="view-in">
+                    <td style="padding: 12px 20px; border-bottom: 1px solid #1E2228">{{ r.name }}</td>
+                    <td style="padding: 12px 20px; border-bottom: 1px solid #1E2228"><span style="font-size: 13px; padding: 3px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">{{ r.catLabel }}</span></td>
+                    <td class="mono" style="padding: 12px 20px; border-bottom: 1px solid #1E2228">{{ r.amountText }} <span style="font-size: 13px; color: #9AA1AC">ر.س</span></td>
+                    <td style="padding: 6px 12px; border-bottom: 1px solid #1E2228">
+                      <button type="button" class="ghost" onClick="{{ r.remove }}" aria-label="حذف الدفعة" style="width: 40px; height: 40px; border-radius: 9px; border: 1px solid #333943; background: transparent; color: #9AA1AC; display: inline-flex; align-items: center; justify-content: center">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"></path></svg>
+                      </button>
+                    </td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+          <sc-if value="{{ money.empty }}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 0; padding: 28px 20px; text-align: center; color: #9AA1AC">ما فيه دفعات في هذا الشهر. أضف أول دفعة من الفورم فوق.</p>
+          </sc-if>
+
+          <!-- monthly income -->
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 20px; background: #101317; border-top: 1px solid #262A31">
+            <div style="display: flex; flex-direction: column; gap: 4px">
+              <span style="font-size: 15px; font-weight: 600">الدخل الشهري — {{ money.monthLabel }}</span>
+              <span style="font-size: 13px; color: #9AA1AC">{{ money.count }} دفعات · إجمالي كل الشهور: <span class="mono">{{ money.allTotal }}</span> ر.س</span>
+            </div>
+            <span class="mono" style="font-size: 36px; color: {{accent}}">{{ money.monthTotal }} <span style="font-size: 16px; color: #9AA1AC">ر.س</span></span>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ===================== PEOPLE ===================== -->
+    <sc-if value="{{ isPeople }}" hint-placeholder-val="{{ false }}">
+      <div class="view-in" style="display: flex; flex-direction: column; gap: 28px">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <p class="mono" style="margin: 0; color: {{accent}}; font-size: 13px">// الفريق</p>
+          <h1 style="margin: 0; font-size: 32px; font-weight: 700">الموظفين</h1>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px">
+          <sc-for list="{{ people }}" as="p" hint-placeholder-count="4">
+            <article class="pop hov-card" style="animation-delay: {{ p.delay }}; padding: 24px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; display: flex; flex-direction: column; gap: 16px">
+              <div style="display: flex; align-items: center; gap: 14px">
+                <span class="float" style="width: 52px; height: 52px; border-radius: 14px; background: #1E2228; border: 1px solid #333943; display: inline-flex; align-items: center; justify-content: center; color: {{accent}}; font-weight: 700; font-size: 20px">{{ p.initial }}</span>
+                <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+                  <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"><h2 style="margin: 0; font-size: 18px; font-weight: 600">{{ p.name }}</h2><span style="{{ p.badgeStyle }}">{{ p.roleBadge }}</span></div>
+                  <span class="mono" dir="ltr" style="color: #9AA1AC; font-size: 13px; text-align: right">{{ p.role }}</span>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px">
+                <span class="dot" style="{{ p.dotStyle }}"></span>
+                <span style="font-size: 14px; color: #D7DBE1">{{ p.status }}</span>
+              </div>
+              <div dir="ltr" class="chips" style="display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end">
+                <sc-for list="{{ p.skills }}" as="s" hint-placeholder-count="3">
+                  <span class="mono" style="font-size: 12px; padding: 4px 9px; border-radius: 7px; border: 1px solid #333943; color: #C9CED6">{{ s }}</span>
+                </sc-for>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid #22262D; gap: 12px">
+                <span style="font-size: 14px; color: #9AA1AC"><span class="mono" style="color: #F2F3F5">{{ p.taskCount }}</span> مهام مفتوحة</span>
+                <div style="display: flex; gap: 8px">
+                  <button type="button" class="ghost" onClick="{{ p.showTasks }}" style="min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid #333943; background: transparent; color: #D7DBE1; font-size: 14px">مهامه</button>
+                  <button type="button" onClick="{{ p.showProfile }}" style="min-height: 44px; padding: 0 14px; border-radius: 10px; border: 0; background: {{accent}}; color: #0D0F12; font-weight: 600; font-size: 14px">الملف ←</button>
+                </div>
+              </div>
+            </article>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+    <!-- ===================== PROFILE ===================== -->
+    <sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
+      <div class="view-in" style="display: flex; flex-direction: column; gap: 24px">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+          <button type="button" class="ghost" onClick="{{ prof.back }}" style="min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid #333943; background: transparent; color: #D7DBE1; font-size: 14px">→ رجوع للموظفين</button>
+          <div role="group" aria-label="اختيار الموظف" style="display: flex; flex-wrap: wrap; gap: 8px">
+            <sc-for list="{{ prof.others }}" as="o" hint-placeholder-count="4">
+              <button type="button" onClick="{{ o.pick }}" aria-pressed="{{ o.pressed }}" style="{{ o.style }}"><span style="width: 28px; height: 28px; border-radius: 8px; background: #262A31; display: inline-flex; align-items: center; justify-content: center; color: {{accent}}; font-weight: 700; font-size: 13px">{{ o.initial }}</span>{{ o.name }}</button>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- header card -->
+        <section style="padding: 28px; background: #15181D; border: 1px solid #262A31; border-radius: 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px">
+          <span class="float" style="width: 88px; height: 88px; border-radius: 22px; background: #1E2228; border: 1px solid #333943; display: inline-flex; align-items: center; justify-content: center; color: {{accent}}; font-weight: 700; font-size: 36px">{{ prof.initial }}</span>
+          <div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 8px; min-width: 0">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+              <h1 style="margin: 0; font-size: 30px; font-weight: 700">{{ prof.name }}</h1>
+              <span style="{{ prof.badgeStyle }}">{{ prof.roleBadge }}</span>
+            </div>
+            <p style="margin: 0; font-size: 17px; color: #D7DBE1">{{ prof.title }}</p>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; font-size: 14px; color: #9AA1AC">
+              <span class="mono" dir="ltr">{{ prof.role }}</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px"><span class="dot" style="{{ prof.dotStyle }}"></span>{{ prof.status }}</span>
+              <span>منضم من: {{ prof.joined }}</span>
+            </div>
+          </div>
+          <button type="button" onClick="{{ prof.showTasks }}" style="min-height: 44px; padding: 0 18px; border-radius: 10px; border: 0; background: {{accent}}; color: #0D0F12; font-weight: 600; font-size: 14px">مهامه الحالية ({{ prof.openCount }})</button>
+        </section>
+
+        <!-- KPIs -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
+          <div class="stat" style="padding: 20px; background: #15181D; border: 1px solid #262A31; border-radius: 14px; display: flex; flex-direction: column; gap: 10px">
+            <span style="color: #9AA1AC; font-size: 13px">الالتزام بمواعيد التسليم</span>
+            <span class="mono" style="font-size: 32px">{{ prof.onPct }}%</span>
+            <div style="{{ prof.onBar }}"></div>
+            <span style="font-size: 13px; color: #D7DBE1">التقييم: {{ prof.grade }}</span>
+          </div>
+          <div class="stat" style="padding: 20px; background: #15181D; border: 1px solid #262A31; border-radius: 14px; display: flex; flex-direction: column; gap: 10px">
+            <span style="color: #9AA1AC; font-size: 13px">حضور الاجتماعات</span>
+            <span class="mono" style="font-size: 32px">{{ prof.meetPct }}%</span>
+            <div style="{{ prof.meetBar }}"></div>
+            <span style="font-size: 13px; color: #D7DBE1">{{ prof.meetText }} اجتماع</span>
+          </div>
+          <div class="stat" style="padding: 20px; background: #15181D; border: 1px solid #262A31; border-radius: 14px; display: flex; flex-direction: column; gap: 10px">
+            <span style="color: #9AA1AC; font-size: 13px">المهام المسلّمة</span>
+            <span class="mono" style="font-size: 32px">{{ prof.doneCount }}</span>
+            <span style="font-size: 13px; color: #D7DBE1">ومفتوحة الحين: {{ prof.openCount }}</span>
+          </div>
+          <div class="stat" style="padding: 20px; background: #15181D; border: 1px solid #262A31; border-radius: 14px; display: flex; flex-direction: column; gap: 10px">
+            <span style="color: #9AA1AC; font-size: 13px">متوسط التأخير (للمتأخر)</span>
+            <span class="mono" style="font-size: 32px">{{ prof.avgLate }}</span>
+            <span style="font-size: 13px; color: #D7DBE1">يوم</span>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
+          <section style="padding: 24px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; display: flex; flex-direction: column; gap: 14px">
+            <h2 style="margin: 0; font-size: 18px; font-weight: 600">وظيفته ومسؤولياته</h2>
+            <ul style="margin: 0; padding: 0 18px 0 0; display: flex; flex-direction: column; gap: 8px; color: #D7DBE1; font-size: 15px; line-height: 1.7">
+              <sc-for list="{{ prof.duties }}" as="d" hint-placeholder-count="4"><li>{{ d }}</li></sc-for>
+            </ul>
+            <div dir="ltr" class="chips" style="display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; padding-top: 6px">
+              <sc-for list="{{ prof.skills }}" as="k" hint-placeholder-count="3"><span class="mono" style="font-size: 12px; padding: 4px 9px; border-radius: 7px; border: 1px solid #333943; color: #C9CED6">{{ k }}</span></sc-for>
+            </div>
+          </section>
+          <section style="padding: 24px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; display: flex; flex-direction: column; gap: 12px">
+            <h2 style="margin: 0; font-size: 18px; font-weight: 600">شغله الحالي</h2>
+            <sc-for list="{{ prof.open }}" as="o" hint-placeholder-count="2">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 10px; background: #1A1E24">
+                <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px">{{ o.title }}</span><span style="font-size: 12px; color: #9AA1AC">{{ o.project }}</span></span>
+                <span style="font-size: 13px; color: #D7DBE1; white-space: nowrap">التسليم: {{ o.due }}</span>
+              </div>
+            </sc-for>
+            <sc-if value="{{ prof.noOpen }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; color: #9AA1AC; font-size: 14px">ما عنده مهام مفتوحة.</p></sc-if>
+          </section>
+        </div>
+
+        <!-- delivery history -->
+        <section style="background: #15181D; border: 1px solid #262A31; border-radius: 16px; overflow: hidden">
+          <div style="padding: 18px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; border-bottom: 1px solid #262A31">
+            <h2 style="margin: 0; font-size: 18px; font-weight: 600">سجل التسليمات</h2>
+            <span style="font-size: 12px; color: #9AA1AC; padding: 3px 10px; border-radius: 99px; border: 1px dashed #4A515C">بيانات تجريبية</span>
+          </div>
+          <div style="overflow-x: auto">
+            <table style="width: 100%; min-width: 640px; border-collapse: collapse; font-size: 14px">
+              <thead>
+                <tr style="color: #9AA1AC; font-size: 13px; text-align: right">
+                  <th scope="col" style="padding: 12px 20px; font-weight: 500">المهمة</th>
+                  <th scope="col" style="padding: 12px 20px; font-weight: 500">المشروع</th>
+                  <th scope="col" style="padding: 12px 20px; font-weight: 500">الموعد</th>
+                  <th scope="col" style="padding: 12px 20px; font-weight: 500">سلّمها</th>
+                  <th scope="col" style="padding: 12px 20px; font-weight: 500">الالتزام</th>
+                </tr>
+              </thead>
+              <tbody>
+                <sc-for list="{{ prof.hist }}" as="h" hint-placeholder-count="4">
+                  <tr>
+                    <td style="padding: 12px 20px; border-top: 1px solid #1E2228">{{ h.title }}</td>
+                    <td style="padding: 12px 20px; border-top: 1px solid #1E2228; color: #B4BAC4">{{ h.project }}</td>
+                    <td style="padding: 12px 20px; border-top: 1px solid #1E2228; color: #B4BAC4">{{ h.due }}</td>
+                    <td style="padding: 12px 20px; border-top: 1px solid #1E2228; color: #B4BAC4">{{ h.done }}</td>
+                    <td style="padding: 12px 20px; border-top: 1px solid #1E2228"><span style="{{ h.style }}">{{ h.label }}</span></td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <sc-if value="{{ prof.isAdmin }}" hint-placeholder-val="{{ true }}">
+          <section style="padding: 20px 24px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+            <span style="font-size: 15px; font-weight: 600">صلاحيات الأدمن:</span>
+            <div class="tags" style="display: flex; flex-wrap: wrap; gap: 8px">
+              <span style="font-size: 13px; padding: 5px 12px; border-radius: 99px; background: #1E2228; color: #C9CED6">إضافة وتوزيع المهام</span>
+              <span style="font-size: 13px; padding: 5px 12px; border-radius: 99px; background: #1E2228; color: #C9CED6">إدارة الموظفين</span>
+              <span style="font-size: 13px; padding: 5px 12px; border-radius: 99px; background: #1E2228; color: #C9CED6">الحسابات والدخل</span>
+              <span style="font-size: 13px; padding: 5px 12px; border-radius: 99px; background: #1E2228; color: #C9CED6">نشر الأعمال في الموقع</span>
+            </div>
+          </section>
+        </sc-if>
+      </div>
+    </sc-if>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#B8F34A","options":["#B8F34A","#5CE1E6","#FFB547","#A78BFA"]},"$preview":{"width":1440,"height":1900}}'>
+class Component extends DCLogic {
+  _motionStart() {
+    try { if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; } catch (e) {}
+    const doc = (this._root && this._root.ownerDocument) || document;
+    const O = (k) => 1 - Math.pow(1 - k, 3);
+    const IO = (k) => 0.5 - Math.cos(Math.PI * k) / 2;
+    const EZ = { out: O, inout: IO, linear: (k) => k, pop: (k) => { const c = 1.70158 * 1.4; return 1 + (c + 1) * Math.pow(k - 1, 3) + c * Math.pow(k - 1, 2); } };
+    const idx = (el) => Array.prototype.indexOf.call(el.parentNode.children, el);
+    const dcls = (el) => { const m = (el.className && String(el.className.baseVal !== undefined ? el.className.baseVal : el.className).match(/\bd([1-5])\b/)); return m ? [0, .05, .18, .32, .46, .6][+m[1]] : 0; };
+    const inl = (el) => { const v = parseFloat(el.style.animationDelay); return isNaN(v) ? 0 : v; };
+    const S = [
+      { q: '.rise', kf: [[0, { transform: 'translateY(24px)', opacity: '0' }], [1, { transform: 'translateY(0px)', opacity: '1' }]], d: .8, ez: 'out', delay: dcls },
+      { q: '.pop', kf: [[0, { transform: 'translateY(24px)', opacity: '0' }], [1, { transform: 'translateY(0px)', opacity: '1' }]], d: .6, ez: 'out', delay: inl },
+      { q: '.view-in', kf: [[0, { transform: 'translateY(16px)', opacity: '0' }], [1, { transform: 'translateY(0px)', opacity: '1' }]], d: .45, ez: 'out' },
+      { q: '.reveal, .reveal2', kf: [[0, { transform: 'translateY(32px)', opacity: '0' }], [1, { transform: 'translateY(0px)', opacity: '1' }]], d: .9, ez: 'out', reveal: true },
+      { q: '.stat .mono', kf: [[0, { transform: 'translateY(14px)', opacity: '0' }], [1, { transform: 'translateY(0px)', opacity: '1' }]], d: .7, ez: 'out', delay: () => .2 },
+      { q: '.tags>span, .chips>span', kf: [[0, { transform: 'scale(0.85)', opacity: '0' }], [1, { transform: 'scale(1)', opacity: '1' }]], d: .5, ez: 'pop', delay: (el) => .3 + idx(el) * .06, reveal: true },
+      { q: '.stars>svg', kf: [[0, { transform: 'scale(0.3) rotate(-40deg)', opacity: '0' }], [1, { transform: 'scale(1) rotate(0deg)', opacity: '1' }]], d: .5, ez: 'pop', delay: (el) => idx(el) * .1, reveal: true },
+      { q: '.bar', kf: [[0, { transform: 'scaleX(0)' }], [1, { transform: 'scaleX(1)' }]], d: .9, ez: 'out', origin: 'right' },
+      { q: '.float, .quote', kf: [[0, { transform: 'translateY(0px)' }], [.5, { transform: 'translateY(-8px)' }], [1, { transform: 'translateY(0px)' }]], d: 5, ez: 'inout', loop: true },
+      { q: '.float2', kf: [[0, { transform: 'translateY(0px)' }], [.5, { transform: 'translateY(-8px)' }], [1, { transform: 'translateY(0px)' }]], d: 5, ez: 'inout', loop: true, delay: () => 1.2 },
+      { q: '.glow', kf: [[0, { boxShadow: '0px 0px 0px 0px rgba(184,243,74,0)' }], [.5, { boxShadow: '0px 0px 28px 2px rgba(184,243,74,0.35)' }], [1, { boxShadow: '0px 0px 0px 0px rgba(184,243,74,0)' }]], d: 3.2, ez: 'inout', loop: true },
+      { q: '.ticker-track', kf: [[0, { transform: 'translateX(-50%)' }], [1, { transform: 'translateX(0%)' }]], d: 28, ez: 'linear', loop: true },
+      { q: '.bars>div', kf: [[0, { transform: 'scaleY(0.35)' }], [.5, { transform: 'scaleY(1)' }], [1, { transform: 'scaleY(0.35)' }]], d: 3.2, ez: 'inout', loop: true, delay: (el) => idx(el) * .25, origin: 'bottom' },
+      { q: '.codelines>div:not(:first-child)', kf: [[0, { transform: 'scaleX(0.15)' }], [.6, { transform: 'scaleX(1)' }], [1, { transform: 'scaleX(1)' }]], d: 2.8, ez: 'out', loop: true, delay: (el) => Math.max(0, idx(el) - 1) * .15, origin: 'left' },
+      { q: '.shim>div', kf: [[0, { backgroundPosition: '150% 0%' }], [1, { backgroundPosition: '-50% 0%' }]], d: 2.4, ez: 'inout', loop: true, delay: (el) => idx(el) * .2 },
+      { q: '.steps>li>span', kf: [[0, { opacity: '0.35' }], [.12, { opacity: '1' }], [.3, { opacity: '1' }], [.45, { opacity: '0.35' }], [1, { opacity: '0.35' }]], d: 4, ez: 'linear', loop: true, delay: (el) => idx(el.parentNode) * 1 },
+      { q: '.dot', kf: [[0, { boxShadow: '0px 0px 0px 0px rgba(242,243,245,0.45)' }], [.8, { boxShadow: '0px 0px 0px 9px rgba(242,243,245,0)' }], [1, { boxShadow: '0px 0px 0px 9px rgba(242,243,245,0)' }]], d: 1.8, ez: 'out', loop: true },
+      { q: '.pulse-border', kf: [[0, { borderColor: 'rgb(38,42,49)' }], [.5, { borderColor: 'rgb(74,81,92)' }], [1, { borderColor: 'rgb(38,42,49)' }]], d: 3, ez: 'inout', loop: true },
+      { q: '.logo-blink', kf: [[0, { opacity: '1' }], [.5, { opacity: '0.1' }], [1, { opacity: '0.1' }]], d: 1.1, ez: 'linear', loop: true, step: true },
+      { q: '.caret', kf: [[0, { opacity: '1' }], [.5, { opacity: '0' }], [1, { opacity: '0' }]], d: 1, ez: 'linear', loop: true, step: true }
+    ];
+    const num = /-?\d*\.?\d+/g;
+    const mix = (a, b, k) => { const nb = b.match(num) || []; let i = 0; return a.replace(num, (x) => { const y = parseFloat(nb[i++]); return isNaN(y) ? x : String(+(parseFloat(x) + (y - parseFloat(x)) * k).toFixed(3)); }); };
+    const sample = (kf, p, ez) => {
+      let i = 0; while (i < kf.length - 2 && p > kf[i + 1][0]) i++;
+      const [o0, v0] = kf[i], [o1, v1] = kf[i + 1];
+      const k = EZ[ez](Math.max(0, Math.min(1, (p - o0) / ((o1 - o0) || 1))));
+      const out = {}; for (const prop in v0) out[prop] = mix(v0[prop], v1[prop], k); return out;
+    };
+    const items = new Map();
+    const t0 = performance.now();
+    const scan = () => {
+      S.forEach((sp) => {
+        doc.querySelectorAll(sp.q).forEach((el) => {
+          if (items.has(el)) return;
+          if (sp.origin) el.style.transformOrigin = sp.origin;
+          items.set(el, { sp, start: sp.reveal ? null : performance.now(), delay: sp.delay ? sp.delay(el) : 0, done: false });
+        });
+      });
+    };
+    scan();
+    const mo = new MutationObserver(() => { scan(); });
+    mo.observe(doc.body, { childList: true, subtree: true });
+    const vh = () => (doc.defaultView || window).innerHeight;
+    const tick = (now) => {
+      items.forEach((it, el) => {
+        if (!el.isConnected) { items.delete(el); return; }
+        if (it.done) return;
+        const sp = it.sp;
+        if (it.start === null) {
+          const r = el.getBoundingClientRect();
+          if (r.top < vh() * 0.92 && r.bottom > 0) it.start = now; else return;
+        }
+        const tt = (now - it.start) / 1000 - it.delay;
+        if (tt < 0) { if (!sp.loop) { const v = sp.kf[0][1]; for (const p in v) el.style[p] = v[p]; } return; }
+        let p = tt / sp.d;
+        if (sp.loop) p = p % 1; else if (p >= 1) { for (const prop in sp.kf[0][1]) el.style[prop] = ''; if (sp.q === '.bar') el.style.transform = ''; it.done = true; return; }
+        if (sp.step) { const v = p < .5 ? sp.kf[0][1] : sp.kf[1][1]; for (const prop in v) el.style[prop] = v[prop]; return; }
+        const v = sample(sp.kf, p, sp.ez); for (const prop in v) el.style[prop] = v[prop];
+      });
+      this._raf = requestAnimationFrame(tick);
+    };
+    this._raf = requestAnimationFrame(tick);
+    this._mo = mo;
+  }
+  _motionStop() { cancelAnimationFrame(this._raf); if (this._mo) this._mo.disconnect(); }
+  componentDidMount() { this._motionStart(); }
+  componentWillUnmount() { this._motionStop(); }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      view: 'profile',
+      status: 'all',
+      assignee: null,
+      open: { t1: true, t2: true, t3: false, t4: false, t5: false },
+      drafts: {},
+      profileId: 'ahmed',
+      moneyMonth: '2026-11',
+      form: { name: '', cat: 'site', amount: '', month: '2026-11' },
+      formError: false,
+      nextId: 5,
+      entries: [
+        { id: 1, name: '[مثال] موقع مطعم', cat: 'site', amount: 3500, month: '2026-11' },
+        { id: 2, name: '[مثال] تطبيق حجوزات', cat: 'app', amount: 6000, month: '2026-11' },
+        { id: 3, name: '[مثال] مشروع تخرج', cat: 'student', amount: 1200, month: '2026-11' },
+        { id: 4, name: '[مثال] لوحة تحكم متجر', cat: 'dash', amount: 4000, month: '2026-10' }
+      ],
+      tasks: [
+        { id: 't1', title: 'إضافة صفحات دول جديدة', project: 'سفرة', assignee: 'ahmed', due: '٢٠ نوفمبر', priority: 'عالية',
+          items: [
+            { text: 'تجميع صور المدن ورفعها على Cloudinary', done: true },
+            { text: 'كتابة محتوى الأكلات المشهورة', done: true },
+            { text: 'بناء كروت المدن', done: false },
+            { text: 'مراجعة الصفحات على الجوال', done: false }
+          ] },
+        { id: 't2', title: 'API للوصفات والفلترة', project: 'سفرة', assignee: 'partner', due: '٢٢ نوفمبر', priority: 'عالية',
+          items: [
+            { text: 'جدول الوصفات في PostgreSQL', done: true },
+            { text: 'Endpoint للفلترة حسب النوع', done: false },
+            { text: 'فهرسة قاعدة البيانات', done: false },
+            { text: 'توثيق الـ API', done: false }
+          ] },
+        { id: 't3', title: 'هوية وشاشات تحدي المدن', project: 'تحدي المدن', assignee: 'designer', due: '٢٨ نوفمبر', priority: 'متوسطة',
+          items: [
+            { text: 'لوحة الألوان والخطوط', done: false },
+            { text: 'تصميم الشعار', done: false },
+            { text: 'شاشات التطبيق الأساسية', done: false }
+          ] },
+        { id: 't4', title: 'أنيميشن الصفحة الرئيسية', project: 'موقع شفرة', assignee: 'motion', due: '١٨ نوفمبر', priority: 'منخفضة',
+          items: [
+            { text: 'حركة نافذة الكود', done: true },
+            { text: 'انتقالات الكروت عند التمرير', done: true }
+          ] },
+        { id: 't5', title: 'مشروع تخرج: نظام حجز مواعيد', project: 'مشاريع طلاب', assignee: 'ahmed', due: '٣ ديسمبر', priority: 'متوسطة',
+          items: [
+            { text: 'تحليل المتطلبات مع الطالب', done: true },
+            { text: 'واجهة الحجز', done: false },
+            { text: 'لوحة الإدارة', done: false },
+            { text: 'جلسة شرح الكود للطالب', done: false }
+          ] }
+      ]
+    };
+  }
+
+  renderVals() {
+    const accent = this.props.accent ?? '#B8F34A';
+    const s = this.state;
+    const people = [
+      { id: 'ahmed', name: 'أحمد الحربي', initial: 'أ', role: 'Frontend Developer', status: 'متاح', skills: ['HTML', 'CSS', 'JavaScript', 'Flutter'], admin: true,
+        title: 'شريك مؤسس — مطوّر واجهات', joined: '[تاريخ الانضمام]',
+        duties: ['تصميم وبرمجة واجهات المواقع والتطبيقات', 'تطبيقات الجوال بـ Flutter', 'رفع المشاريع على Vercel ومتابعة الأداء', 'التواصل مع العملاء على التصميم'],
+        meetings: { attended: 11, total: 12 },
+        history: [
+          { title: 'صفحات الدول في سفرة', project: 'سفرة', due: '2026-10-05', done: '2026-10-04' },
+          { title: 'فلتر الوصفات', project: 'سفرة', due: '2026-10-14', done: '2026-10-14' },
+          { title: 'تصميم موقع شفرة', project: 'موقع شفرة', due: '2026-11-10', done: '2026-11-12' },
+          { title: 'واجهة الحجز — مشروع تخرج', project: 'مشاريع طلاب', due: '2026-11-15', done: '2026-11-15' }
+        ] },
+      { id: 'partner', name: 'نايف الحربي', initial: 'ن', role: 'Backend Developer', status: 'مشغول', skills: ['Python', 'FastAPI', 'PostgreSQL'], admin: true,
+        title: 'شريك مؤسس — مطوّر خوادم', joined: '[تاريخ الانضمام]',
+        duties: ['بناء الـ API وقواعد البيانات', 'تسجيل الدخول والصلاحيات', 'رفع السيرفرات على Render', 'حماية البيانات والنسخ الاحتياطي'],
+        meetings: { attended: 12, total: 12 },
+        history: [
+          { title: 'API الوصفات', project: 'سفرة', due: '2026-10-08', done: '2026-10-07' },
+          { title: 'نقل الصور لـ Cloudinary', project: 'سفرة', due: '2026-10-20', done: '2026-10-23' },
+          { title: 'قاعدة بيانات تحدي المدن', project: 'تحدي المدن', due: '2026-11-08', done: '2026-11-08' }
+        ] },
+      { id: 'designer', name: '[اسم المصمم]', initial: 'م', role: 'UI/UX Designer', status: 'متاح', skills: ['Figma', 'Branding'], admin: false,
+        title: 'مصمم واجهات', joined: '[تاريخ الانضمام]', duties: ['تصميم الشاشات والهوية', 'تجهيز ملفات التسليم للمطورين'], meetings: { attended: 7, total: 9 },
+        history: [ { title: 'هوية تحدي المدن', project: 'تحدي المدن', due: '2026-11-01', done: '2026-11-05' } ] },
+      { id: 'motion', name: '[اسم مصمم الأنيميشن]', initial: 'ح', role: 'Motion Designer', status: 'إجازة', skills: ['After Effects', 'Lottie'], admin: false,
+        title: 'مصمم موشن', joined: '[تاريخ الانضمام]', duties: ['أنيميشن المواقع والتطبيقات', 'فيديوهات تعريفية'], meetings: { attended: 5, total: 6 },
+        history: [ { title: 'أنيميشن الرئيسية', project: 'موقع شفرة', due: '2026-11-18', done: '2026-11-17' } ] }
+    ];
+    const byId = {};
+    people.forEach((p) => { byId[p.id] = p; });
+
+    const statusOf = (t) => {
+      const d = t.items.filter((i) => i.done).length;
+      if (t.items.length && d === t.items.length) return 'done';
+      if (d > 0) return 'doing';
+      return 'new';
+    };
+    const statusLabel = { new: 'جديدة', doing: 'قيد التنفيذ', done: 'مكتملة' };
+    const statusColor = { new: '#9AA1AC', doing: '#5CE1E6', done: accent };
+    const prioColor = { 'عالية': '#FFB547', 'متوسطة': '#5CE1E6', 'منخفضة': '#9AA1AC' };
+
+    const scoped = s.tasks.filter((t) => !s.assignee || t.assignee === s.assignee);
+
+    const updateTask = (id, fn) => {
+      this.setState({ tasks: this.state.tasks.map((t) => (t.id === id ? fn(t) : t)) });
+    };
+
+    const tasks = scoped
+      .filter((t) => s.status === 'all' || statusOf(t) === s.status)
+      .map((t, ti) => {
+        const doneCount = t.items.filter((i) => i.done).length;
+        const total = t.items.length;
+        const pct = total ? Math.round((doneCount / total) * 100) : 0;
+        const st = statusOf(t);
+        const owner = byId[t.assignee] || { name: '—', initial: '؟' };
+        const open = !!s.open[t.id];
+        return {
+          id: t.id,
+          delay: (ti * 0.07).toFixed(2) + 's',
+          title: t.title,
+          project: t.project,
+          due: t.due,
+          priority: t.priority,
+          assigneeName: owner.name,
+          initial: owner.initial,
+          doneCount: String(doneCount),
+          total: String(total),
+          status: statusLabel[st],
+          statusStyle: 'font-size: 12px; padding: 3px 10px; border-radius: 99px; border: 1px solid ' + statusColor[st] + '; color: ' + statusColor[st],
+          prioStyle: 'font-size: 12px; color: ' + prioColor[t.priority],
+          barStyle: 'height: 100%; width: ' + pct + '%; background: ' + accent + '; border-radius: 99px',
+          open,
+          expanded: open ? 'true' : 'false',
+          chevStyle: open ? 'transform: rotate(180deg)' : '',
+          toggleOpen: () => this.setState({ open: { ...this.state.open, [t.id]: !this.state.open[t.id] } }),
+          draft: s.drafts[t.id] || '',
+          onDraft: (e) => this.setState({ drafts: { ...this.state.drafts, [t.id]: e.target.value } }),
+          addItem: () => {
+            const txt = (this.state.drafts[t.id] || '').trim();
+            if (!txt) return;
+            this.setState({
+              tasks: this.state.tasks.map((x) => (x.id === t.id ? { ...x, items: [...x.items, { text: txt, done: false }] } : x)),
+              drafts: { ...this.state.drafts, [t.id]: '' }
+            });
+          },
+          items: t.items.map((it, idx) => ({
+            text: it.text,
+            done: it.done,
+            textStyle: it.done ? 'font-size: 15px; color: #6E7681; text-decoration: line-through' : 'font-size: 15px; color: #E4E7EB',
+            toggle: () => updateTask(t.id, (x) => ({ ...x, items: x.items.map((y, j) => (j === idx ? { ...y, done: !y.done } : y)) }))
+          }))
+        };
+      });
+
+    const pillStyle = (on) => on
+      ? 'display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 16px; border-radius: 99px; font-size: 14px; font-weight: 600; border: 1px solid ' + accent + '; background: ' + accent + '; color: #0D0F12'
+      : 'display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 16px; border-radius: 99px; font-size: 14px; font-weight: 500; border: 1px solid #333943; background: transparent; color: #D7DBE1';
+    const statusFilters = [
+      { id: 'all', label: 'الكل' }, { id: 'new', label: 'جديدة' }, { id: 'doing', label: 'قيد التنفيذ' }, { id: 'done', label: 'مكتملة' }
+    ].map((f) => ({
+      label: f.label,
+      count: String(f.id === 'all' ? scoped.length : scoped.filter((t) => statusOf(t) === f.id).length),
+      pressed: s.status === f.id ? 'true' : 'false',
+      style: pillStyle(s.status === f.id),
+      pick: () => this.setState({ status: f.id })
+    }));
+
+    const allItems = s.tasks.reduce((n, t) => n + t.items.length, 0);
+    const doneItems = s.tasks.reduce((n, t) => n + t.items.filter((i) => i.done).length, 0);
+    const complete = s.tasks.filter((t) => statusOf(t) === 'done').length;
+
+    const dotColor = { 'متاح': accent, 'مشغول': '#FFB547', 'إجازة': '#6E7681' };
+    const peopleVals = people.map((p, pi) => ({
+      ...p,
+      delay: (pi * 0.08).toFixed(2) + 's',
+      dotStyle: 'width: 10px; height: 10px; border-radius: 50%; background: ' + (dotColor[p.status] || '#6E7681'),
+      taskCount: String(s.tasks.filter((t) => t.assignee === p.id && statusOf(t) !== 'done').length),
+      showTasks: () => this.setState({ view: 'tasks', assignee: p.id, status: 'all' }),
+      showProfile: () => this.setState({ view: 'profile', profileId: p.id }),
+      roleBadge: p.admin ? 'أدمن' : 'موظف',
+      badgeStyle: 'font-size: 12px; padding: 3px 10px; border-radius: 99px; ' + (p.admin ? 'background: ' + accent + '; color: #0D0F12; font-weight: 600' : 'border: 1px solid #333943; color: #C9CED6')
+    }));
+
+    // ---- profile ----
+    const DAY = 86400000;
+    const fd = (iso) => { try { return new Date(iso + 'T12:00:00').toLocaleDateString('ar', { day: 'numeric', month: 'long', calendar: 'gregory' }); } catch (e) { return iso; } };
+    const days = (n) => n === 1 ? 'يوم' : n === 2 ? 'يومين' : n <= 10 ? n + ' أيام' : n + ' يوم';
+    const P = byId[s.profileId] || people[0];
+    const hist = P.history.map((h) => {
+      const diff = Math.round((new Date(h.done) - new Date(h.due)) / DAY);
+      const late = diff > 0;
+      return {
+        title: h.title, project: h.project, due: fd(h.due), done: fd(h.done),
+        label: diff > 0 ? 'متأخر ' + days(diff) : (diff < 0 ? 'قبل الموعد ب' + (diff === -1 || diff === -2 ? '' : ' ') + days(-diff) : 'في الموعد'),
+        style: 'font-size: 12px; padding: 3px 10px; border-radius: 99px; white-space: nowrap; border: 1px solid ' + (late ? '#FFB547' : accent) + '; color: ' + (late ? '#FFB547' : accent),
+        diff
+      };
+    });
+    const onTime = hist.filter((h) => h.diff <= 0).length;
+    const onPct = hist.length ? Math.round(onTime / hist.length * 100) : 0;
+    const lates = hist.filter((h) => h.diff > 0);
+    const avgLate = lates.length ? (lates.reduce((n, h) => n + h.diff, 0) / lates.length).toFixed(1) : '0';
+    const meetPct = Math.round(P.meetings.attended / P.meetings.total * 100);
+    const openT = s.tasks.filter((t) => t.assignee === P.id && statusOf(t) !== 'done');
+    const ring = (pct) => 'width: 100%; height: 8px; border-radius: 99px; background: linear-gradient(to left, ' + accent + ' ' + pct + '%, #262A31 ' + pct + '%)';
+    const grade = onPct >= 90 ? 'ممتاز' : onPct >= 75 ? 'جيد' : 'يحتاج تحسين';
+    const prof = {
+      name: P.name, initial: P.initial, role: P.role, title: P.title, joined: P.joined, status: P.status,
+      dotStyle: 'width: 10px; height: 10px; border-radius: 50%; background: ' + (dotColor[P.status] || '#6E7681'),
+      isAdmin: !!P.admin, roleBadge: P.admin ? 'أدمن' : 'موظف',
+      badgeStyle: 'font-size: 13px; padding: 4px 12px; border-radius: 99px; ' + (P.admin ? 'background: ' + accent + '; color: #0D0F12; font-weight: 600' : 'border: 1px solid #333943; color: #C9CED6'),
+      duties: P.duties, skills: P.skills,
+      onPct: String(onPct), onBar: ring(onPct), grade,
+      meetPct: String(meetPct), meetBar: ring(meetPct), meetText: P.meetings.attended + ' من ' + P.meetings.total,
+      doneCount: String(hist.length), avgLate,
+      openCount: String(openT.length),
+      open: openT.map((t) => ({ title: t.title, project: t.project, due: t.due })),
+      noOpen: openT.length === 0,
+      hist,
+      others: people.map((q) => ({ name: q.name, initial: q.initial, pick: () => this.setState({ profileId: q.id }), pressed: q.id === P.id ? 'true' : 'false',
+        style: 'display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px 0 8px; border-radius: 99px; font-size: 14px; ' + (q.id === P.id ? 'border: 1px solid ' + accent + '; background: #1E2228; color: #F2F3F5' : 'border: 1px solid #333943; background: transparent; color: #B4BAC4') })),
+      back: () => this.setState({ view: 'people' }),
+      showTasks: () => this.setState({ view: 'tasks', assignee: P.id, status: 'all' })
+    };
+
+    const tabBase = 'display: flex; align-items: center; gap: 12px; width: 100%; min-height: 46px; padding: 0 12px; border-radius: 10px; border: 0; font-size: 15px; ';
+    const tabs = [
+      { id: 'tasks', label: 'المهام', count: String(s.tasks.length) },
+      { id: 'people', label: 'الموظفين', count: String(people.length) },
+      { id: 'money', label: 'الحسابات', count: String(s.entries.length) }
+    ].map((t) => ({
+      ...t,
+      isTasks: t.id === 'tasks',
+      isPeople: t.id === 'people',
+      isMoney: t.id === 'money',
+      current: (s.view === t.id || (t.id === 'people' && s.view === 'profile')) ? 'page' : 'false',
+      style: tabBase + ((s.view === t.id || (t.id === 'people' && s.view === 'profile')) ? 'background: #1E2228; color: #F2F3F5; font-weight: 600' : 'background: transparent; color: #B4BAC4; font-weight: 500'),
+      pick: () => this.setState({ view: t.id })
+    }));
+
+    // ---- money ----
+    const fmt = (n) => Number(n).toLocaleString('en-US');
+    const catLabels = { site: 'مواقع', app: 'تطبيقات', dash: 'داشبورد', student: 'مشاريع طلاب' };
+    const monthDefs = [
+      { id: '2026-09', label: 'سبتمبر ٢٠٢٦' },
+      { id: '2026-10', label: 'أكتوبر ٢٠٢٦' },
+      { id: '2026-11', label: 'نوفمبر ٢٠٢٦' },
+      { id: '2026-12', label: 'ديسمبر ٢٠٢٦' }
+    ];
+    const monthEntries = s.entries.filter((e) => e.month === s.moneyMonth);
+    const setForm = (key) => (e) => this.setState({ form: { ...this.state.form, [key]: e.target.value }, formError: false });
+    const money = {
+      form: s.form,
+      hasError: s.formError,
+      setName: setForm('name'),
+      setCat: setForm('cat'),
+      setAmount: setForm('amount'),
+      setMonth: setForm('month'),
+      submit: (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        const f = this.state.form;
+        const amt = parseFloat(f.amount);
+        if (!f.name.trim() || !(amt > 0)) { this.setState({ formError: true }); return; }
+        this.setState({
+          entries: [...this.state.entries, { id: this.state.nextId, name: f.name.trim(), cat: f.cat, amount: amt, month: f.month }],
+          nextId: this.state.nextId + 1,
+          form: { name: '', cat: f.cat, amount: '', month: f.month },
+          moneyMonth: f.month,
+          formError: false
+        });
+      },
+      months: monthDefs.map((m) => ({
+        label: m.label,
+        pressed: s.moneyMonth === m.id ? 'true' : 'false',
+        style: pillStyle(s.moneyMonth === m.id),
+        pick: () => this.setState({ moneyMonth: m.id, form: { ...this.state.form, month: m.id } })
+      })),
+      byCat: Object.keys(catLabels).map((k) => {
+        const list = monthEntries.filter((e) => e.cat === k);
+        return { label: catLabels[k], count: String(list.length), total: fmt(list.reduce((n, e) => n + e.amount, 0)) };
+      }),
+      rows: monthEntries.map((e) => ({
+        name: e.name,
+        catLabel: catLabels[e.cat],
+        amountText: fmt(e.amount),
+        remove: () => this.setState({ entries: this.state.entries.filter((x) => x.id !== e.id) })
+      })),
+      empty: monthEntries.length === 0,
+      count: String(monthEntries.length),
+      monthLabel: (monthDefs.find((m) => m.id === s.moneyMonth) || {}).label || '',
+      monthTotal: fmt(monthEntries.reduce((n, e) => n + e.amount, 0)),
+      allTotal: fmt(s.entries.reduce((n, e) => n + e.amount, 0))
+    };
+
+    return {
+      accent,
+      tabs,
+      money,
+      prof,
+      myProfile: () => this.setState({ view: 'profile', profileId: 'ahmed' }),
+      isProfile: s.view === 'profile',
+      isMoney: s.view === 'money',
+      isTasks: s.view === 'tasks',
+      isPeople: s.view === 'people',
+      tasks,
+      noTasks: tasks.length === 0,
+      statusFilters,
+      hasAssignee: !!s.assignee,
+      assigneeName: s.assignee && byId[s.assignee] ? byId[s.assignee].name : '',
+      clearAssignee: () => this.setState({ assignee: null }),
+      stats: {
+        open: String(s.tasks.length - complete),
+        doneItems: String(doneItems),
+        allItems: String(allItems),
+        complete: String(complete),
+        people: String(people.length)
+      },
+      people: peopleVals
+    };
+  }
+}
+</script>
+</body>
+</html>

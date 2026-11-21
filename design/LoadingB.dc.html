@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>شفرة — تحميل: الطرفية</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0D0F12}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+</style>
+</helmet>
+<div role="status" aria-label="جاري التحميل" dir="rtl" style="width: 1440px; height: 900px; box-sizing: border-box; background: #0D0F12; color: #F2F3F5; font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 36px">
+  <div style="width: 600px; border-radius: 16px; background: #111418; border: 1px solid #262A31; overflow: hidden; box-shadow: 0 40px 80px -30px rgba(0,0,0,.9)">
+    <div dir="ltr" style="display: flex; align-items: center; gap: 8px; padding: 14px 18px; border-bottom: 1px solid #22262D">
+      <span style="width: 11px; height: 11px; border-radius: 50%; background: #3A404A"></span><span style="width: 11px; height: 11px; border-radius: 50%; background: #3A404A"></span><span style="width: 11px; height: 11px; border-radius: 50%; background: #3A404A"></span>
+      <span class="mono" style="margin-left: 10px; font-size: 13px; color: #9AA1AC">~/shafra — zsh</span>
+    </div>
+    <div style="padding: 22px 24px; min-height: 250px; display: flex; flex-direction: column; gap: 10px">
+      <sc-for list="{{ lines }}" as="l" hint-placeholder-count="5">
+        <div style="{{ l.style }}">
+          <span class="mono" style="color: #B8F34A">{{ l.pre }}</span>
+          <span style="flex: 1">{{ l.text }}</span>
+          <span class="mono" style="color: #B8F34A">{{ l.ok }}</span>
+        </div>
+      </sc-for>
+      <div style="display: flex; gap: 10px; align-items: center"><span class="mono" style="color: #B8F34A">$</span><span style="display: inline-block; width: 10px; height: 18px; background: #B8F34A; opacity: {{ caret }}"></span></div>
+    </div>
+  </div>
+  <img src="../assets/shafra-logo.png" alt="شفرة" width="180" height="109" style="display: block; width: 180px; height: auto; opacity: {{ logoO }}; transform: translateY({{ logoY }}px)">
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { t: 0 }; }
+  componentDidMount() { const t0 = Date.now(); this.timer = setInterval(() => this.setState({ t: (Date.now() - t0) / 1000 }), 50); }
+  componentWillUnmount() { clearInterval(this.timer); }
+  renderVals() {
+    const t = this.state.t % 6;
+    const L = [['$', 'npm run shafra', ''], ['›', 'تجهيز الواجهات', '✓'], ['›', 'تشغيل السيرفر', '✓'], ['›', 'تحميل الأعمال', '✓'], ['›', 'صب القهوة', '✓'], ['✔', 'جاهز', '']];
+    const lines = L.map(([pre, text, ok], i) => {
+      const at = 0.2 + i * 0.55; const shown = t > at; const done = t > at + 0.4;
+      return { pre, text, ok: done ? ok : (shown && ok ? '…' : ''), style: 'display: flex; gap: 10px; align-items: center; font-size: 16px; color: ' + (i === 5 ? '#B8F34A' : '#D7DBE1') + '; opacity: ' + (shown ? 1 : 0) + '; transform: translateY(' + (shown ? 0 : 6) + 'px); transition: opacity .25s, transform .25s' };
+    });
+    const k = Math.max(0, Math.min(1, (t - 3.6) / 0.6));
+    return { lines, caret: Math.floor(t * 2.4) % 2 ? 0 : 1, logoO: k.toFixed(2), logoY: ((1 - k) * 12).toFixed(1) };
+  }
+}
+</script>
+</body>
+</html>

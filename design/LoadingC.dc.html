@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>شفرة — تحميل: بكسل</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0D0F12}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+</style>
+</helmet>
+<div role="status" aria-label="جاري التحميل" dir="rtl" style="width: 1440px; height: 900px; box-sizing: border-box; background: #0D0F12; color: #F2F3F5; font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 36px">
+  <div style="position: relative; width: 240px; height: 240px">
+    <img src="../assets/shafra-icon.png" alt="" width="240" height="240" style="position: absolute; inset: 0; display: block; width: 240px; height: 240px; border-radius: 48px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); grid-template-rows: repeat(10, minmax(0, 1fr))"><span style="{{ px.c0 }}"></span><span style="{{ px.c1 }}"></span><span style="{{ px.c2 }}"></span><span style="{{ px.c3 }}"></span><span style="{{ px.c4 }}"></span><span style="{{ px.c5 }}"></span><span style="{{ px.c6 }}"></span><span style="{{ px.c7 }}"></span><span style="{{ px.c8 }}"></span><span style="{{ px.c9 }}"></span><span style="{{ px.c10 }}"></span><span style="{{ px.c11 }}"></span><span style="{{ px.c12 }}"></span><span style="{{ px.c13 }}"></span><span style="{{ px.c14 }}"></span><span style="{{ px.c15 }}"></span><span style="{{ px.c16 }}"></span><span style="{{ px.c17 }}"></span><span style="{{ px.c18 }}"></span><span style="{{ px.c19 }}"></span><span style="{{ px.c20 }}"></span><span style="{{ px.c21 }}"></span><span style="{{ px.c22 }}"></span><span style="{{ px.c23 }}"></span><span style="{{ px.c24 }}"></span><span style="{{ px.c25 }}"></span><span style="{{ px.c26 }}"></span><span style="{{ px.c27 }}"></span><span style="{{ px.c28 }}"></span><span style="{{ px.c29 }}"></span><span style="{{ px.c30 }}"></span><span style="{{ px.c31 }}"></span><span style="{{ px.c32 }}"></span><span style="{{ px.c33 }}"></span><span style="{{ px.c34 }}"></span><span style="{{ px.c35 }}"></span><span style="{{ px.c36 }}"></span><span style="{{ px.c37 }}"></span><span style="{{ px.c38 }}"></span><span style="{{ px.c39 }}"></span><span style="{{ px.c40 }}"></span><span style="{{ px.c41 }}"></span><span style="{{ px.c42 }}"></span><span style="{{ px.c43 }}"></span><span style="{{ px.c44 }}"></span><span style="{{ px.c45 }}"></span><span style="{{ px.c46 }}"></span><span style="{{ px.c47 }}"></span><span style="{{ px.c48 }}"></span><span style="{{ px.c49 }}"></span><span style="{{ px.c50 }}"></span><span style="{{ px.c51 }}"></span><span style="{{ px.c52 }}"></span><span style="{{ px.c53 }}"></span><span style="{{ px.c54 }}"></span><span style="{{ px.c55 }}"></span><span style="{{ px.c56 }}"></span><span style="{{ px.c57 }}"></span><span style="{{ px.c58 }}"></span><span style="{{ px.c59 }}"></span><span style="{{ px.c60 }}"></span><span style="{{ px.c61 }}"></span><span style="{{ px.c62 }}"></span><span style="{{ px.c63 }}"></span><span style="{{ px.c64 }}"></span><span style="{{ px.c65 }}"></span><span style="{{ px.c66 }}"></span><span style="{{ px.c67 }}"></span><span style="{{ px.c68 }}"></span><span style="{{ px.c69 }}"></span><span style="{{ px.c70 }}"></span><span style="{{ px.c71 }}"></span><span style="{{ px.c72 }}"></span><span style="{{ px.c73 }}"></span><span style="{{ px.c74 }}"></span><span style="{{ px.c75 }}"></span><span style="{{ px.c76 }}"></span><span style="{{ px.c77 }}"></span><span style="{{ px.c78 }}"></span><span style="{{ px.c79 }}"></span><span style="{{ px.c80 }}"></span><span style="{{ px.c81 }}"></span><span style="{{ px.c82 }}"></span><span style="{{ px.c83 }}"></span><span style="{{ px.c84 }}"></span><span style="{{ px.c85 }}"></span><span style="{{ px.c86 }}"></span><span style="{{ px.c87 }}"></span><span style="{{ px.c88 }}"></span><span style="{{ px.c89 }}"></span><span style="{{ px.c90 }}"></span><span style="{{ px.c91 }}"></span><span style="{{ px.c92 }}"></span><span style="{{ px.c93 }}"></span><span style="{{ px.c94 }}"></span><span style="{{ px.c95 }}"></span><span style="{{ px.c96 }}"></span><span style="{{ px.c97 }}"></span><span style="{{ px.c98 }}"></span><span style="{{ px.c99 }}"></span></div>
+  </div>
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 10px">
+    <img src="../assets/shafra-logo.png" alt="شفرة" width="160" height="97" style="display: block; width: 160px; height: auto; opacity: {{ wordO }}">
+    <span class="mono" style="font-size: 15px; color: #9AA1AC">{{ pct }}%</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { t: 0 }; }
+  componentDidMount() { const t0 = Date.now(); this.timer = setInterval(() => this.setState({ t: (Date.now() - t0) / 1000 }), 50); }
+  componentWillUnmount() { clearInterval(this.timer); }
+  renderVals() {
+    const t = this.state.t % 4.6;
+    const k = Math.max(0, Math.min(1, t / 2.8));
+    const order = []; let seed = 7; for (let i = 0; i < 100; i++) order.push(i);
+    for (let i = 99; i > 0; i--) { seed = (seed * 9301 + 49297) % 233280; const j = Math.floor(seed / 233280 * (i + 1)); const x = order[i]; order[i] = order[j]; order[j] = x; }
+    const shown = Math.floor(k * 100);
+    const rank = {}; order.forEach((c, r) => { rank[c] = r; });
+    const px = {};
+    for (let i = 0; i < 100; i++) {
+      const r = rank[i]; const on = r < shown; const edge = r >= shown - 6 && r < shown;
+      px['c' + i] = 'background: ' + (on ? (edge ? 'rgba(184,243,74,.55)' : 'transparent') : '#0D0F12');
+    }
+    const w = Math.max(0, Math.min(1, (t - 2.9) / 0.5));
+    return { px, pct: String(Math.round(k * 100)), wordO: w.toFixed(2) };
+  }
+}
+</script>
+</body>
+</html>

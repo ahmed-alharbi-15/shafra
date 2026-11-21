@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>شفرة — انتقال: ستارة</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0D0F12}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+</style>
+</helmet>
+<div dir="rtl" style="width: 1440px; height: 900px; background: #0D0F12; color: #F2F3F5; font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif; position: relative; overflow: hidden">
+  <div style="position: absolute; inset: 0; opacity: {{ aO }}">
+    <div style="height: 76px; border-bottom: 1px solid #22262D; display: flex; flex-direction: row-reverse; align-items: center; justify-content: space-between; padding: 0 120px">
+      <img src="../assets/shafra-logo.png" alt="" width="72" height="44" style="display: block; width: 72px; height: 44px">
+      <div style="display: flex; gap: 28px; color: #9AA1AC; font-size: 15px"><span>الأعمال</span><span>الخدمات</span><span>تواصل</span></div>
+    </div>
+    <div style="max-width: 1200px; margin: 0 auto; padding: 48px 24px; display: flex; flex-direction: column; gap: 14px">
+      <span class="mono" style="color: #B8F34A; font-size: 14px">// صفحة الأعمال</span>
+      <div style="height: 56px; width: 60%; border-radius: 10px; background: #1E2228"></div><div style="height: 16px; width: 40%; border-radius: 6px; background: #1A1E24"></div><div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; padding-top: 16px"><div style="height: 220px; border-radius: 16px; background: #15181D; border: 1px solid #262A31"></div><div style="height: 220px; border-radius: 16px; background: #15181D; border: 1px solid #262A31"></div><div style="height: 220px; border-radius: 16px; background: #15181D; border: 1px solid #262A31"></div></div>
+    </div>
+  </div>
+  <div style="position: absolute; inset: 0; opacity: {{ bO }}">
+    <div style="height: 76px; border-bottom: 1px solid #22262D; display: flex; flex-direction: row-reverse; align-items: center; justify-content: space-between; padding: 0 120px">
+      <img src="../assets/shafra-logo.png" alt="" width="72" height="44" style="display: block; width: 72px; height: 44px">
+      <div style="display: flex; gap: 28px; color: #9AA1AC; font-size: 15px"><span>الأعمال</span><span>الخدمات</span><span>تواصل</span></div>
+    </div>
+    <div style="max-width: 1200px; margin: 0 auto; padding: 48px 24px; display: flex; flex-direction: column; gap: 14px">
+      <span class="mono" style="color: #B8F34A; font-size: 14px">// صفحة المشروع</span>
+      <div style="height: 64px; width: 30%; border-radius: 10px; background: #1E2228"></div><div style="height: 300px; border-radius: 20px; background: #15181D; border: 1px solid #262A31; padding: 22px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px"><div style="display: flex; justify-content: space-between; align-items: center; background: #32127A; border-radius: 10px; padding: 12px 16px"><span style="color: #FAF5EB; font-weight: 700; font-size: 16px">سفرة</span><span style="width: 70px; height: 20px; border-radius: 6px; background: #F28500"></span></div><div style="height: 16px; width: 45%; border-radius: 5px; background: #2C323B"></div><div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; flex: 1"><div style="border-radius: 10px; background: #1E2228"></div><div style="border-radius: 10px; background: #1E2228"></div><div style="border-radius: 10px; background: #1E2228"></div><div style="border-radius: 10px; background: #1E2228"></div></div></div><div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px"><div style="height: 90px; border-radius: 14px; background: #15181D; border: 1px solid #262A31"></div><div style="height: 90px; border-radius: 14px; background: #15181D; border: 1px solid #262A31"></div></div>
+    </div>
+  </div>
+  <div aria-hidden="true" style="position: absolute; top: 0; bottom: 0; right: {{ r }}%; width: {{ w }}%; background: #111418; border-left: 2px solid #B8F34A; border-right: 2px solid #B8F34A; display: flex; align-items: center; justify-content: center; overflow: hidden">
+    <img src="../assets/shafra-icon.png" alt="" width="120" height="120" style="display: block; width: 120px; height: 120px; border-radius: 28px; opacity: {{ iconO }}; transform: scale({{ iconS }})">
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { t: 0 }; }
+  componentDidMount() { const t0 = Date.now(); this.timer = setInterval(() => this.setState({ t: (Date.now() - t0) / 1000 }), 50); }
+  componentWillUnmount() { clearInterval(this.timer); }
+  renderVals() {
+    const T = 3.6; const t = this.state.t % (2 * T); const second = t >= T; const u = t % T;
+    const swapAt = 1.45;
+    const showB = (u >= swapAt) !== second;
+    const aO = showB ? 0 : 1, bO = showB ? 1 : 0;
+    const ez = (k) => k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+    let r = 0, w = 0, iconO = 0, iconS = 0.8;
+    if (u > 0.8 && u < 1.25) { w = 100 * ez((u - 0.8) / 0.45); }
+    else if (u >= 1.25 && u < 1.75) { w = 100; const k = (u - 1.25) / 0.5; iconO = Math.min(1, k * 3); iconS = 0.8 + 0.2 * Math.min(1, k * 2); }
+    else if (u >= 1.75 && u < 2.2) { const k = ez((u - 1.75) / 0.45); r = 0; w = 100 * (1 - k); iconO = 1 - k; iconS = 1; r = 0; }
+    const rr = (u >= 1.75 && u < 2.2) ? 100 - w : 0;
+    return { aO, bO, r: rr.toFixed(1), w: w.toFixed(1), iconO: iconO.toFixed(2), iconS: iconS.toFixed(2) };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>شفرة — شاشة التحميل</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0D0F12}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+</style>
+</helmet>
+<div role="status" aria-live="polite" aria-label="جاري تحميل شفرة" dir="rtl" style="min-height: 100vh; box-sizing: border-box; background: #0D0F12; background-image: radial-gradient(#1A1E24 1.2px, transparent 1.2px); background-size: 28px 28px; color: #F2F3F5; font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; padding: 40px 24px; position: relative; overflow: hidden">
+  <div aria-hidden="true" style="position: absolute; width: 620px; height: 620px; max-width: 140vw; border-radius: 50%; background: radial-gradient(circle, rgba(184,243,74,.14), rgba(184,243,74,0) 65%); opacity: {{ glow }}; pointer-events: none"></div>
+
+  <img src="../assets/shafra-logo.png" alt="شفرة" width="260" height="158" style="position: relative; display: block; width: min(260px, 62vw); height: auto; opacity: {{ logoO }}; filter: drop-shadow(0 0 {{ blur }}px rgba(184,243,74,.55))">
+
+  <div style="position: relative; width: min(100%, 420px); display: flex; flex-direction: column; gap: 14px">
+    <div style="display: grid; grid-template-columns: repeat(20, minmax(0, 1fr)); gap: 4px; padding: 6px; border: 1px solid #262A31; border-radius: 10px; background: #111418">
+      <span style="{{ seg.s0 }}"></span><span style="{{ seg.s1 }}"></span><span style="{{ seg.s2 }}"></span><span style="{{ seg.s3 }}"></span><span style="{{ seg.s4 }}"></span><span style="{{ seg.s5 }}"></span><span style="{{ seg.s6 }}"></span><span style="{{ seg.s7 }}"></span><span style="{{ seg.s8 }}"></span><span style="{{ seg.s9 }}"></span><span style="{{ seg.s10 }}"></span><span style="{{ seg.s11 }}"></span><span style="{{ seg.s12 }}"></span><span style="{{ seg.s13 }}"></span><span style="{{ seg.s14 }}"></span><span style="{{ seg.s15 }}"></span><span style="{{ seg.s16 }}"></span><span style="{{ seg.s17 }}"></span><span style="{{ seg.s18 }}"></span><span style="{{ seg.s19 }}"></span>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+      <span style="display: inline-flex; align-items: center; gap: 10px; font-size: 15px; color: #D7DBE1">
+        <span class="mono" style="color: #B8F34A">&gt;</span>{{ msg }}<span style="display: inline-block; width: 9px; height: 17px; background: #B8F34A; opacity: {{ caret }}"></span>
+      </span>
+      <span class="mono" dir="ltr" style="font-size: 15px; color: #9AA1AC">{{ pct }}%</span>
+    </div>
+  </div>
+
+  <div style="position: relative; display: flex; align-items: center; gap: 12px; color: #9AA1AC; font-size: 14px">
+    <svg width="72" height="72" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+          <g opacity="{{ steamA }}"><rect x="5" y="1" width="1" height="2" fill="#9AA1AC"></rect><rect x="8" y="0" width="1" height="2" fill="#9AA1AC"></rect></g>
+          <g opacity="{{ steamB }}"><rect x="6" y="2" width="1" height="2" fill="#9AA1AC"></rect><rect x="9" y="1" width="1" height="2" fill="#9AA1AC"></rect></g>
+          <rect x="3" y="5" width="9" height="1" fill="#2A1A10"></rect>
+          <rect x="3" y="6" width="9" height="7" fill="#B8F34A"></rect>
+          <rect x="4" y="13" width="7" height="1" fill="#B8F34A"></rect>
+          <rect x="12" y="7" width="2" height="1" fill="#B8F34A"></rect><rect x="13" y="8" width="1" height="3" fill="#B8F34A"></rect><rect x="12" y="11" width="2" height="1" fill="#B8F34A"></rect>
+          <rect x="4" y="7" width="1" height="4" fill="#D4FF7A"></rect>
+          <rect x="2" y="14" width="12" height="1" fill="#2A2645"></rect>
+        </svg>
+    <span>لحظة… نصب القهوة ونجهّز لك الشغل</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"duration":{"editor":"range","min":1.5,"max":8,"step":0.5,"unit":"s","default":3.5},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { t: 0 }; }
+  componentDidMount() {
+    let reduce = false;
+    try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    const t0 = Date.now();
+    this.timer = setInterval(() => this.setState({ t: (Date.now() - t0) / 1000 }), reduce ? 400 : 60);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+  renderVals() {
+    const D = this.props.duration ?? 3.5;
+    const cycle = D + 1.6;
+    const t = this.state.t % cycle;
+    // logo flicker-on during first 0.9s
+    let logoO = 1;
+    if (t < 0.9) { const f = [0, 0.6, 0.1, 0.8, 0.2, 1, 1, 0.5, 1]; logoO = f[Math.min(f.length - 1, Math.floor(t / 0.1))]; }
+    const k = Math.min(1, Math.max(0, (t - 0.4) / D));
+    const eased = 1 - Math.pow(1 - k, 2.2);
+    const p = Math.round(eased * 100);
+    const lit = Math.floor(p / 5);
+    const seg = {};
+    for (let i = 0; i < 20; i++) {
+      const on = i < lit;
+      const head = i === lit - 1 && p < 100;
+      seg['s' + i] = 'height: 14px; border-radius: 2px; background: ' + (on ? (head ? '#D4FF7A' : '#B8F34A') : '#1E2228') + (on ? '; box-shadow: 0 0 8px rgba(184,243,74,.35)' : '');
+    }
+    const msg = p < 30 ? 'نجهّز الكود' : p < 60 ? 'نصب القهوة' : p < 90 ? 'نشغّل اللوحة' : p < 100 ? 'آخر لمسات' : 'جاهز!';
+    return {
+      seg, pct: String(p), msg,
+      logoO, blur: (6 + 6 * Math.sin(t * 3)).toFixed(1), glow: (0.6 + 0.4 * Math.sin(t * 2)).toFixed(2),
+      caret: Math.floor(t * 2.2) % 2 ? 0 : 1,
+      steamA: Math.floor(t * 2) % 2 ? 1 : 0.2, steamB: Math.floor(t * 2) % 2 ? 0.2 : 1
+    };
+  }
+}
+</script>
+</body>
+</html>

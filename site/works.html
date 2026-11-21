@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>شفرة — الأعمال</title>
+<meta name="description" content="معرض أعمال شفرة: مواقع، تطبيقات، داشبورد ومشاريع طلاب. فلتر حسب النوع وشوف تفاصيل كل مشروع.">
+<link rel="icon" href="assets/shafra-icon.png">
+<link rel="apple-touch-icon" href="assets/shafra-icon.png">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="marketing.css">
+</head>
+<body style="background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh">
+
+  <!-- NAV -->
+  <header style="border-bottom: 1px solid #22262D">
+    <nav aria-label="القائمة الرئيسية" style="max-width: 1200px; margin: 0 auto; padding: 18px 24px; display: flex; flex-direction: row-reverse; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <a href="index.html" class="logo-link" aria-label="شفرة — الرئيسية" style="display: flex; align-items: center; text-decoration: none"><img src="assets/shafra-logo.png" alt="شفرة — الرئيسية" width="92" height="56" style="display: block; flex: none; width: 92px; height: 56px"></a>
+      <div class="dnav" style="display: flex; flex-wrap: wrap; align-items: center; gap: 24px">
+        <a class="nav-link" href="works.html" aria-current="page" style="color: #F2F3F5">الأعمال</a>
+        <a class="nav-link" href="index.html#services">الخدمات</a>
+        <a class="nav-link" href="index.html#team">الفريق</a>
+        <a class="nav-link" href="contact.html">تواصل</a>
+        <a class="nav-link" href="login.html">بوابة الفريق</a>
+        <a href="contact.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 10px; background: var(--accent); color: #0D0F12; font-weight: 600; font-size: 15px; text-decoration: none">ابدأ مشروعك</a>
+      </div>
+      <details class="mnav">
+        <summary aria-label="القائمة"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></summary>
+        <div class="mnav-panel">
+          <a href="works.html">الأعمال</a>
+          <a href="index.html#services">الخدمات</a>
+          <a href="index.html#team">الفريق</a>
+          <a href="contact.html">تواصل</a>
+          <a href="login.html">بوابة الفريق</a>
+          <a href="contact.html" class="cta">ابدأ مشروعك</a>
+        </div>
+      </details>
+    </nav>
+  </header>
+
+  <!-- HEADER -->
+  <section style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 32px; display: flex; flex-direction: column; gap: 16px">
+    <p class="mono rise d1" style="margin: 0; color: var(--accent); font-size: 14px">// معرض الأعمال</p>
+    <h1 class="rise d2" style="margin: 0; font-size: clamp(36px, 4.8vw, 60px); font-weight: 700; letter-spacing: -0.02em">كل اللي بنيناه، في مكان واحد</h1>
+    <p class="rise d3" style="margin: 0; color: #B4BAC4; font-size: 18px; line-height: 1.8; max-width: 38rem">فلتر حسب النوع، واضغط على أي مشروع تشوف تفاصيله: المشكلة، الحل، والتقنيات.</p>
+  </section>
+
+  <!-- FILTERS -->
+  <section style="max-width: 1200px; margin: 0 auto; padding: 8px 24px 32px">
+    <div id="filters" role="group" aria-label="تصفية حسب النوع" class="rise d4" style="display: flex; flex-wrap: wrap; gap: 10px">
+      <button type="button" class="pill" data-filter="all" aria-pressed="true" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 99px; font-size: 15px; font-weight: 600; border: 1px solid var(--accent); background: var(--accent); color: #0D0F12">الكل <span class="mono" style="font-size: 12px; opacity: .75">8</span></button>
+      <button type="button" class="pill" data-filter="site" aria-pressed="false" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 99px; font-size: 15px; font-weight: 500; border: 1px solid #333943; background: transparent; color: #D7DBE1">مواقع <span class="mono" style="font-size: 12px; opacity: .75">3</span></button>
+      <button type="button" class="pill" data-filter="app" aria-pressed="false" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 99px; font-size: 15px; font-weight: 500; border: 1px solid #333943; background: transparent; color: #D7DBE1">تطبيقات <span class="mono" style="font-size: 12px; opacity: .75">2</span></button>
+      <button type="button" class="pill" data-filter="dash" aria-pressed="false" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 99px; font-size: 15px; font-weight: 500; border: 1px solid #333943; background: transparent; color: #D7DBE1">داشبورد <span class="mono" style="font-size: 12px; opacity: .75">2</span></button>
+      <button type="button" class="pill" data-filter="student" aria-pressed="false" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 99px; font-size: 15px; font-weight: 500; border: 1px solid #333943; background: transparent; color: #D7DBE1">مشاريع طلاب <span class="mono" style="font-size: 12px; opacity: .75">2</span></button>
+    </div>
+  </section>
+
+  <!-- GRID -->
+  <section style="max-width: 1200px; margin: 0 auto; padding: 0 24px 96px">
+    <div id="grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px">
+
+      <!-- سفرة -->
+      <a href="projects/sofrah.html" data-cats="site" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .35s">
+        <div style="height: 220px; background: #FAF5EB; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 11px">
+          <div style="display: flex; justify-content: space-between; align-items: center; background: #32127A; border-radius: 8px; padding: 9px 13px">
+            <span style="color: #FAF5EB; font-weight: 700; font-size: 14px">سفرة</span>
+            <span style="width: 50px; height: 16px; border-radius: 5px; background: #F28500"></span>
+          </div>
+          <div style="height: 13px; width: 60%; border-radius: 4px; background: #32127A"></div>
+          <div style="height: 9px; width: 40%; border-radius: 4px; background: #D9CFE8"></div>
+          <div class="shim" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; flex: 1">
+            <div style="border-radius: 8px; background: #F0EBE0; border: 1px solid #E3DBCB"></div>
+            <div style="border-radius: 8px; background: #F0EBE0; border: 1px solid #E3DBCB"></div>
+            <div style="border-radius: 8px; background: #F0EBE0; border: 1px solid #E3DBCB"></div>
+          </div>
+        </div>
+        <div style="padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1">
+          <div class="tags" style="display: flex; gap: 8px; flex-wrap: wrap">
+            <span style="font-size: 13px; padding: 4px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">موقع</span>
+          </div>
+          <h2 style="margin: 0; font-size: 21px; font-weight: 600">سفرة</h2>
+          <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">منصة عربية لاكتشاف الوجهات والأكلات حول العالم — دول، مدن، وصفات وفعاليات.</p>
+          <p class="mono" dir="ltr" style="margin: auto 0 0; padding-top: 6px; color: #8C939E; font-size: 12.5px; text-align: right">HTML · CSS · JS · FastAPI · PostgreSQL · Cloudinary</p>
+        </div>
+      </a>
+
+      <!-- تحدي المدن -->
+      <a href="#" data-cats="site app" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .43s">
+        <div style="height: 220px; background: #101317; display: flex; align-items: center; justify-content: center; gap: 18px">
+          <div class="float" style="width: 92px; height: 180px; border-radius: 18px; border: 2px solid #2C323B; padding: 12px 9px; box-sizing: border-box; display: flex; flex-direction: column; gap: 7px">
+            <div style="height: 8px; width: 60%; border-radius: 3px; background: #2C323B"></div>
+            <div style="height: 54px; border-radius: 8px; background: #1A1E24"></div>
+            <div style="height: 7px; border-radius: 3px; background: #22272E"></div>
+            <div style="height: 7px; width: 70%; border-radius: 3px; background: #22272E"></div>
+            <div style="margin-top: auto; height: 20px; border-radius: 6px; background: var(--accent)"></div>
+          </div>
+          <div class="float2" style="width: 92px; height: 180px; border-radius: 18px; border: 2px solid #2C323B; padding: 12px 9px; box-sizing: border-box; display: flex; flex-direction: column; gap: 7px">
+            <div style="height: 8px; width: 45%; border-radius: 3px; background: #2C323B"></div>
+            <div style="height: 26px; border-radius: 6px; background: #1A1E24"></div>
+            <div style="height: 26px; border-radius: 6px; background: #1A1E24"></div>
+            <div style="height: 26px; border-radius: 6px; background: #1A1E24"></div>
+          </div>
+        </div>
+        <div style="padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1">
+          <div class="tags" style="display: flex; gap: 8px; flex-wrap: wrap">
+            <span style="font-size: 13px; padding: 4px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">موقع</span>
+            <span style="font-size: 13px; padding: 4px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">تطبيق</span>
+          </div>
+          <h2 style="margin: 0; font-size: 21px; font-weight: 600">تحدي المدن</h2>
+          <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">[وصف قصير لفكرة تحدي المدن وش يقدم للمستخدم]</p>
+          <p class="mono" dir="ltr" style="margin: auto 0 0; padding-top: 6px; color: #8C939E; font-size: 12.5px; text-align: right">Flutter · [TECH STACK]</p>
+        </div>
+      </a>
+
+      <!-- لوحة تحكم 1 -->
+      <a href="#" data-cats="dash" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .51s">
+        <div style="height: 220px; background: #101317; padding: 20px; box-sizing: border-box; display: flex; gap: 12px">
+          <div style="width: 26%; border-radius: 8px; background: #1A1E24; padding: 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px">
+            <div style="height: 8px; border-radius: 3px; background: var(--accent); width: 70%"></div>
+            <div style="height: 8px; border-radius: 3px; background: #2C323B"></div>
+            <div style="height: 8px; border-radius: 3px; background: #2C323B; width: 80%"></div>
+          </div>
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 10px">
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+              <div style="height: 40px; border-radius: 8px; background: #1A1E24"></div>
+              <div style="height: 40px; border-radius: 8px; background: #1A1E24"></div>
+              <div style="height: 40px; border-radius: 8px; background: #1A1E24"></div>
+            </div>
+            <div class="bars" style="flex: 1; border-radius: 8px; background: #1A1E24; display: flex; align-items: end; gap: 7px; padding: 12px; box-sizing: border-box">
+              <div style="flex: 1; height: 40%; border-radius: 3px; background: #2C323B"></div>
+              <div style="flex: 1; height: 65%; border-radius: 3px; background: #2C323B"></div>
+              <div style="flex: 1; height: 85%; border-radius: 3px; background: var(--accent)"></div>
+              <div style="flex: 1; height: 55%; border-radius: 3px; background: #2C323B"></div>
+            </div>
+          </div>
+        </div>
+        <div style="padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1">
+          <div class="tags" style="display: flex; gap: 8px; flex-wrap: wrap">
+            <span style="font-size: 13px; padding: 4px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">داشبورد</span>
+          </div>
+          <h2 style="margin: 0; font-size: 21px; font-weight: 600">[اسم مشروع لوحة التحكم]</h2>
+          <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">[وش تدير اللوحة ولمين — مثلاً طلبات مطعم أو مخزون محل]</p>
+          <p class="mono" dir="ltr" style="margin: auto 0 0; padding-top: 6px; color: #8C939E; font-size: 12.5px; text-align: right">[TECH STACK]</p>
+        </div>
+      </a>
+
+      <!-- موقع 2 -->
+      <a href="#" data-cats="site" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .59s">
+        <div style="height: 220px; background: #101317; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; gap: 6px"><span style="width: 9px; height: 9px; border-radius: 50%; background: #3A404A"></span><span style="width: 9px; height: 9px; border-radius: 50%; background: #3A404A"></span><span style="width: 9px; height: 9px; border-radius: 50%; background: #3A404A"></span></div>
+          <div style="height: 14px; width: 55%; border-radius: 4px; background: #2C323B"></div>
+          <div style="height: 9px; width: 75%; border-radius: 4px; background: #22272E"></div>
+          <div style="height: 28px; width: 110px; border-radius: 6px; background: var(--accent)"></div>
+          <div class="shim" style="flex: 1; display: flex"><div style="flex: 1; border-radius: 8px; background: #1A1E24"></div></div>
+        </div>
+        <div style="padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1">
+          <div class="tags" style="display: flex; gap: 8px; flex-wrap: wrap">
+            <span style="font-size: 13px; padding: 4px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">موقع</span>
+          </div>
+          <h2 style="margin: 0; font-size: 21px; font-weight: 600">[اسم موقع شركة]</h2>
+          <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">[نوع النشاط + وش كان المطلوب من الموقع]</p>
+          <p class="mono" dir="ltr" style="margin: auto 0 0; padding-top: 6px; color: #8C939E; font-size: 12.5px; text-align: right">[TECH STACK]</p>
+        </div>
+      </a>
+
+      <!-- تطبيق 2 -->
+      <a href="#" data-cats="app" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .67s">
+        <div style="height: 220px; background: #101317; display: flex; align-items: center; justify-content: center; gap: 18px">
+          <div class="float" style="width: 92px; height: 180px; border-radius: 18px; border: 2px solid #2C323B; padding: 12px 9px; box-sizing: border-box; display: flex; flex-direction: column; gap: 7px">
+            <div style="height: 8px; width: 60%; border-radius: 3px; background: #2C323B"></div>
+            <div style="height: 54px; border-radius: 8px; background: #1A1E24"></div>
+            <div style="height: 7px; border-radius: 3px; background: #22272E"></div>
+            <div style="height: 7px; width: 70%; border-radius: 3px; background: #22272E"></div>
+            <div style="margin-top: auto; height: 20px; border-radius: 6px; background: var(--accent)"></div>
+          </div>
+          <div class="float2" style="width: 92px; height: 180px; border-radius: 18px; border: 2px solid #2C323B; padding: 12px 9px; box-sizing: border-box; display: flex; flex-direction: column; gap: 7px">
+            <div style="height: 8px; width: 45%; border-radius: 3px; background: #2C323B"></div>
+            <div style="height: 26px; border-radius: 6px; background: #1A1E24"></div>
+            <div style="height: 26px; border-radius: 6px; background: #1A1E24"></div>
+            <div style="height: 26px; border-radius: 6px; background: #1A1E24"></div>
+          </div>
+        </div>
+        <div style="padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1">
+          <div class="tags" style="display: flex; gap: 8px; flex-wrap: wrap">
+            <span style="font-size: 13px; padding: 4px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">تطبيق</span>
+          </div>
+          <h2 style="margin: 0; font-size: 21px; font-weight: 600">[اسم التطبيق]</h2>
+          <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">[وصف التطبيق بسطر واحد]</p>
+          <p class="mono" dir="ltr" style="margin: auto 0 0; padding-top: 6px; color: #8C939E; font-size: 12.5px; text-align: right">Flutter · [TECH STACK]</p>
+        </div>
+      </a>
+
+      <!-- لوحة تحكم 2 -->
+      <a href="#" data-cats="dash" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .75s">
+        <div style="height: 220px; background: #101317; padding: 20px; box-sizing: border-box; display: flex; gap: 12px">
+          <div style="width: 26%; border-radius: 8px; background: #1A1E24; padding: 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px">
+            <div style="height: 8px; border-radius: 3px; background: var(--accent); width: 70%"></div>
+            <div style="height: 8px; border-radius: 3px; background: #2C323B"></div>
+            <div style="height: 8px; border-radius: 3px; background: #2C323B; width: 80%"></div>
+          </div>
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 10px">
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+              <div style="height: 40px; border-radius: 8px; background: #1A1E24"></div>
+              <div style="height: 40px; border-radius: 8px; background: #1A1E24"></div>
+              <div style="height: 40px; border-radius: 8px; background: #1A1E24"></div>
+            </div>
+            <div class="bars" style="flex: 1; border-radius: 8px; background: #1A1E24; display: flex; align-items: end; gap: 7px; padding: 12px; box-sizing: border-box">
+              <div style="flex: 1; height: 40%; border-radius: 3px; background: #2C323B"></div>
+              <div style="flex: 1; height: 65%; border-radius: 3px; background: #2C323B"></div>
+              <div style="flex: 1; height: 85%; border-radius: 3px; background: var(--accent)"></div>
+              <div style="flex: 1; height: 55%; border-radius: 3px; background: #2C323B"></div>
+            </div>
+          </div>
+        </div>
+        <div style="padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1">
+          <div class="tags" style="display: flex; gap: 8px; flex-wrap: wrap">
+            <span style="font-size: 13px; padding: 4px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">داشبورد</span>
+          </div>
+          <h2 style="margin: 0; font-size: 21px; font-weight: 600">[اسم نظام الإدارة]</h2>
+          <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">[وصف النظام بسطر واحد]</p>
+          <p class="mono" dir="ltr" style="margin: auto 0 0; padding-top: 6px; color: #8C939E; font-size: 12.5px; text-align: right">[TECH STACK]</p>
+        </div>
+      </a>
+
+      <!-- مشروع طلاب 1 -->
+      <a href="#" data-cats="student" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .83s">
+        <div dir="ltr" class="codelines" style="height: 220px; background: #101317; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 9px">
+          <div class="mono" style="font-size: 12px; color: #8C939E">project / main</div>
+          <div style="height: 9px; width: 55%; border-radius: 3px; background: #C792EA"></div>
+          <div style="height: 9px; width: 75%; border-radius: 3px; background: #2C323B; margin-left: 18px"></div>
+          <div style="height: 9px; width: 45%; border-radius: 3px; background: var(--accent); margin-left: 18px"></div>
+          <div style="height: 9px; width: 65%; border-radius: 3px; background: #2C323B; margin-left: 36px"></div>
+          <div style="height: 9px; width: 50%; border-radius: 3px; background: #C792EA"></div>
+          <div style="height: 9px; width: 70%; border-radius: 3px; background: #2C323B; margin-left: 18px"></div>
+        </div>
+        <div style="padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1">
+          <div class="tags" style="display: flex; gap: 8px; flex-wrap: wrap">
+            <span style="font-size: 13px; padding: 4px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">مشروع طلاب</span>
+          </div>
+          <h2 style="margin: 0; font-size: 21px; font-weight: 600">[اسم مشروع التخرج]</h2>
+          <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">[الجامعة والتخصص + وش سوى المشروع]</p>
+          <p class="mono" dir="ltr" style="margin: auto 0 0; padding-top: 6px; color: #8C939E; font-size: 12.5px; text-align: right">[TECH STACK]</p>
+        </div>
+      </a>
+
+      <!-- مشروع طلاب 2 -->
+      <a href="#" data-cats="student" class="card-hover pop" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5; animation-delay: .91s">
+        <div dir="ltr" class="codelines" style="height: 220px; background: #101317; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 9px">
+          <div class="mono" style="font-size: 12px; color: #8C939E">project / main</div>
+          <div style="height: 9px; width: 55%; border-radius: 3px; background: #C792EA"></div>
+          <div style="height: 9px; width: 75%; border-radius: 3px; background: #2C323B; margin-left: 18px"></div>
+          <div style="height: 9px; width: 45%; border-radius: 3px; background: var(--accent); margin-left: 18px"></div>
+          <div style="height: 9px; width: 65%; border-radius: 3px; background: #2C323B; margin-left: 36px"></div>
+          <div style="height: 9px; width: 50%; border-radius: 3px; background: #C792EA"></div>
+          <div style="height: 9px; width: 70%; border-radius: 3px; background: #2C323B; margin-left: 18px"></div>
+        </div>
+        <div style="padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1">
+          <div class="tags" style="display: flex; gap: 8px; flex-wrap: wrap">
+            <span style="font-size: 13px; padding: 4px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">مشروع طلاب</span>
+          </div>
+          <h2 style="margin: 0; font-size: 21px; font-weight: 600">[اسم مشروع مقرر جامعي]</h2>
+          <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">[المقرر + فكرة المشروع]</p>
+          <p class="mono" dir="ltr" style="margin: auto 0 0; padding-top: 6px; color: #8C939E; font-size: 12.5px; text-align: right">[TECH STACK]</p>
+        </div>
+      </a>
+    </div>
+
+    <p id="empty-msg" style="display: none; margin: 40px 0 0; text-align: center; color: #8C939E">ما فيه مشاريع في هذا القسم للحين.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="reveal2" style="border-top: 1px solid #22262D">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 32px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; color: #8C939E; font-size: 14px">
+      <span style="display: flex; align-items: center; gap: 14px"><img src="assets/shafra-logo.png" alt="" width="56" height="34" style="display: block; flex: none; width: 56px; height: 34px; opacity: .7"> مواقع، تطبيقات، داشبورد ومشاريع طلاب</span>
+      <span class="mono" dir="ltr">© 2026 Shafra</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const ACCENT = 'var(--accent)';
+      const activeStyle = 'display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 99px; font-size: 15px; font-weight: 600; border: 1px solid ' + ACCENT + '; background: ' + ACCENT + '; color: #0D0F12';
+      const idleStyle = 'display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 99px; font-size: 15px; font-weight: 500; border: 1px solid #333943; background: transparent; color: #D7DBE1';
+
+      const pills = document.querySelectorAll('#filters .pill');
+      const cards = document.querySelectorAll('#grid > a');
+      const emptyMsg = document.getElementById('empty-msg');
+
+      function applyFilter(filter) {
+        let visibleCount = 0;
+        cards.forEach(function (card) {
+          const cats = (card.getAttribute('data-cats') || '').split(' ');
+          const show = filter === 'all' || cats.indexOf(filter) !== -1;
+          card.style.display = show ? '' : 'none';
+          if (show) visibleCount++;
+        });
+        emptyMsg.style.display = visibleCount === 0 ? '' : 'none';
+      }
+
+      pills.forEach(function (pill) {
+        pill.addEventListener('click', function () {
+          pills.forEach(function (p) {
+            p.setAttribute('aria-pressed', 'false');
+            p.setAttribute('style', idleStyle);
+          });
+          pill.setAttribute('aria-pressed', 'true');
+          pill.setAttribute('style', activeStyle);
+          applyFilter(pill.getAttribute('data-filter'));
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

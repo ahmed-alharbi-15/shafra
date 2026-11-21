@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>شفرة — استوديو برمجة من شخصين</title>
+<meta name="description" content="شفرة: نصمم ونبرمج مواقع، تطبيقات، لوحات تحكم ومشاريع طلاب — من أول سطر لين الإطلاق.">
+<link rel="icon" href="assets/shafra-icon.png">
+<link rel="apple-touch-icon" href="assets/shafra-icon.png">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="marketing.css">
+<link rel="stylesheet" href="hero.css">
+</head>
+<body style="background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh">
+
+  <!-- NAV -->
+  <header style="border-bottom: 1px solid #22262D">
+    <nav aria-label="القائمة الرئيسية" style="max-width: 1200px; margin: 0 auto; padding: 18px 24px; display: flex; flex-direction: row-reverse; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <a href="#top" class="logo-link" aria-label="شفرة — الرئيسية" style="display: flex; align-items: center; text-decoration: none"><img src="assets/shafra-logo.png" alt="شفرة — الرئيسية" width="92" height="56" style="display: block; flex: none; width: 92px; height: 56px"></a>
+      <div class="dnav" style="display: flex; flex-wrap: wrap; align-items: center; gap: 24px">
+        <a class="nav-link" href="works.html">الأعمال</a>
+        <a class="nav-link" href="#services">الخدمات</a>
+        <a class="nav-link" href="#team">الفريق</a>
+        <a class="nav-link" href="#reviews">آراء العملاء</a>
+        <a class="nav-link" href="#contact">تواصل</a>
+        <a class="nav-link" href="login.html">بوابة الفريق</a>
+        <a href="contact.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 10px; background: var(--accent); color: #0D0F12; font-weight: 600; font-size: 15px; text-decoration: none">ابدأ مشروعك</a>
+      </div>
+      <details class="mnav">
+        <summary aria-label="القائمة"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></summary>
+        <div class="mnav-panel">
+          <a href="works.html">الأعمال</a>
+          <a href="#services">الخدمات</a>
+          <a href="#team">الفريق</a>
+          <a href="#reviews">آراء العملاء</a>
+          <a href="#contact">تواصل</a>
+          <a href="login.html">بوابة الفريق</a>
+          <a href="contact.html" class="cta">ابدأ مشروعك</a>
+        </div>
+      </details>
+    </nav>
+  </header>
+
+  <!-- HERO: مشهد الغرفة (Pixel Art) -->
+  <section id="top" class="hero" aria-label="شفرة" style="position: relative; overflow: hidden; min-height: clamp(560px, 52vw, 780px); background: #17152A; display: flex; align-items: center">
+    <svg class="hero-art" viewBox="0 0 320 180" preserveAspectRatio="xMinYMid slice" shape-rendering="crispEdges" aria-hidden="true"><defs><radialGradient id="gBlue"><stop offset="0" stop-color="#4A86D9" stop-opacity=".28"></stop><stop offset="1" stop-color="#4A86D9" stop-opacity="0"></stop></radialGradient><radialGradient id="gLime"><stop offset="0" stop-color="#B8F34A" stop-opacity=".22"></stop><stop offset="1" stop-color="#B8F34A" stop-opacity="0"></stop></radialGradient><linearGradient id="gLamp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2C46B" stop-opacity=".35"></stop><stop offset="1" stop-color="#F2C46B" stop-opacity=".04"></stop></linearGradient><filter id="neon" x="-30%" y="-60%" width="160%" height="220%"><feGaussianBlur stdDeviation="1.4" result="b"></feGaussianBlur><feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter></defs><rect x="0" y="0" width="320" height="132" fill="#17152A"></rect><rect x="0" y="0" width="1" height="132" fill="#1B1930"></rect><rect x="24" y="0" width="1" height="132" fill="#1B1930"></rect><rect x="48" y="0" width="1" height="132" fill="#1B1930"></rect><rect x="72" y="0" width="1" height="132" fill="#1B1930"></rect><rect x="96" y="0" width="1" height="132" fill="#1B1930"></rect><rect x="120" y="0" width="1" height="132" fill="#1B1930"></rect><rect x="144" y="0" width="1" height="132" fill="#1B1930"></rect><rect x="168" y="0" width="1" height="132" fill="#1B1930"></rect><rect x="192" y="0" width="1" height="132" fill="#1B1930"></rect><rect x="216" y="0" width="1" height="132" fill="#1B1930"></rect><rect x="240" y="0" width="1" height="132" fill="#1B1930"></rect><rect x="264" y="0" width="1" height="132" fill="#1B1930"></rect><rect x="288" y="0" width="1" height="132" fill="#1B1930"></rect><rect x="312" y="0" width="1" height="132" fill="#1B1930"></rect><rect x="0" y="124" width="320" height="8" fill="#1E1B33"></rect><rect x="0" y="131" width="320" height="1" fill="#2A2645"></rect><rect x="0" y="132" width="320" height="48" fill="#100E1A"></rect><rect x="0" y="140" width="320" height="1" fill="#14121F"></rect><rect x="0" y="150" width="320" height="1" fill="#14121F"></rect><rect x="0" y="162" width="320" height="1" fill="#14121F"></rect><rect x="0" y="176" width="320" height="1" fill="#14121F"></rect><rect x="40" y="150" width="190" height="22" fill="#1A1426"></rect><rect x="44" y="153" width="182" height="16" fill="#21192F"></rect><rect x="8" y="26" width="46" height="58" fill="#2A2645"></rect><rect x="11" y="29" width="40" height="52" fill="#0B1226"></rect><rect x="15" y="33" width="1" height="1" fill="#C9D3FF"></rect><rect x="30" y="36" width="1" height="1" fill="#C9D3FF"></rect><rect x="44" y="32" width="1" height="1" fill="#C9D3FF"></rect><rect x="22" y="44" width="1" height="1" fill="#C9D3FF"></rect><rect x="40" y="41" width="1" height="1" fill="#C9D3FF"></rect><rect x="48" y="50" width="1" height="1" fill="#C9D3FF"></rect><rect x="30" y="32" width="5" height="5" fill="#E8E4C8"></rect><rect x="31" y="31" width="3" height="1" fill="#E8E4C8"></rect><rect x="11" y="59" width="7" height="22" fill="#141B33"></rect><rect x="18" y="51" width="6" height="30" fill="#141B33"></rect><rect x="24" y="63" width="9" height="18" fill="#141B33"></rect><rect x="33" y="47" width="6" height="34" fill="#141B33"></rect><rect x="39" y="55" width="7" height="26" fill="#141B33"></rect><rect x="46" y="61" width="5" height="20" fill="#141B33"></rect><rect x="13" y="70" width="1" height="1" fill="#F2C46B" class="win"></rect><rect x="15" y="76" width="1" height="1" fill="#F2C46B"></rect><rect x="12" y="61" width="1" height="1" fill="#F2C46B"></rect><rect x="14" y="62" width="1" height="1" fill="#F2C46B"></rect><rect x="21" y="61" width="1" height="1" fill="#7FD6E0" class="win"></rect><rect x="19" y="61" width="1" height="1" fill="#F2C46B"></rect><rect x="19" y="73" width="1" height="1" fill="#7FD6E0"></rect><rect x="21" y="59" width="1" height="1" fill="#F2C46B"></rect><rect x="27" y="75" width="1" height="1" fill="#7FD6E0" class="win"></rect><rect x="31" y="78" width="1" height="1" fill="#7FD6E0"></rect><rect x="25" y="78" width="1" height="1" fill="#F2C46B"></rect><rect x="30" y="71" width="1" height="1" fill="#F2C46B"></rect><rect x="35" y="56" width="1" height="1" fill="#F2C46B" class="win"></rect><rect x="34" y="78" width="1" height="1" fill="#7FD6E0"></rect><rect x="36" y="49" width="1" height="1" fill="#7FD6E0"></rect><rect x="36" y="76" width="1" height="1" fill="#7FD6E0"></rect><rect x="41" y="70" width="1" height="1" fill="#F2C46B" class="win"></rect><rect x="42" y="70" width="1" height="1" fill="#F2C46B"></rect><rect x="41" y="66" width="1" height="1" fill="#F2C46B"></rect><rect x="40" y="59" width="1" height="1" fill="#F2C46B"></rect><rect x="49" y="71" width="1" height="1" fill="#F2C46B" class="win"></rect><rect x="49" y="78" width="1" height="1" fill="#7FD6E0"></rect><rect x="47" y="69" width="1" height="1" fill="#F2C46B"></rect><rect x="47" y="77" width="1" height="1" fill="#F2C46B"></rect><clipPath id="winc"><rect x="11" y="29" width="40" height="52"></rect></clipPath><g clip-path="url(#winc)"><g class="star"><rect x="40" y="30" width="3" height="1" fill="#E8E4C8"></rect><rect x="43" y="29" width="3" height="1" fill="#E8E4C8" opacity=".5"></rect></g></g><rect x="30" y="29" width="1" height="52" fill="#2A2645"></rect><rect x="11" y="54" width="40" height="1" fill="#2A2645"></rect><rect x="6" y="84" width="50" height="3" fill="#332F52"></rect><ellipse cx="95" cy="76" rx="58" ry="40" fill="url(#gBlue)" shape-rendering="auto"></ellipse><ellipse cx="170" cy="76" rx="58" ry="40" fill="url(#gBlue)" shape-rendering="auto"></ellipse><ellipse cx="130" cy="32" rx="70" ry="34" fill="url(#gLime)" class="ledglow" shape-rendering="auto"></ellipse><rect x="30" y="100" width="226" height="5" fill="#3A2A22"></rect><rect x="30" y="100" width="226" height="1" fill="#4D382D"></rect><rect x="30" y="105" width="226" height="3" fill="#24190F"></rect><rect x="36" y="108" width="4" height="28" fill="#1E150E"></rect><rect x="246" y="108" width="4" height="28" fill="#1E150E"></rect><rect x="40" y="74" width="2" height="26" fill="#3A3550"></rect><rect x="36" y="72" width="12" height="4" fill="#4A4466"></rect><rect x="37" y="76" width="10" height="1" fill="#F2C46B"></rect><polygon points="37,77 47,77 58,100 28,100" fill="url(#gLamp)" shape-rendering="auto"></polygon><rect x="35" y="98" width="14" height="2" fill="#3A3550"></rect><rect x="236" y="90" width="10" height="10" fill="#5A3B2A"></rect><rect x="237" y="90" width="8" height="1" fill="#6E4A35"></rect><g class="plant"><rect x="238" y="80" width="2" height="10" fill="#3F8A4A"></rect><rect x="241" y="76" width="2" height="14" fill="#3F8A4A"></rect><rect x="244" y="81" width="2" height="9" fill="#3F8A4A"></rect><rect x="235" y="84" width="3" height="2" fill="#3F8A4A"></rect><rect x="245" y="83" width="3" height="2" fill="#3F8A4A"></rect><rect x="239" y="78" width="2" height="2" fill="#3F8A4A"></rect><rect x="242" y="74" width="1" height="3" fill="#5FB86A"></rect></g><rect x="128" y="90" width="6" height="10" fill="#1E1C2C"></rect><rect x="129" y="92" width="4" height="4" fill="#2C2A40"></rect><rect x="67" y="58" width="56" height="34" fill="#0A0A12"></rect><rect x="69" y="60" width="52" height="30" fill="#0E1A2C"></rect><clipPath id="scr1"><rect x="70" y="61" width="50" height="28"></rect></clipPath><g clip-path="url(#scr1)"><g class="scroll s1"><rect x="71" y="62" width="3" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="76" y="62" width="3" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="81" y="62" width="6" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="89" y="62" width="8" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="71" y="65" width="6" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="79" y="65" width="3" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="77" y="68" width="8" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="74" y="71" width="7" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="83" y="71" width="5" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="71" y="74" width="8" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="71" y="77" width="8" height="1" fill="#C792EA" opacity=".85"></rect><rect x="81" y="77" width="6" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="89" y="77" width="2" height="1" fill="#C792EA" opacity=".85"></rect><rect x="74" y="80" width="7" height="1" fill="#C792EA" opacity=".85"></rect><rect x="83" y="80" width="5" height="1" fill="#C792EA" opacity=".85"></rect><rect x="90" y="80" width="7" height="1" fill="#C792EA" opacity=".85"></rect><rect x="74" y="83" width="3" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="79" y="83" width="7" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="88" y="83" width="3" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="71" y="86" width="8" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="81" y="86" width="6" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="80" y="89" width="5" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="87" y="89" width="7" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="77" y="92" width="7" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="86" y="92" width="6" height="1" fill="#C792EA" opacity=".85"></rect><rect x="94" y="92" width="3" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="74" y="95" width="4" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="80" y="95" width="7" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="89" y="95" width="3" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="94" y="95" width="8" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="71" y="98" width="7" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="80" y="98" width="4" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="80" y="101" width="6" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="74" y="104" width="7" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="83" y="104" width="6" height="1" fill="#C792EA" opacity=".85"></rect><rect x="91" y="104" width="4" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="97" y="104" width="4" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="71" y="107" width="7" height="1" fill="#C792EA" opacity=".85"></rect><rect x="80" y="107" width="6" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="88" y="107" width="5" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="95" y="107" width="1" height="1" fill="#E4E7EB" opacity=".85"></rect><g transform="translate(0 48)"><rect x="71" y="62" width="3" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="76" y="62" width="3" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="81" y="62" width="6" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="89" y="62" width="8" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="71" y="65" width="6" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="79" y="65" width="3" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="77" y="68" width="8" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="74" y="71" width="7" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="83" y="71" width="5" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="71" y="74" width="8" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="71" y="77" width="8" height="1" fill="#C792EA" opacity=".85"></rect><rect x="81" y="77" width="6" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="89" y="77" width="2" height="1" fill="#C792EA" opacity=".85"></rect><rect x="74" y="80" width="7" height="1" fill="#C792EA" opacity=".85"></rect><rect x="83" y="80" width="5" height="1" fill="#C792EA" opacity=".85"></rect><rect x="90" y="80" width="7" height="1" fill="#C792EA" opacity=".85"></rect><rect x="74" y="83" width="3" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="79" y="83" width="7" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="88" y="83" width="3" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="71" y="86" width="8" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="81" y="86" width="6" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="80" y="89" width="5" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="87" y="89" width="7" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="77" y="92" width="7" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="86" y="92" width="6" height="1" fill="#C792EA" opacity=".85"></rect><rect x="94" y="92" width="3" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="74" y="95" width="4" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="80" y="95" width="7" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="89" y="95" width="3" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="94" y="95" width="8" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="71" y="98" width="7" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="80" y="98" width="4" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="80" y="101" width="6" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="74" y="104" width="7" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="83" y="104" width="6" height="1" fill="#C792EA" opacity=".85"></rect><rect x="91" y="104" width="4" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="97" y="104" width="4" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="71" y="107" width="7" height="1" fill="#C792EA" opacity=".85"></rect><rect x="80" y="107" width="6" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="88" y="107" width="5" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="95" y="107" width="1" height="1" fill="#E4E7EB" opacity=".85"></rect></g></g></g><rect x="97" y="84" width="3" height="2" fill="#B8F34A" class="cur"></rect><rect x="92" y="92" width="6" height="8" fill="#1A1826"></rect><rect x="85" y="98" width="20" height="2" fill="#1A1826"></rect><rect x="142" y="58" width="56" height="34" fill="#0A0A12"></rect><rect x="144" y="60" width="52" height="30" fill="#0E1A2C"></rect><clipPath id="scr2"><rect x="145" y="61" width="50" height="28"></rect></clipPath><g clip-path="url(#scr2)"><g class="scroll s2"><rect x="146" y="62" width="3" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="151" y="62" width="4" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="149" y="65" width="4" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="155" y="65" width="3" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="160" y="65" width="8" height="1" fill="#C792EA" opacity=".85"></rect><rect x="170" y="65" width="6" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="155" y="68" width="5" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="162" y="68" width="6" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="170" y="68" width="5" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="177" y="68" width="2" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="149" y="71" width="6" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="157" y="71" width="7" height="1" fill="#C792EA" opacity=".85"></rect><rect x="166" y="71" width="1" height="1" fill="#C792EA" opacity=".85"></rect><rect x="146" y="74" width="3" height="1" fill="#C792EA" opacity=".85"></rect><rect x="151" y="74" width="5" height="1" fill="#C792EA" opacity=".85"></rect><rect x="158" y="74" width="3" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="152" y="77" width="7" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="161" y="77" width="4" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="167" y="77" width="4" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="149" y="80" width="5" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="156" y="80" width="6" height="1" fill="#C792EA" opacity=".85"></rect><rect x="164" y="80" width="6" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="172" y="80" width="3" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="146" y="83" width="5" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="153" y="83" width="7" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="162" y="83" width="5" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="149" y="86" width="7" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="158" y="86" width="8" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="149" y="89" width="4" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="155" y="89" width="8" height="1" fill="#C792EA" opacity=".85"></rect><rect x="165" y="89" width="7" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="174" y="89" width="4" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="149" y="92" width="7" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="158" y="92" width="7" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="167" y="92" width="6" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="149" y="95" width="6" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="157" y="95" width="5" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="146" y="98" width="8" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="156" y="98" width="4" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="162" y="98" width="2" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="155" y="101" width="5" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="162" y="101" width="2" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="152" y="104" width="5" height="1" fill="#C792EA" opacity=".85"></rect><rect x="159" y="104" width="4" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="149" y="107" width="3" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="154" y="107" width="4" height="1" fill="#C792EA" opacity=".85"></rect><g transform="translate(0 48)"><rect x="146" y="62" width="3" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="151" y="62" width="4" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="149" y="65" width="4" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="155" y="65" width="3" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="160" y="65" width="8" height="1" fill="#C792EA" opacity=".85"></rect><rect x="170" y="65" width="6" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="155" y="68" width="5" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="162" y="68" width="6" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="170" y="68" width="5" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="177" y="68" width="2" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="149" y="71" width="6" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="157" y="71" width="7" height="1" fill="#C792EA" opacity=".85"></rect><rect x="166" y="71" width="1" height="1" fill="#C792EA" opacity=".85"></rect><rect x="146" y="74" width="3" height="1" fill="#C792EA" opacity=".85"></rect><rect x="151" y="74" width="5" height="1" fill="#C792EA" opacity=".85"></rect><rect x="158" y="74" width="3" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="152" y="77" width="7" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="161" y="77" width="4" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="167" y="77" width="4" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="149" y="80" width="5" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="156" y="80" width="6" height="1" fill="#C792EA" opacity=".85"></rect><rect x="164" y="80" width="6" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="172" y="80" width="3" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="146" y="83" width="5" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="153" y="83" width="7" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="162" y="83" width="5" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="149" y="86" width="7" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="158" y="86" width="8" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="149" y="89" width="4" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="155" y="89" width="8" height="1" fill="#C792EA" opacity=".85"></rect><rect x="165" y="89" width="7" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="174" y="89" width="4" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="149" y="92" width="7" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="158" y="92" width="7" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="167" y="92" width="6" height="1" fill="#E4E7EB" opacity=".85"></rect><rect x="149" y="95" width="6" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="157" y="95" width="5" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="146" y="98" width="8" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="156" y="98" width="4" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="162" y="98" width="2" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="155" y="101" width="5" height="1" fill="#F2C46B" opacity=".85"></rect><rect x="162" y="101" width="2" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="152" y="104" width="5" height="1" fill="#C792EA" opacity=".85"></rect><rect x="159" y="104" width="4" height="1" fill="#B8F34A" opacity=".85"></rect><rect x="149" y="107" width="3" height="1" fill="#7FD6E0" opacity=".85"></rect><rect x="154" y="107" width="4" height="1" fill="#C792EA" opacity=".85"></rect></g></g></g><rect x="172" y="84" width="3" height="2" fill="#B8F34A" class="cur"></rect><rect x="167" y="92" width="6" height="8" fill="#1A1826"></rect><rect x="160" y="98" width="20" height="2" fill="#1A1826"></rect><rect x="82" y="104" width="26" height="32" fill="#1E1C2E"></rect><rect x="84" y="106" width="22" height="28" fill="#24223A"></rect><rect x="82" y="104" width="26" height="1" fill="#2E2B45"></rect><rect x="94" y="136" width="2" height="12" fill="#0C0B12"></rect><rect x="83" y="148" width="24" height="2" fill="#0C0B12"></rect><rect x="82" y="150" width="3" height="2" fill="#0C0B12"></rect><rect x="105" y="150" width="3" height="2" fill="#0C0B12"></rect><rect x="84" y="89" width="22" height="2" fill="#2F3A5C"></rect><rect x="81" y="91" width="28" height="2" fill="#2F3A5C"></rect><rect x="79" y="93" width="32" height="13" fill="#2F3A5C"></rect><rect x="80" y="104" width="30" height="3" fill="#252E4A"></rect><rect x="79" y="95" width="1" height="9" fill="#252E4A"></rect><rect x="110" y="95" width="1" height="9" fill="#252E4A"></rect><rect x="94" y="95" width="2" height="9" fill="#252E4A"></rect><rect x="89" y="89" width="12" height="4" fill="#252E4A"></rect><rect x="90" y="90" width="10" height="2" fill="#2F3A5C"></rect><g class="armsipA"><rect x="109" y="94" width="5" height="9" fill="#252E4A"></rect></g><g class="sipA"><rect x="112" y="94" width="4" height="3" fill="#C68E62"></rect><rect x="114" y="92" width="6" height="7" fill="#E4E7EB"></rect><rect x="114" y="92" width="6" height="1" fill="#2A1A10"></rect><rect x="120" y="94" width="2" height="3" fill="#E4E7EB"></rect><g class="vapsipA"><rect x="115" y="88" width="1" height="2" fill="#C9CED6" class="steam st1"></rect><rect x="117" y="86" width="1" height="2" fill="#C9CED6" class="steam st2"></rect><rect x="119" y="88" width="1" height="2" fill="#C9CED6" class="steam st3"></rect></g></g><g class="bob sipAh"><rect x="92" y="85" width="6" height="4" fill="#C68E62"></rect><rect x="89" y="71" width="12" height="1" fill="#1A1210"></rect><rect x="88" y="72" width="14" height="14" fill="#1A1210"></rect><rect x="87" y="74" width="1" height="10" fill="#1A1210"></rect><rect x="102" y="74" width="1" height="10" fill="#1A1210"></rect><rect x="90" y="73" width="4" height="1" fill="#3A2A22"></rect><rect x="96" y="75" width="3" height="1" fill="#3A2A22"></rect><rect x="86" y="78" width="1" height="4" fill="#C68E62"></rect><rect x="103" y="78" width="1" height="4" fill="#C68E62"></rect></g><g class="type sipAt"><rect x="76" y="95" width="4" height="7" fill="#252E4A"></rect><rect x="77" y="94" width="3" height="1" fill="#2F3A5C"></rect></g><rect x="157" y="104" width="26" height="32" fill="#1E1C2E"></rect><rect x="159" y="106" width="22" height="28" fill="#24223A"></rect><rect x="157" y="104" width="26" height="1" fill="#2E2B45"></rect><rect x="169" y="136" width="2" height="12" fill="#0C0B12"></rect><rect x="158" y="148" width="24" height="2" fill="#0C0B12"></rect><rect x="157" y="150" width="3" height="2" fill="#0C0B12"></rect><rect x="180" y="150" width="3" height="2" fill="#0C0B12"></rect><rect x="159" y="89" width="22" height="2" fill="#4A2F3E"></rect><rect x="156" y="91" width="28" height="2" fill="#4A2F3E"></rect><rect x="154" y="93" width="32" height="13" fill="#4A2F3E"></rect><rect x="155" y="104" width="30" height="3" fill="#3A2431"></rect><rect x="154" y="95" width="1" height="9" fill="#3A2431"></rect><rect x="185" y="95" width="1" height="9" fill="#3A2431"></rect><rect x="169" y="95" width="2" height="9" fill="#3A2431"></rect><rect x="164" y="89" width="12" height="4" fill="#3A2431"></rect><rect x="165" y="90" width="10" height="2" fill="#4A2F3E"></rect><g class="armsipB"><rect x="184" y="94" width="5" height="9" fill="#3A2431"></rect></g><g class="sipB"><rect x="187" y="94" width="4" height="3" fill="#B07A52"></rect><rect x="189" y="92" width="6" height="7" fill="#B8F34A"></rect><rect x="189" y="92" width="6" height="1" fill="#2A1A10"></rect><rect x="195" y="94" width="2" height="3" fill="#B8F34A"></rect><g class="vapsipB"><rect x="190" y="88" width="1" height="2" fill="#C9CED6" class="steam st1"></rect><rect x="192" y="86" width="1" height="2" fill="#C9CED6" class="steam st2"></rect><rect x="194" y="88" width="1" height="2" fill="#C9CED6" class="steam st3"></rect></g></g><g class="bob sipBh"><rect x="167" y="85" width="6" height="4" fill="#B07A52"></rect><rect x="164" y="71" width="12" height="1" fill="#2A1A12"></rect><rect x="163" y="72" width="14" height="14" fill="#2A1A12"></rect><rect x="162" y="74" width="1" height="10" fill="#2A1A12"></rect><rect x="177" y="74" width="1" height="10" fill="#2A1A12"></rect><rect x="165" y="73" width="4" height="1" fill="#3A2A22"></rect><rect x="171" y="75" width="3" height="1" fill="#3A2A22"></rect><rect x="161" y="78" width="1" height="4" fill="#B07A52"></rect><rect x="178" y="78" width="1" height="4" fill="#B07A52"></rect><rect x="162" y="70" width="16" height="2" fill="#E4E7EB"></rect><rect x="161" y="71" width="2" height="2" fill="#E4E7EB"></rect><rect x="177" y="71" width="2" height="2" fill="#E4E7EB"></rect><rect x="160" y="76" width="3" height="6" fill="#B8F34A"></rect><rect x="177" y="76" width="3" height="6" fill="#B8F34A"></rect></g><g class="type sipBt"><rect x="151" y="95" width="4" height="7" fill="#3A2431"></rect><rect x="152" y="94" width="3" height="1" fill="#4A2F3E"></rect></g><rect x="60" y="108" width="1" height="24" fill="#0C0B12"></rect><rect x="60" y="131" width="30" height="1" fill="#0C0B12"></rect><image class="led" href="assets/shafra-logo.png" x="96" y="7" width="68" height="41.3" filter="url(#neon)" shape-rendering="auto"></image></svg>
+    <div class="hero-shade" aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(270deg, rgba(13,15,18,.92) 0%, rgba(13,15,18,.78) 30%, rgba(13,15,18,0) 58%)"></div>
+    <div aria-hidden="true" style="position: absolute; inset: auto 0 0 0; height: 120px; background: linear-gradient(0deg, #0D0F12, rgba(13,15,18,0))"></div>
+    <div class="hero-copy" style="position: relative; width: 100%; max-width: 1200px; margin: 0 auto; padding: 72px 24px; box-sizing: border-box; display: flex">
+      <div style="width: min(100%, 520px); display: flex; flex-direction: column; gap: 24px">
+        <p class="mono rise d1" style="margin: 0; color: var(--accent); font-size: 14px">// استوديو برمجة من شخصين</p>
+        <h1 class="rise d2" style="margin: 0; font-size: clamp(40px, 5.4vw, 68px); line-height: 1.15; font-weight: 700; letter-spacing: -0.02em">نكتب الشفرة<br>اللي تشغّل فكرتك.</h1>
+        <p class="rise d3" style="margin: 0; font-size: 19px; line-height: 1.8; color: #B4BAC4; max-width: 34rem">نصمم ونبرمج مواقع، تطبيقات، لوحات تحكم ومشاريع طلاب — من أول سطر لين الإطلاق. واحد منا على الواجهة، والثاني على السيرفر.</p>
+        <div class="rise d4" style="display: flex; flex-wrap: wrap; gap: 12px; padding-top: 8px">
+          <a href="works.html" class="glow" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 12px; background: var(--accent); color: #0D0F12; font-weight: 600; font-size: 16px; text-decoration: none">شوف أعمالنا
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="M11 18l-6-6 6-6"></path></svg>
+          </a>
+          <a href="#contact" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border-radius: 12px; border: 1px solid #333943; color: #F2F3F5; font-weight: 500; font-size: 16px; text-decoration: none">تواصل معنا</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" dir="ltr" aria-hidden="true" style="border-top: 1px solid #22262D; overflow: hidden; padding: 22px 0">
+    <div class="ticker-track"><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">HTML<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">CSS<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">JavaScript<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">Flutter<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">Python<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">FastAPI<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">PostgreSQL<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">Vercel<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">Render<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">Cloudinary<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">Git<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">Figma<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">HTML<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">CSS<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">JavaScript<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">Flutter<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">Python<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">FastAPI<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">PostgreSQL<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">Vercel<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">Render<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">Cloudinary<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">Git<span style="color: var(--accent)">/</span></span><span class="mono" style="display: inline-flex; align-items: center; gap: 28px; padding: 0 14px; font-size: 18px; color: #6E7681; white-space: nowrap">Figma<span style="color: var(--accent)">/</span></span></div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services" style="border-top: 1px solid #22262D">
+    <div class="reveal" style="max-width: 1200px; margin: 0 auto; padding: 88px 24px; display: flex; flex-direction: column; gap: 40px">
+      <div style="display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px">
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <p class="mono" style="margin: 0; color: var(--accent); font-size: 14px">// وش نسوي</p>
+          <h2 style="margin: 0; font-size: clamp(30px, 3.6vw, 44px); font-weight: 700">أربع أنواع من الشغل</h2>
+        </div>
+        <p style="margin: 0; color: #B4BAC4; font-size: 17px; max-width: 30rem; line-height: 1.8">كل قسم له صفحة فيها مشاريعنا الحقيقية — اختر اللي يهمك.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px">
+        <a href="works.html" class="card-hover" style="display: flex; flex-direction: column; gap: 18px; padding: 28px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; text-decoration: none; color: #F2F3F5">
+          <div style="display: flex; justify-content: space-between; align-items: center">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18"></path><path d="M7 6.5h.01M10 6.5h.01"></path></svg>
+            <span class="mono" style="color: #8C939E; font-size: 13px">01</span>
+          </div>
+          <h3 style="margin: 0; font-size: 22px; font-weight: 600">مواقع</h3>
+          <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">مواقع شركات، صفحات هبوط ومنصات محتوى — سريعة، متجاوبة، وعربية من الأساس.</p>
+          <span style="color: var(--accent); font-size: 14px; font-weight: 500; margin-top: auto">شوف المواقع ←</span>
+        </a>
+        <a href="works.html" class="card-hover" style="display: flex; flex-direction: column; gap: 18px; padding: 28px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; text-decoration: none; color: #F2F3F5">
+          <div style="display: flex; justify-content: space-between; align-items: center">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"></rect><path d="M10.5 18.5h3"></path></svg>
+            <span class="mono" style="color: #8C939E; font-size: 13px">02</span>
+          </div>
+          <h3 style="margin: 0; font-size: 22px; font-weight: 600">تطبيقات</h3>
+          <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">تطبيقات جوال بـ Flutter لـ iOS و Android، مربوطة بسيرفر وقاعدة بيانات.</p>
+          <span style="color: var(--accent); font-size: 14px; font-weight: 500; margin-top: auto">شوف التطبيقات ←</span>
+        </a>
+        <a href="works.html" class="card-hover" style="display: flex; flex-direction: column; gap: 18px; padding: 28px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; text-decoration: none; color: #F2F3F5">
+          <div style="display: flex; justify-content: space-between; align-items: center">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 3v18"></path><path d="M13 16v-3M16 16v-6M19 16v-4"></path></svg>
+            <span class="mono" style="color: #8C939E; font-size: 13px">03</span>
+          </div>
+          <h3 style="margin: 0; font-size: 22px; font-weight: 600">داشبورد</h3>
+          <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">لوحات تحكم وأنظمة إدارة: طلبات، مخزون، موظفين وتقارير بأرقام واضحة.</p>
+          <span style="color: var(--accent); font-size: 14px; font-weight: 500; margin-top: auto">شوف اللوحات ←</span>
+        </a>
+        <a href="works.html" class="card-hover" style="display: flex; flex-direction: column; gap: 18px; padding: 28px; background: #15181D; border: 1px solid #262A31; border-radius: 16px; text-decoration: none; color: #F2F3F5">
+          <div style="display: flex; justify-content: space-between; align-items: center">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5-10-5z"></path><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"></path></svg>
+            <span class="mono" style="color: #8C939E; font-size: 13px">04</span>
+          </div>
+          <h3 style="margin: 0; font-size: 22px; font-weight: 600">مشاريع طلاب</h3>
+          <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">مشاريع تخرج ومقررات جامعية — نبنيها معك ونشرح لك الكود عشان تفهمه وتدافع عنه.</p>
+          <span style="color: var(--accent); font-size: 14px; font-weight: 500; margin-top: auto">شوف مشاريع الطلاب ←</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED WORK -->
+  <section id="works" style="border-top: 1px solid #22262D">
+    <div class="reveal" style="max-width: 1200px; margin: 0 auto; padding: 88px 24px; display: flex; flex-direction: column; gap: 40px">
+      <div style="display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px">
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <p class="mono" style="margin: 0; color: var(--accent); font-size: 14px">// أعمال مختارة</p>
+          <h2 style="margin: 0; font-size: clamp(30px, 3.6vw, 44px); font-weight: 700">آخر اللي بنيناه</h2>
+        </div>
+        <a href="works.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 10px; border: 1px solid #333943; color: #F2F3F5; font-size: 15px; text-decoration: none">كل الأعمال ←</a>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px">
+
+        <!-- Sofrah -->
+        <a href="projects/sofrah.html" class="card-hover" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5">
+          <div style="height: 240px; background: #FAF5EB; padding: 22px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px">
+            <div style="display: flex; justify-content: space-between; align-items: center; background: #32127A; border-radius: 8px; padding: 10px 14px">
+              <span style="color: #FAF5EB; font-weight: 700; font-size: 15px">سفرة</span>
+              <span style="width: 54px; height: 18px; border-radius: 5px; background: #F28500"></span>
+            </div>
+            <div style="height: 14px; width: 60%; border-radius: 4px; background: #32127A"></div>
+            <div style="height: 10px; width: 40%; border-radius: 4px; background: #D9CFE8"></div>
+            <div class="shim" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; flex: 1">
+              <div style="border-radius: 8px; background: #F0EBE0; border: 1px solid #E3DBCB"></div>
+              <div style="border-radius: 8px; background: #F0EBE0; border: 1px solid #E3DBCB"></div>
+              <div style="border-radius: 8px; background: #F0EBE0; border: 1px solid #E3DBCB"></div>
+            </div>
+          </div>
+          <div style="padding: 24px; display: flex; flex-direction: column; gap: 10px">
+            <div class="tags" style="display: flex; gap: 8px; flex-wrap: wrap">
+              <span style="font-size: 13px; padding: 4px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">موقع</span>
+              <span style="font-size: 13px; padding: 4px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">تطبيق</span>
+            </div>
+            <h3 style="margin: 0; font-size: 22px; font-weight: 600">سفرة</h3>
+            <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">منصة عربية لاكتشاف الوجهات والأكلات حول العالم — دول، مدن، وصفات وفعاليات.</p>
+            <p class="mono" dir="ltr" style="margin: 0; color: #8C939E; font-size: 12.5px; text-align: right">HTML · CSS · JS · FastAPI · PostgreSQL</p>
+          </div>
+        </a>
+
+        <!-- Dashboard placeholder -->
+        <a href="works.html" class="card-hover" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5">
+          <div style="height: 240px; background: #101317; padding: 22px; box-sizing: border-box; display: flex; gap: 12px">
+            <div style="width: 26%; border-radius: 8px; background: #1A1E24; padding: 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px">
+              <div style="height: 8px; border-radius: 3px; background: var(--accent); width: 70%"></div>
+              <div style="height: 8px; border-radius: 3px; background: #2C323B"></div>
+              <div style="height: 8px; border-radius: 3px; background: #2C323B; width: 80%"></div>
+              <div style="height: 8px; border-radius: 3px; background: #2C323B; width: 60%"></div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 10px">
+              <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+                <div style="height: 44px; border-radius: 8px; background: #1A1E24"></div>
+                <div style="height: 44px; border-radius: 8px; background: #1A1E24"></div>
+                <div style="height: 44px; border-radius: 8px; background: #1A1E24"></div>
+              </div>
+              <div class="bars" style="flex: 1; border-radius: 8px; background: #1A1E24; display: flex; align-items: end; gap: 8px; padding: 12px; box-sizing: border-box">
+                <div style="flex: 1; height: 40%; border-radius: 3px; background: #2C323B"></div>
+                <div style="flex: 1; height: 65%; border-radius: 3px; background: #2C323B"></div>
+                <div style="flex: 1; height: 50%; border-radius: 3px; background: #2C323B"></div>
+                <div style="flex: 1; height: 85%; border-radius: 3px; background: var(--accent)"></div>
+                <div style="flex: 1; height: 60%; border-radius: 3px; background: #2C323B"></div>
+              </div>
+            </div>
+          </div>
+          <div style="padding: 24px; display: flex; flex-direction: column; gap: 10px">
+            <div class="tags" style="display: flex; gap: 8px; flex-wrap: wrap">
+              <span style="font-size: 13px; padding: 4px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">داشبورد</span>
+            </div>
+            <h3 style="margin: 0; font-size: 22px; font-weight: 600">[اسم مشروع لوحة التحكم]</h3>
+            <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">[وصف قصير: وش تدير اللوحة ولمين — مثلاً طلبات مطعم أو مخزون محل]</p>
+            <p class="mono" dir="ltr" style="margin: 0; color: #8C939E; font-size: 12.5px; text-align: right">[TECH STACK]</p>
+          </div>
+        </a>
+
+        <!-- Student project placeholder -->
+        <a href="works.html" class="card-hover" style="display: flex; flex-direction: column; background: #15181D; border: 1px solid #262A31; border-radius: 18px; overflow: hidden; text-decoration: none; color: #F2F3F5">
+          <div dir="ltr" class="codelines" style="height: 240px; background: #101317; padding: 22px; box-sizing: border-box; display: flex; flex-direction: column; gap: 9px">
+            <div class="mono" style="font-size: 12px; color: #8C939E">graduation-project / main</div>
+            <div style="height: 9px; width: 55%; border-radius: 3px; background: #C792EA"></div>
+            <div style="height: 9px; width: 75%; border-radius: 3px; background: #2C323B; margin-left: 18px"></div>
+            <div style="height: 9px; width: 45%; border-radius: 3px; background: var(--accent); margin-left: 18px"></div>
+            <div style="height: 9px; width: 65%; border-radius: 3px; background: #2C323B; margin-left: 36px"></div>
+            <div style="height: 9px; width: 30%; border-radius: 3px; background: #2C323B; margin-left: 18px"></div>
+            <div style="height: 9px; width: 50%; border-radius: 3px; background: #C792EA"></div>
+            <div style="height: 9px; width: 70%; border-radius: 3px; background: #2C323B; margin-left: 18px"></div>
+          </div>
+          <div style="padding: 24px; display: flex; flex-direction: column; gap: 10px">
+            <div class="tags" style="display: flex; gap: 8px; flex-wrap: wrap">
+              <span style="font-size: 13px; padding: 4px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">مشروع طلاب</span>
+            </div>
+            <h3 style="margin: 0; font-size: 22px; font-weight: 600">[اسم مشروع التخرج]</h3>
+            <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">[الجامعة والتخصص + وش سوى المشروع بسطر واحد]</p>
+            <p class="mono" dir="ltr" style="margin: 0; color: #8C939E; font-size: 12.5px; text-align: right">[TECH STACK]</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section style="border-top: 1px solid #22262D">
+    <div class="reveal" style="max-width: 1200px; margin: 0 auto; padding: 88px 24px; display: flex; flex-direction: column; gap: 40px">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <p class="mono" style="margin: 0; color: var(--accent); font-size: 14px">// كيف نشتغل</p>
+        <h2 style="margin: 0; font-size: clamp(30px, 3.6vw, 44px); font-weight: 700">من الفكرة للإطلاق، بأربع خطوات</h2>
+      </div>
+      <ol class="steps" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0; border: 1px solid #262A31; border-radius: 16px; overflow: hidden">
+        <li style="padding: 28px; display: flex; flex-direction: column; gap: 12px; border-left: 1px solid #262A31">
+          <span class="mono" style="color: var(--accent); font-size: 28px">01</span>
+          <h3 style="margin: 0; font-size: 20px; font-weight: 600">نسمع فكرتك</h3>
+          <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">جلسة قصيرة نفهم فيها الهدف، الجمهور، والميزانية.</p>
+        </li>
+        <li style="padding: 28px; display: flex; flex-direction: column; gap: 12px; border-left: 1px solid #262A31">
+          <span class="mono" style="color: var(--accent); font-size: 28px">02</span>
+          <h3 style="margin: 0; font-size: 20px; font-weight: 600">نصمم</h3>
+          <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">نرسم الشاشات ونعتمدها معك قبل ما نكتب سطر كود.</p>
+        </li>
+        <li style="padding: 28px; display: flex; flex-direction: column; gap: 12px; border-left: 1px solid #262A31">
+          <span class="mono" style="color: var(--accent); font-size: 28px">03</span>
+          <h3 style="margin: 0; font-size: 20px; font-weight: 600">نبرمج</h3>
+          <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">الواجهة والسيرفر بالتوازي، وتشوف التقدم أول بأول.</p>
+        </li>
+        <li style="padding: 28px; display: flex; flex-direction: column; gap: 12px">
+          <span class="mono" style="color: var(--accent); font-size: 28px">04</span>
+          <h3 style="margin: 0; font-size: 20px; font-weight: 600">نطلق ونتابع</h3>
+          <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">نرفع المشروع على الاستضافة ونبقى معك للتعديلات.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team" style="border-top: 1px solid #22262D">
+    <div class="reveal" style="max-width: 1200px; margin: 0 auto; padding: 88px 24px; display: flex; flex-direction: column; gap: 40px">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <p class="mono" style="margin: 0; color: var(--accent); font-size: 14px">// الفريق</p>
+        <h2 style="margin: 0; font-size: clamp(30px, 3.6vw, 44px); font-weight: 700">شخصين، مشروع كامل</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px">
+        <article class="hov-card" style="padding: 32px; background: #15181D; border: 1px solid #262A31; border-radius: 18px; display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; align-items: center; gap: 16px">
+            <div class="float" style="width: 64px; height: 64px; border-radius: 16px; background: #1E2228; border: 1px solid #333943; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: var(--accent)">أ</div>
+            <div style="display: flex; flex-direction: column; gap: 4px">
+              <h3 style="margin: 0; font-size: 22px; font-weight: 600">أحمد الحربي</h3>
+              <span class="mono" dir="ltr" style="color: #8C939E; font-size: 14px; text-align: right">Frontend Developer</span>
+            </div>
+          </div>
+          <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">مسؤول عن كل شي تشوفه وتلمسه: التصميم، الواجهات، تطبيقات الجوال والنشر.</p>
+          <div dir="ltr" class="chips" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end">
+            <span class="mono" style="font-size: 12.5px; padding: 5px 10px; border-radius: 8px; border: 1px solid #333943; color: #C9CED6">HTML</span>
+            <span class="mono" style="font-size: 12.5px; padding: 5px 10px; border-radius: 8px; border: 1px solid #333943; color: #C9CED6">CSS</span>
+            <span class="mono" style="font-size: 12.5px; padding: 5px 10px; border-radius: 8px; border: 1px solid #333943; color: #C9CED6">JavaScript</span>
+            <span class="mono" style="font-size: 12.5px; padding: 5px 10px; border-radius: 8px; border: 1px solid #333943; color: #C9CED6">Flutter</span>
+            <span class="mono" style="font-size: 12.5px; padding: 5px 10px; border-radius: 8px; border: 1px solid #333943; color: #C9CED6">Git</span>
+            <span class="mono" style="font-size: 12.5px; padding: 5px 10px; border-radius: 8px; border: 1px solid #333943; color: #C9CED6">Vercel</span>
+          </div>
+        </article>
+        <article class="hov-card" style="padding: 32px; background: #15181D; border: 1px solid #262A31; border-radius: 18px; display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; align-items: center; gap: 16px">
+            <div class="float2" style="width: 64px; height: 64px; border-radius: 16px; background: #1E2228; border: 1px solid #333943; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: var(--accent)">؟</div>
+            <div style="display: flex; flex-direction: column; gap: 4px">
+              <h3 style="margin: 0; font-size: 22px; font-weight: 600">[اسم الشريك]</h3>
+              <span class="mono" dir="ltr" style="color: #8C939E; font-size: 14px; text-align: right">Backend Developer</span>
+            </div>
+          </div>
+          <p style="margin: 0; color: #B4BAC4; font-size: 15px; line-height: 1.8">مسؤول عن اللي ما تشوفه: السيرفر، قواعد البيانات، تسجيل الدخول والـ API.</p>
+          <div dir="ltr" class="chips" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end">
+            <span class="mono" style="font-size: 12.5px; padding: 5px 10px; border-radius: 8px; border: 1px solid #333943; color: #C9CED6">Python</span>
+            <span class="mono" style="font-size: 12.5px; padding: 5px 10px; border-radius: 8px; border: 1px solid #333943; color: #C9CED6">FastAPI</span>
+            <span class="mono" style="font-size: 12.5px; padding: 5px 10px; border-radius: 8px; border: 1px solid #333943; color: #C9CED6">PostgreSQL</span>
+            <span class="mono" style="font-size: 12.5px; padding: 5px 10px; border-radius: 8px; border: 1px solid #333943; color: #C9CED6">Render</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="reviews" style="border-top: 1px solid #22262D">
+    <div class="reveal" style="max-width: 1200px; margin: 0 auto; padding: 88px 24px; display: flex; flex-direction: column; gap: 40px">
+      <div style="display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px">
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <p class="mono" style="margin: 0; color: var(--accent); font-size: 14px">// آراء العملاء</p>
+          <h2 style="margin: 0; font-size: clamp(30px, 3.6vw, 44px); font-weight: 700">وش قالوا عن شغلنا</h2>
+        </div>
+        <div class="stat" style="display: flex; align-items: center; gap: 14px; padding: 14px 20px; background: #15181D; border: 1px solid #262A31; border-radius: 14px">
+          <span class="mono" style="font-size: 30px">[٥.٠]</span>
+          <span style="display: flex; flex-direction: column; gap: 4px">
+            <span class="stars" style="display: flex; gap: 2px" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg></span>
+            <span style="font-size: 13px; color: #9AA1AC">من [عدد] تقييم</span>
+          </span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px">
+        <figure class="hov-card" style="margin: 0; padding: 28px; background: #15181D; border: 1px solid #262A31; border-radius: 18px; display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; justify-content: space-between; align-items: center">
+            <div class="stars" role="img" aria-label="التقييم ٥ من ٥" style="display: flex; gap: 3px"><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg></div>
+            <svg class="quote" width="30" height="30" viewBox="0 0 24 24" fill="var(--accent)" aria-hidden="true"><path d="M10 7H6a3 3 0 0 0-3 3v4h5v5h2zM21 7h-4a3 3 0 0 0-3 3v4h5v5h2z" opacity=".9"></path></svg>
+          </div>
+          <blockquote style="margin: 0; font-size: 16px; line-height: 1.9; color: #D7DBE1">[اكتب هنا رأي العميل بكلامه — جملتين أو ثلاث عن تجربته معكم]</blockquote>
+          <figcaption style="margin-top: auto; display: flex; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid #22262D">
+            <span class="float" style="width: 42px; height: 42px; border-radius: 12px; background: #1E2228; border: 1px solid #333943; display: inline-flex; align-items: center; justify-content: center; color: var(--accent); font-weight: 700">ع</span>
+            <span style="display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0">
+              <span style="font-size: 15px; font-weight: 600">[اسم العميل]</span>
+              <span style="font-size: 13px; color: #9AA1AC">[الجهة أو الوظيفة]</span>
+            </span>
+            <span style="font-size: 12px; padding: 3px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">موقع</span>
+          </figcaption>
+        </figure>
+        <figure class="hov-card" style="margin: 0; padding: 28px; background: #15181D; border: 1px solid #262A31; border-radius: 18px; display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; justify-content: space-between; align-items: center">
+            <div class="stars" role="img" aria-label="التقييم ٥ من ٥" style="display: flex; gap: 3px"><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg></div>
+            <svg class="quote" width="30" height="30" viewBox="0 0 24 24" fill="var(--accent)" aria-hidden="true"><path d="M10 7H6a3 3 0 0 0-3 3v4h5v5h2zM21 7h-4a3 3 0 0 0-3 3v4h5v5h2z" opacity=".9"></path></svg>
+          </div>
+          <blockquote style="margin: 0; font-size: 16px; line-height: 1.9; color: #D7DBE1">[اكتب هنا رأي العميل بكلامه — جملتين أو ثلاث عن تجربته معكم]</blockquote>
+          <figcaption style="margin-top: auto; display: flex; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid #22262D">
+            <span class="float" style="width: 42px; height: 42px; border-radius: 12px; background: #1E2228; border: 1px solid #333943; display: inline-flex; align-items: center; justify-content: center; color: var(--accent); font-weight: 700">ع</span>
+            <span style="display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0">
+              <span style="font-size: 15px; font-weight: 600">[اسم العميل]</span>
+              <span style="font-size: 13px; color: #9AA1AC">[الجهة أو الوظيفة]</span>
+            </span>
+            <span style="font-size: 12px; padding: 3px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">تطبيق</span>
+          </figcaption>
+        </figure>
+        <figure class="hov-card" style="margin: 0; padding: 28px; background: #15181D; border: 1px solid #262A31; border-radius: 18px; display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; justify-content: space-between; align-items: center">
+            <div class="stars" role="img" aria-label="التقييم ٥ من ٥" style="display: flex; gap: 3px"><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg></div>
+            <svg class="quote" width="30" height="30" viewBox="0 0 24 24" fill="var(--accent)" aria-hidden="true"><path d="M10 7H6a3 3 0 0 0-3 3v4h5v5h2zM21 7h-4a3 3 0 0 0-3 3v4h5v5h2z" opacity=".9"></path></svg>
+          </div>
+          <blockquote style="margin: 0; font-size: 16px; line-height: 1.9; color: #D7DBE1">[اكتب هنا رأي العميل بكلامه — جملتين أو ثلاث عن تجربته معكم]</blockquote>
+          <figcaption style="margin-top: auto; display: flex; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid #22262D">
+            <span class="float" style="width: 42px; height: 42px; border-radius: 12px; background: #1E2228; border: 1px solid #333943; display: inline-flex; align-items: center; justify-content: center; color: var(--accent); font-weight: 700">ع</span>
+            <span style="display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0">
+              <span style="font-size: 15px; font-weight: 600">[اسم العميل]</span>
+              <span style="font-size: 13px; color: #9AA1AC">[الجهة أو الوظيفة]</span>
+            </span>
+            <span style="font-size: 12px; padding: 3px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">داشبورد</span>
+          </figcaption>
+        </figure>
+        <figure class="hov-card" style="margin: 0; padding: 28px; background: #15181D; border: 1px solid #262A31; border-radius: 18px; display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; justify-content: space-between; align-items: center">
+            <div class="stars" role="img" aria-label="التقييم ٥ من ٥" style="display: flex; gap: 3px"><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB547" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"></path></svg></div>
+            <svg class="quote" width="30" height="30" viewBox="0 0 24 24" fill="var(--accent)" aria-hidden="true"><path d="M10 7H6a3 3 0 0 0-3 3v4h5v5h2zM21 7h-4a3 3 0 0 0-3 3v4h5v5h2z" opacity=".9"></path></svg>
+          </div>
+          <blockquote style="margin: 0; font-size: 16px; line-height: 1.9; color: #D7DBE1">[اكتب هنا رأي العميل بكلامه — جملتين أو ثلاث عن تجربته معكم]</blockquote>
+          <figcaption style="margin-top: auto; display: flex; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid #22262D">
+            <span class="float" style="width: 42px; height: 42px; border-radius: 12px; background: #1E2228; border: 1px solid #333943; display: inline-flex; align-items: center; justify-content: center; color: var(--accent); font-weight: 700">ع</span>
+            <span style="display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0">
+              <span style="font-size: 15px; font-weight: 600">[اسم العميل]</span>
+              <span style="font-size: 13px; color: #9AA1AC">[الجهة أو الوظيفة]</span>
+            </span>
+            <span style="font-size: 12px; padding: 3px 10px; border-radius: 99px; background: #1E2228; color: #C9CED6">مشروع طلاب</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="border-top: 1px solid #22262D">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 96px 24px">
+      <div class="reveal pulse-border" style="background: #15181D; border: 1px solid #262A31; border-radius: 24px; padding: clamp(32px, 6vw, 72px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 32px">
+        <div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 16px">
+          <p class="mono" style="margin: 0; color: var(--accent); font-size: 14px">// عندك فكرة؟</p>
+          <h2 style="margin: 0; font-size: clamp(32px, 4.2vw, 52px); font-weight: 700; line-height: 1.2">خلنا نحولها لشفرة شغالة.</h2>
+          <p style="margin: 0; color: #B4BAC4; font-size: 17px; line-height: 1.8">كلمنا عن مشروعك ونرد عليك بتصور مبدئي وتكلفة تقريبية.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; flex: 0 1 320px">
+          <a href="#" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; border-radius: 12px; background: var(--accent); color: #0D0F12; font-weight: 600; font-size: 16px; text-decoration: none">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.5 8.5 0 1 1 21 11.5z"></path></svg>
+            واتساب: [رقم الواتساب]
+          </a>
+          <a href="#" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; border-radius: 12px; border: 1px solid #333943; color: #F2F3F5; font-weight: 500; font-size: 16px; text-decoration: none">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+            [البريد الإلكتروني]
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="reveal2" style="border-top: 1px solid #22262D">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 32px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; color: #8C939E; font-size: 14px">
+      <span style="display: flex; align-items: center; gap: 14px"><img src="assets/shafra-logo.png" alt="" width="56" height="34" style="display: block; flex: none; width: 56px; height: 34px; opacity: .7"> مواقع، تطبيقات، داشبورد ومشاريع طلاب</span>
+      <span class="mono" dir="ltr">© 2026 Shafra</span>
+    </div>
+  </footer>
+</body>
+</html>
