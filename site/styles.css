@@ -6,7 +6,7 @@ a { color: #F2F3F5; }
 a:hover { color: #FFFFFF; }
 button { font-family: inherit; cursor: pointer; }
 input, select { font-family: inherit; }
-.mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+.mono { font-family: 'JetBrains Mono','IBM Plex Sans Arabic', ui-monospace, monospace; }
 
 .nav-link { color: #B4BAC4; text-decoration: none; font-size: 15px; padding: 10px 4px; position: relative; }
 .nav-link:hover { color: #F2F3F5; }
@@ -106,6 +106,7 @@ tbody tr:hover { background: #1A1E24; }
   .hero-art { position: relative !important; height: 300px !important; inset: auto !important; }
   .hero-shade { display: none; }
   .hero-copy { padding: 28px 20px 56px !important; }
+  
 }
 
 /* ===== motion everywhere ===== */

@@ -13,7 +13,7 @@
 <style>
 body{margin:0;background:#0D0F12}
 a{color:#F2F3F5}a:hover{color:#FFFFFF}
-.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.mono{font-family:'JetBrains Mono','IBM Plex Sans Arabic',ui-monospace,monospace}
 button{font-family:inherit;cursor:pointer}
 input{font-family:inherit}
 .side-btn{transition:background .15s,color .15s}
@@ -135,7 +135,7 @@ tbody tr{transition:background .2s}tbody tr:hover{background:#1A1E24}
       <div class="view-in" style="display: flex; flex-direction: column; gap: 28px">
         <div style="display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px">
           <div style="display: flex; flex-direction: column; gap: 6px">
-            <p class="mono" style="margin: 0; color: {{accent}}; font-size: 13px">// المهام المطلوبة</p>
+            <p style="margin: 0; color: {{accent}}; font-size: 13px; font-weight: 500"><span class="mono">//</span> المهام المطلوبة</p>
             <h1 style="margin: 0; font-size: 32px; font-weight: 700">المهام</h1>
           </div>
           <sc-if value="{{ hasAssignee }}" hint-placeholder-val="{{ false }}">
@@ -242,7 +242,7 @@ tbody tr{transition:background .2s}tbody tr:hover{background:#1A1E24}
       <div class="view-in" style="display: flex; flex-direction: column; gap: 28px">
         <div style="display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px">
           <div style="display: flex; flex-direction: column; gap: 6px">
-            <p class="mono" style="margin: 0; color: {{accent}}; font-size: 13px">// الدخل</p>
+            <p style="margin: 0; color: {{accent}}; font-size: 13px; font-weight: 500"><span class="mono">//</span> الدخل</p>
             <h1 style="margin: 0; font-size: 32px; font-weight: 700">الحسابات</h1>
           </div>
           <div role="group" aria-label="اختيار الشهر" style="display: flex; flex-wrap: wrap; gap: 8px">
@@ -347,7 +347,7 @@ tbody tr{transition:background .2s}tbody tr:hover{background:#1A1E24}
     <sc-if value="{{ isPeople }}" hint-placeholder-val="{{ false }}">
       <div class="view-in" style="display: flex; flex-direction: column; gap: 28px">
         <div style="display: flex; flex-direction: column; gap: 6px">
-          <p class="mono" style="margin: 0; color: {{accent}}; font-size: 13px">// الفريق</p>
+          <p style="margin: 0; color: {{accent}}; font-size: 13px; font-weight: 500"><span class="mono">//</span> الفريق</p>
           <h1 style="margin: 0; font-size: 32px; font-weight: 700">الموظفين</h1>
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px">

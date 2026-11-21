@@ -30,7 +30,8 @@
 @keyframes vapA{0%,61%,89%,100%{opacity:1}62%,88%{opacity:0}}@keyframes vapB{0%,29%,57%,100%{opacity:1}30%,56%{opacity:0}}
 .vapsipA{animation:vapA 9s steps(1) infinite}.vapsipB{animation:vapB 11s steps(1) infinite}
 
-.hero-art{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-art{position:absolute;top:0;left:0;width:min(100%,1600px);height:100%;display:block}
+@media (min-width:1601px){.hero-art{-webkit-mask-image:linear-gradient(270deg,transparent 0,#000 160px);mask-image:linear-gradient(270deg,transparent 0,#000 160px)}}
 
 @media (prefers-reduced-motion: reduce){
   .led,.ledglow,.sipA,.sipB,.steam,.scroll,.win,.bob,.type,.cur,.plant,.star,.armsipA,.armsipB,.vapsipA,.vapsipB{animation:none}
