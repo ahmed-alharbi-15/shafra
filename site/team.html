@@ -101,6 +101,10 @@
           <p style="margin: 0; color: var(--accent); font-size: 13px; font-weight: 500"><span class="mono">//</span> المهام المطلوبة</p>
           <h1 style="margin: 0; font-size: 32px; font-weight: 700">المهام</h1>
         </div>
+        <button type="button" id="new-task-btn" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 10px; border: 0; background: var(--accent); color: #0D0F12; font-weight: 600; font-size: 15px; font-family: inherit; cursor: pointer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          مهمة جديدة
+        </button>
         <button type="button" id="clear-assignee" class="ghost" style="display: none; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #333943; background: transparent; color: #D7DBE1; font-size: 14px">
           <span id="clear-assignee-label"></span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-label="إزالة الفلتر" role="img"><path d="M6 6l12 12M18 6L6 18"></path></svg>
@@ -144,6 +148,39 @@
     </a>
   </nav>
 </div>
+
+<dialog id="task-dialog" style="width: min(520px, calc(100vw - 32px)); padding: 0; border: 1px solid #333943; border-radius: 18px; background: #15181D; color: #F2F3F5; font-family: inherit">
+  <form id="task-form" method="dialog" style="display: flex; flex-direction: column; gap: 16px; padding: 24px" novalidate>
+    <h2 style="margin: 0; font-size: 22px; font-weight: 700">مهمة جديدة</h2>
+    <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #C9CED6">وش المهمة؟
+      <input id="nt-title" type="text" placeholder="مثال: بناء صفحة الأسعار" style="min-height: 46px; padding: 0 14px; border-radius: 10px; border: 1px solid #333943; background: #0D0F12; color: #F2F3F5; font-family: inherit; font-size: 15px">
+    </label>
+    <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #C9CED6">المشروع
+      <input id="nt-project" type="text" placeholder="مثال: سفرة" style="min-height: 46px; padding: 0 14px; border-radius: 10px; border: 1px solid #333943; background: #0D0F12; color: #F2F3F5; font-family: inherit; font-size: 15px">
+    </label>
+    <div style="display: flex; flex-wrap: wrap; gap: 12px">
+      <label style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #C9CED6">مين المسؤول؟
+        <select id="nt-assignee" style="min-height: 46px; padding: 0 12px; border-radius: 10px; border: 1px solid #333943; background: #0D0F12; color: #F2F3F5; font-family: inherit; font-size: 15px"></select>
+      </label>
+      <label style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #C9CED6">متى الموعد؟
+        <input id="nt-due" type="date" style="min-height: 46px; padding: 0 12px; border-radius: 10px; border: 1px solid #333943; background: #0D0F12; color: #F2F3F5; font-family: inherit; font-size: 15px; color-scheme: dark">
+      </label>
+    </div>
+    <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #C9CED6">الأولوية
+      <select id="nt-prio" style="min-height: 46px; padding: 0 12px; border-radius: 10px; border: 1px solid #333943; background: #0D0F12; color: #F2F3F5; font-family: inherit; font-size: 15px">
+        <option value="عالية">عالية</option><option value="متوسطة" selected>متوسطة</option><option value="منخفضة">منخفضة</option>
+      </select>
+    </label>
+    <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #C9CED6">الأعمال تحت المهمة <span style="color: #6E7681">(اختياري، كل عمل في سطر)</span>
+      <textarea id="nt-items" rows="4" placeholder="تصميم الواجهة&#10;برمجة الصفحة&#10;مراجعة الجوال" style="padding: 12px 14px; border-radius: 10px; border: 1px solid #333943; background: #0D0F12; color: #F2F3F5; font-family: inherit; font-size: 15px; resize: vertical"></textarea>
+    </label>
+    <p id="nt-err" role="alert" style="display: none; margin: 0; color: #FFB547; font-size: 14px">اكتب اسم المهمة وحدد الموعد.</p>
+    <div style="display: flex; gap: 10px; justify-content: flex-start">
+      <button type="submit" style="min-height: 46px; padding: 0 22px; border-radius: 10px; border: 0; background: var(--accent); color: #0D0F12; font-weight: 600; font-size: 15px; font-family: inherit; cursor: pointer">إضافة المهمة</button>
+      <button type="button" id="nt-cancel" class="ghost" style="min-height: 46px; padding: 0 18px; border-radius: 10px; border: 1px solid #333943; background: transparent; color: #D7DBE1; font-size: 15px; font-family: inherit; cursor: pointer">إلغاء</button>
+    </div>
+  </form>
+</dialog>
 
 <script src="js/portal-data.js"></script>
 <script>
@@ -209,7 +246,7 @@
     const scoped = scopedTasks().filter((t) => state.status === 'all' || D.statusOf(t) === state.status);
     const list = document.getElementById('task-list');
     if (scoped.length === 0) {
-      list.innerHTML = '<p style="margin:24px 0;text-align:center;color:#9AA1AC">ما فيه مهام بهذي الحالة.</p>';
+      list.innerHTML = '<p style="margin:24px 0;text-align:center;color:#9AA1AC">' + (D.tasks.length === 0 ? 'ما فيه مهام للحين. اضغط «مهمة جديدة» وأضف أول مهمة.' : 'ما فيه مهام بهذي الحالة.') + '</p>';
       return;
     }
     list.innerHTML = scoped.map(function (t, ti) {
@@ -241,7 +278,7 @@
         '<div style="height:6px;border-radius:99px;background:#262A31;overflow:hidden"><div class="bar" style="height:100%;width:' + pct + '%;background:var(--accent);border-radius:99px"></div></div></div>' +
         '<div style="display:flex;align-items:center;gap:8px">' +
         '<span style="width:32px;height:32px;border-radius:9px;background:#1E2228;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;font-size:14px">' + owner.initial + '</span>' +
-        '<span style="display:flex;flex-direction:column"><span style="font-size:13px;font-weight:500">' + owner.name + '</span><span style="font-size:12px;color:#9AA1AC">التسليم: ' + t.due + '</span></span></div></div></div>' +
+        '<span style="display:flex;flex-direction:column"><span style="font-size:13px;font-weight:500">' + owner.name + '</span><span style="font-size:12px;color:#9AA1AC">التسليم: ' + (D.isOverdue(t) ? '<span style="color:#FFB547">' + D.formatDue(t.due) + ' (متأخرة)</span>' : D.formatDue(t.due)) + '</span></span></div></div></div>' +
         (open ? '<div style="border-top:1px solid #22262D;padding:14px 22px 18px;display:flex;flex-direction:column;gap:4px">' +
           '<p style="margin:0 0 6px;color:#9AA1AC;font-size:13px">قائمة الأعمال</p>' + itemsHtml +
           '<div style="display:flex;gap:8px;padding-top:8px;flex-wrap:wrap">' +
@@ -274,6 +311,7 @@
       if (!txt) return;
       // TODO(backend): أرسل POST /api/tasks/:id/items بدل التعديل في الذاكرة.
       D.tasks.find((t) => t.id === id).items.push({ text: txt, done: false });
+      D.save();
       state.drafts[id] = '';
       renderAll();
       return;
@@ -290,6 +328,7 @@
       const idx = Number(cb.getAttribute('data-item'));
       // TODO(backend): أرسل PATCH /api/tasks/:id/items/:idx بدل التعديل في الذاكرة.
       D.tasks.find((t) => t.id === id).items[idx].done = cb.checked;
+      D.save();
       renderAll();
       return;
     }
@@ -359,6 +398,39 @@
 
   const assigneeParam = new URLSearchParams(location.search).get('assignee');
   if (assigneeParam && D.byId(assigneeParam)) state.assignee = assigneeParam;
+
+
+  // ---- مهمة جديدة ----
+  const dlg = document.getElementById('task-dialog');
+  document.getElementById('new-task-btn').addEventListener('click', function () {
+    document.getElementById('nt-assignee').innerHTML = D.people.map((p) => '<option value="' + p.id + '">' + p.name + '</option>').join('');
+    if (state.assignee) document.getElementById('nt-assignee').value = state.assignee;
+    document.getElementById('nt-err').style.display = 'none';
+    document.getElementById('nt-due').min = new Date().toISOString().slice(0, 10);
+    dlg.showModal();
+  });
+  document.getElementById('nt-cancel').addEventListener('click', function () { dlg.close(); });
+  document.getElementById('task-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const title = document.getElementById('nt-title').value.trim();
+    const due = document.getElementById('nt-due').value;
+    if (!title || !due) { document.getElementById('nt-err').style.display = ''; return; }
+    const items = document.getElementById('nt-items').value.split('\n').map((x) => x.trim()).filter(Boolean).map((text) => ({ text, done: false }));
+    // TODO(backend): أرسل POST /api/tasks بدل الإضافة في الذاكرة.
+    const task = {
+      id: 't' + Date.now(), title,
+      project: document.getElementById('nt-project').value.trim() || 'عام',
+      assignee: document.getElementById('nt-assignee').value, due,
+      priority: document.getElementById('nt-prio').value, items
+    };
+    D.tasks.unshift(task);
+    D.save();
+    state.open[task.id] = items.length > 0;
+    ['nt-title', 'nt-project', 'nt-due', 'nt-items'].forEach((id) => { document.getElementById(id).value = ''; });
+    dlg.close();
+    state.status = 'all';
+    updateCounts(); renderAll(); renderPeople();
+  });
 
   updateCounts();
   renderAll();

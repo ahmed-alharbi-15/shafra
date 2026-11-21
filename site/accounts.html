@@ -182,7 +182,7 @@
 (function () {
   const D = PortalData;
   const state = { month: '2026-11', form: { name: '', cat: 'site', amount: '', month: '2026-11' } };
-  let nextId = Math.max.apply(null, D.moneyEntries.map((e) => e.id)) + 1;
+  let nextId = D.moneyEntries.reduce((n, e) => Math.max(n, e.id), 0) + 1;
 
   const pillStyle = (on) => on
     ? 'display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 16px; border-radius: 99px; font-size: 14px; font-weight: 600; border: 1px solid var(--accent); background: var(--accent); color: #0D0F12; cursor: pointer'
@@ -246,6 +246,7 @@
     const id = Number(btn.getAttribute('data-remove'));
     const idx = D.moneyEntries.findIndex((x) => x.id === id);
     if (idx !== -1) D.moneyEntries.splice(idx, 1);
+    D.save();
     document.getElementById('count-money').textContent = String(D.moneyEntries.length);
     renderAll();
   });
@@ -261,6 +262,7 @@
     err.style.display = 'none';
     // TODO(backend): أرسل POST /api/income بدل الإضافة في الذاكرة.
     D.moneyEntries.push({ id: nextId++, name, cat, amount, month });
+    D.save();
     document.getElementById('f-name').value = '';
     document.getElementById('f-amount').value = '';
     document.getElementById('count-money').textContent = String(D.moneyEntries.length);

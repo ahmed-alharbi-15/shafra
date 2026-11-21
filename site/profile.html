@@ -254,7 +254,7 @@
     if (openT.length) {
       openList.innerHTML = openT.map((t) => '<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;background:#1A1E24">' +
         '<span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px">' + t.title + '</span><span style="font-size:12px;color:#9AA1AC">' + t.project + '</span></span>' +
-        '<span style="font-size:13px;color:#D7DBE1;white-space:nowrap">التسليم: ' + t.due + '</span></div>').join('');
+        '<span style="font-size:13px;color:#D7DBE1;white-space:nowrap">التسليم: ' + D.formatDue(t.due) + '</span></div>').join('');
       document.getElementById('p-no-open').style.display = 'none';
     } else {
       openList.innerHTML = '';
@@ -271,9 +271,9 @@
     const onPct = hist.length ? Math.round(onTime / hist.length * 100) : 0;
     const lates = hist.filter((h) => h.diff > 0);
     const avgLate = lates.length ? (lates.reduce((n, h) => n + h.diff, 0) / lates.length).toFixed(1) : '0';
-    const meetPct = Math.round(P.meetings.attended / P.meetings.total * 100);
+    const meetPct = P.meetings.total ? Math.round(P.meetings.attended / P.meetings.total * 100) : 0;
     const ring = (pct) => 'width:100%;height:8px;border-radius:99px;background:linear-gradient(to left, var(--accent) ' + pct + '%, #262A31 ' + pct + '%)';
-    const grade = onPct >= 90 ? 'ممتاز' : onPct >= 75 ? 'جيد' : 'يحتاج تحسين';
+    const grade = !hist.length ? 'جديد' : onPct >= 90 ? 'ممتاز' : onPct >= 75 ? 'جيد' : 'يحتاج تحسين';
 
     document.getElementById('p-onpct').textContent = String(onPct);
     document.getElementById('p-onbar').setAttribute('style', ring(onPct));
