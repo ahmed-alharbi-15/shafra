@@ -148,7 +148,7 @@
         tabs[k].setAttribute('aria-selected', on ? 'true' : 'false');
       });
       document.getElementById('h-title').textContent = reg ? 'أنشئ حسابك' : 'أهلًا بك';
-      document.getElementById('h-sub').textContent = reg ? 'حساب مجاني، يعطيك ملف شخصي خاص فيك' : 'سجّل دخولك لحسابك';
+      document.getElementById('h-sub').textContent = reg ? '' : 'سجّل دخولك لحسابك';
     }
     tabs.login.addEventListener('click', function () { setMode('login'); });
     tabs.register.addEventListener('click', function () { setMode('register'); });
