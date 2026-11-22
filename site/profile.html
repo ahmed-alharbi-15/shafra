@@ -208,15 +208,19 @@
   </nav>
 </div>
 
+<script src="js/auth.js"></script>
 <script src="js/portal-data.js"></script>
+<script src="js/portal-shell.js"></script>
 <script>
 (function () {
   const D = PortalData;
+  const ME = Auth.guard({ staff: true });
+  if (!ME) return;
   const DAY = 86400000;
 
   function currentId() {
     const q = new URLSearchParams(location.search).get('id');
-    return (q && D.byId(q)) ? q : 'ahmed';
+    return (q && D.byId(q)) ? q : ME.id;
   }
 
   function render() {
@@ -245,6 +249,18 @@
     document.getElementById('p-status').textContent = P.status;
     document.getElementById('p-joined').textContent = P.joined;
     document.getElementById('p-tasks-link').href = 'team.html?assignee=' + P.id;
+    document.getElementById('p-joined').textContent = D.formatDue(P.joined);
+    let extra = document.getElementById('p-extra');
+    if (!extra) {
+      extra = document.createElement('div'); extra.id = 'p-extra';
+      extra.style.cssText = 'display:flex;flex-direction:column;gap:8px;margin-top:6px';
+      document.getElementById('p-title').insertAdjacentElement('afterend', extra);
+    }
+    const mine = P.id === ME.id;
+    extra.innerHTML = '<span dir="ltr" style="font-size:14px;color:#B4BAC4;text-align:right">' + P.email.replace(/</g, '&lt;') + '</span>' +
+      (P.phone ? '<span dir="ltr" class="mono" style="font-size:14px;color:#B4BAC4;text-align:right">' + P.phone.replace(/</g, '&lt;') + '</span>' : '') +
+      (P.domains.length ? '<div style="display:flex;flex-wrap:wrap;gap:6px">' + P.domains.map((x) => '<span style="font-size:12px;padding:4px 10px;border-radius:99px;background:#1E2228;color:#D7DBE1">' + x + '</span>').join('') + '</div>' : '') +
+      (mine ? '<a href="account.html" style="font-size:14px;color:var(--accent)">تعديل بياناتي ومجالي ولغاتي ←</a>' : '');
 
     const openT = D.tasks.filter((t) => t.assignee === P.id && D.statusOf(t) !== 'done');
     document.getElementById('p-open-count').textContent = String(openT.length);

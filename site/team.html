@@ -101,7 +101,7 @@
           <p style="margin: 0; color: var(--accent); font-size: 13px; font-weight: 500"><span class="mono">//</span> المهام المطلوبة</p>
           <h1 style="margin: 0; font-size: 32px; font-weight: 700">المهام</h1>
         </div>
-        <button type="button" id="new-task-btn" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 10px; border: 0; background: var(--accent); color: #0D0F12; font-weight: 600; font-size: 15px; font-family: inherit; cursor: pointer">
+        <button type="button" id="new-task-btn" style="display: none; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 10px; border: 0; background: var(--accent); color: #0D0F12; font-weight: 600; font-size: 15px; font-family: inherit; cursor: pointer">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
           مهمة جديدة
         </button>
@@ -159,7 +159,7 @@
       <input id="nt-project" type="text" placeholder="مثال: سفرة" style="min-height: 46px; padding: 0 14px; border-radius: 10px; border: 1px solid #333943; background: #0D0F12; color: #F2F3F5; font-family: inherit; font-size: 15px">
     </label>
     <div style="display: flex; flex-wrap: wrap; gap: 12px">
-      <label style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #C9CED6">مين المسؤول؟
+      <label style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #C9CED6">مين ياخذ المهمة؟
         <select id="nt-assignee" style="min-height: 46px; padding: 0 12px; border-radius: 10px; border: 1px solid #333943; background: #0D0F12; color: #F2F3F5; font-family: inherit; font-size: 15px"></select>
       </label>
       <label style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #C9CED6">متى الموعد؟
@@ -182,10 +182,16 @@
   </form>
 </dialog>
 
+<script src="js/auth.js"></script>
 <script src="js/portal-data.js"></script>
+<script src="js/portal-shell.js"></script>
 <script>
 (function () {
   const D = PortalData;
+  const ME = Auth.guard({ staff: true });
+  if (!ME) return;
+  const isOwner = Auth.can('assignTask', ME);
+  function visibleTasks() { return Auth.can('viewAllTasks', ME) ? D.tasks : D.tasks.filter((t) => !t.assignee || t.assignee === ME.id); }
   const state = { status: 'all', assignee: null, open: {}, drafts: {} };
 
   const pillStyle = (on) => on
@@ -193,17 +199,18 @@
     : 'display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 16px; border-radius: 99px; font-size: 14px; font-weight: 500; border: 1px solid #333943; background: transparent; color: #D7DBE1; cursor: pointer';
 
   function updateCounts() {
-    document.getElementById('tab-tasks-count').textContent = String(D.tasks.length);
+    document.getElementById('tab-tasks-count').textContent = String(visibleTasks().length);
     document.getElementById('tab-people-count').textContent = String(D.people.length);
     document.getElementById('tab-money-count').textContent = String(D.moneyEntries.length);
   }
 
   function renderStats() {
-    const allItems = D.tasks.reduce((n, t) => n + t.items.length, 0);
-    const doneItems = D.tasks.reduce((n, t) => n + t.items.filter((i) => i.done).length, 0);
-    const complete = D.tasks.filter((t) => D.statusOf(t) === 'done').length;
+    const vt = visibleTasks();
+    const allItems = vt.reduce((n, t) => n + t.items.length, 0);
+    const doneItems = vt.reduce((n, t) => n + t.items.filter((i) => i.done).length, 0);
+    const complete = vt.filter((t) => D.statusOf(t) === 'done').length;
     const cards = [
-      ['المهام المفتوحة', String(D.tasks.length - complete)],
+      ['المهام المفتوحة', String(vt.length - complete)],
       ['الأعمال المنجزة', doneItems + '<span style="color:#6E7681;font-size:18px"> / ' + allItems + '</span>'],
       ['المهام المكتملة', String(complete)],
       ['الموظفين', String(D.people.length)]
@@ -216,7 +223,7 @@
   }
 
   function scopedTasks() {
-    return D.tasks.filter((t) => !state.assignee || t.assignee === state.assignee);
+    return visibleTasks().filter((t) => !state.assignee || t.assignee === state.assignee);
   }
 
   function renderClearAssignee() {
@@ -246,7 +253,7 @@
     const scoped = scopedTasks().filter((t) => state.status === 'all' || D.statusOf(t) === state.status);
     const list = document.getElementById('task-list');
     if (scoped.length === 0) {
-      list.innerHTML = '<p style="margin:24px 0;text-align:center;color:#9AA1AC">' + (D.tasks.length === 0 ? 'ما فيه مهام للحين. اضغط «مهمة جديدة» وأضف أول مهمة.' : 'ما فيه مهام بهذي الحالة.') + '</p>';
+      list.innerHTML = '<p style="margin:24px 0;text-align:center;color:#9AA1AC">' + (visibleTasks().length === 0 ? (isOwner ? 'ما فيه مهام للحين. اضغط «مهمة جديدة» وأضف أول مهمة.' : 'ما فيه مهام لك للحين. لما يضيف المالك مهمة تطلع هنا.') : 'ما فيه مهام بهذي الحالة.') + '</p>';
       return;
     }
     list.innerHTML = scoped.map(function (t, ti) {
@@ -254,12 +261,21 @@
       const total = t.items.length;
       const pct = total ? Math.round((doneCount / total) * 100) : 0;
       const st = D.statusOf(t);
-      const owner = D.byId(t.assignee) || { name: '—', initial: '؟' };
+      const owner = D.byId(t.assignee) || { name: 'مفتوحة للجميع', initial: '؟' };
+      const canEdit = isOwner || t.assignee === ME.id;
+      let controlsHtml = '';
+      if (!t.assignee && Auth.can('claimTask', ME)) {
+        controlsHtml += '<div style="border-top:1px solid #22262D;padding:12px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span style="font-size:14px;color:#B4BAC4">المهمة مفتوحة، أي موظف يقدر ياخذها.</span><button type="button" data-claim="' + t.id + '" style="min-height:40px;padding:0 16px;border-radius:10px;border:0;background:var(--accent);color:#0D0F12;font-weight:600;font-size:14px;font-family:inherit;cursor:pointer">خذ المهمة</button></div>';
+      }
+      if (isOwner) {
+        const opts = '<option value=""' + (t.assignee ? '' : ' selected') + '>مفتوحة للجميع</option>' + D.people.map((p) => '<option value="' + p.id + '"' + (p.id === t.assignee ? ' selected' : '') + '>' + p.name + ' (' + p.title + ')</option>').join('');
+        controlsHtml += '<div style="border-top:1px solid #22262D;padding:12px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap"><label style="display:flex;align-items:center;gap:10px;font-size:14px;color:#B4BAC4">المسؤول عن المهمة<select data-assign="' + t.id + '" style="min-height:40px;padding:0 10px;border-radius:10px;border:1px solid #333943;background:#0D0F12;color:#F2F3F5;font-family:inherit;font-size:14px">' + opts + '</select></label></div>';
+      }
       const open = !!state.open[t.id];
       const itemsHtml = t.items.map(function (it, idx) {
         const textStyle = it.done ? 'font-size:15px;color:#6E7681;text-decoration:line-through' : 'font-size:15px;color:#E4E7EB';
         return '<label class="work-row" style="display:flex;align-items:center;gap:12px;min-height:44px;padding:0 10px;border-radius:10px;cursor:pointer">' +
-          '<input type="checkbox" ' + (it.done ? 'checked' : '') + ' data-task="' + t.id + '" data-item="' + idx + '" style="width:18px;height:18px;margin:0">' +
+          '<input type="checkbox" ' + (it.done ? 'checked' : '') + (canEdit ? '' : ' disabled') + ' data-task="' + t.id + '" data-item="' + idx + '" style="width:18px;height:18px;margin:0">' +
           '<span style="' + textStyle + '">' + it.text + '</span></label>';
       }).join('');
       return '<article class="pop" style="animation-delay:' + (ti * 0.07).toFixed(2) + 's;background:#15181D;border:1px solid #262A31;border-radius:16px;overflow:hidden">' +
@@ -279,9 +295,10 @@
         '<div style="display:flex;align-items:center;gap:8px">' +
         '<span style="width:32px;height:32px;border-radius:9px;background:#1E2228;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;font-size:14px">' + owner.initial + '</span>' +
         '<span style="display:flex;flex-direction:column"><span style="font-size:13px;font-weight:500">' + owner.name + '</span><span style="font-size:12px;color:#9AA1AC">التسليم: ' + (D.isOverdue(t) ? '<span style="color:#FFB547">' + D.formatDue(t.due) + ' (متأخرة)</span>' : D.formatDue(t.due)) + '</span></span></div></div></div>' +
+        controlsHtml +
         (open ? '<div style="border-top:1px solid #22262D;padding:14px 22px 18px;display:flex;flex-direction:column;gap:4px">' +
           '<p style="margin:0 0 6px;color:#9AA1AC;font-size:13px">قائمة الأعمال</p>' + itemsHtml +
-          '<div style="display:flex;gap:8px;padding-top:8px;flex-wrap:wrap">' +
+          '<div style="display:' + (canEdit ? 'flex' : 'none') + ';gap:8px;padding-top:8px;flex-wrap:wrap">' +
           '<label style="flex:1 1 220px;display:flex"><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">عمل جديد تحت المهمة</span>' +
           '<input type="text" data-draft="' + t.id + '" value="' + (state.drafts[t.id] || '') + '" placeholder="أضف عمل جديد تحت هذي المهمة…" style="flex:1;min-height:44px;padding:0 14px;border-radius:10px;border:1px solid #333943;background:#0F1215;color:#F2F3F5;font-size:14px"></label>' +
           '<button type="button" data-add="' + t.id + '" style="min-height:44px;padding:0 18px;border-radius:10px;border:0;background:var(--accent);color:#0D0F12;font-weight:600;font-size:14px">إضافة</button></div></div>' : '') +
@@ -337,29 +354,64 @@
   });
 
   // ---- people ----
+  function esc(v) { return String(v == null ? '' : v).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+  const ROLE_OPTS = ['admin', 'moderator', 'employee', 'client'];
+
   function renderPeople() {
     document.getElementById('people-grid').innerHTML = D.people.map(function (p, pi) {
       const taskCount = D.tasks.filter((t) => t.assignee === p.id && D.statusOf(t) !== 'done').length;
-      const badgeStyle = 'font-size:12px;padding:3px 10px;border-radius:99px;' + (p.admin ? 'background:var(--accent);color:#0D0F12;font-weight:600' : 'border:1px solid #333943;color:#C9CED6');
-      const skillsHtml = p.skills.map((s) => '<span class="mono" style="font-size:12px;padding:4px 9px;border-radius:7px;border:1px solid #333943;color:#C9CED6">' + s + '</span>').join('');
+      const badgeStyle = 'font-size:12px;padding:3px 10px;border-radius:99px;' + (p.roleKey === 'owner' ? 'background:var(--accent);color:#0D0F12;font-weight:600' : 'border:1px solid #333943;color:#C9CED6');
+      const chip = (x) => '<span class="mono" style="font-size:12px;padding:4px 9px;border-radius:7px;border:1px solid #333943;color:#C9CED6">' + esc(x) + '</span>';
+      const domains = p.domains.length ? p.domains.map((x) => '<span style="font-size:12px;padding:4px 10px;border-radius:99px;background:#1E2228;color:#D7DBE1">' + esc(x) + '</span>').join('') : '<span style="font-size:13px;color:#6E7681">ما حدد مجاله للحين</span>';
+      const langs = p.languages.map(chip).join('');
+      const phone = p.phone ? '<span dir="ltr" class="mono" style="font-size:13px;color:#B4BAC4;text-align:right">' + esc(p.phone) + '</span>' : '';
       return '<article class="pop hov-card" style="animation-delay:' + (pi * 0.08).toFixed(2) + 's;padding:24px;background:#15181D;border:1px solid #262A31;border-radius:16px;display:flex;flex-direction:column;gap:16px">' +
         '<div style="display:flex;align-items:center;gap:14px">' +
-        '<span class="float" style="width:52px;height:52px;border-radius:14px;background:#1E2228;border:1px solid #333943;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;font-size:20px">' + p.initial + '</span>' +
+        '<span class="float" style="width:52px;height:52px;border-radius:14px;background:#1E2228;border:1px solid #333943;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-size:22px;font-weight:700">' + esc(p.initial) + '</span>' +
         '<div style="display:flex;flex-direction:column;gap:2px;min-width:0">' +
-        '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><h2 style="margin:0;font-size:18px;font-weight:600">' + p.name + '</h2><span style="' + badgeStyle + '">' + (p.admin ? 'أدمن' : 'موظف') + '</span></div>' +
-        '<span class="mono" dir="ltr" style="color:#9AA1AC;font-size:13px;text-align:right">' + p.role + '</span></div></div>' +
-        '<div style="display:flex;align-items:center;gap:8px">' +
-        '<span class="dot" style="width:10px;height:10px;border-radius:50%;background:' + (D.dotColor[p.status] || '#6E7681') + '"></span>' +
-        '<span style="font-size:14px;color:#D7DBE1">' + p.status + '</span></div>' +
-        '<div dir="ltr" class="chips" style="display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end">' + skillsHtml + '</div>' +
+        '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><h2 style="margin:0;font-size:18px;font-weight:600">' + esc(p.name) + '</h2><span style="' + badgeStyle + '">' + esc(p.title) + '</span></div>' +
+        '<span dir="ltr" style="color:#9AA1AC;font-size:13px;text-align:right">' + esc(p.email) + '</span>' + phone + '</div></div>' +
+        '<div style="display:flex;flex-wrap:wrap;gap:6px">' + domains + '</div>' +
+        '<div dir="ltr" class="chips" style="display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end">' + langs + '</div>' +
         '<div style="display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid #22262D;gap:12px">' +
         '<span style="font-size:14px;color:#9AA1AC"><span class="mono" style="color:#F2F3F5">' + taskCount + '</span> مهام مفتوحة</span>' +
         '<div style="display:flex;gap:8px">' +
-        '<button type="button" class="ghost" data-show-tasks="' + p.id + '" style="min-height:44px;padding:0 12px;border-radius:10px;border:1px solid #333943;background:transparent;color:#D7DBE1;font-size:14px">مهامه</button>' +
-        '<a href="profile.html?id=' + p.id + '" style="display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:10px;border:0;background:var(--accent);color:#0D0F12;font-weight:600;font-size:14px;text-decoration:none">الملف ←</a>' +
+        '<button type="button" class="ghost" data-show-tasks="' + p.id + '" style="min-height:44px;padding:0 12px;border-radius:10px;border:1px solid #333943;background:transparent;color:#D7DBE1;font-size:14px;font-family:inherit;cursor:pointer">مهامه</button>' +
+        '<a href="profile.html?id=' + p.id + '" style="display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:10px;border:0;background:var(--accent);color:#0D0F12;font-weight:600;font-size:14px;text-decoration:none">الملف</a>' +
         '</div></div></article>';
     }).join('');
+    renderRoleManager();
   }
+
+  // إدارة الرتب: Owner بس. يعيّن أدمن / مشرف / موظف لأي حساب مسجّل.
+  function renderRoleManager() {
+    let box = document.getElementById('role-manager');
+    if (!isOwner) { if (box) box.remove(); return; }
+    if (!box) {
+      box = document.createElement('section');
+      box.id = 'role-manager';
+      box.style.cssText = 'display:flex;flex-direction:column;gap:14px;padding:24px;background:#15181D;border:1px solid #262A31;border-radius:16px';
+      document.getElementById('view-people').appendChild(box);
+    }
+    const others = Auth.users().filter((u) => u.role !== 'owner');
+    const rows = others.length ? others.map(function (u) {
+      const opts = ROLE_OPTS.map((r) => '<option value="' + r + '"' + (u.role === r ? ' selected' : '') + '>' + Auth.roleLabel(r) + '</option>').join('');
+      return '<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0;border-top:1px solid #22262D">' +
+        '<div style="flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:500">' + esc(u.name) + '</span>' +
+        '<span dir="ltr" style="font-size:13px;color:#9AA1AC;text-align:right">' + esc(u.email) + (u.phone ? ' · ' + esc(u.phone) : '') + '</span></div>' +
+        '<select data-role-for="' + u.id + '" aria-label="رتبة ' + esc(u.name) + '" style="min-height:42px;padding:0 12px;border-radius:10px;border:1px solid #333943;background:#0D0F12;color:#F2F3F5;font-family:inherit;font-size:14px">' + opts + '</select></div>';
+    }).join('') : '<p style="margin:0;color:#9AA1AC;font-size:14px">ما فيه حسابات ثانية للحين. أي أحد يسجّل من الموقع يطلع هنا، وتختار رتبته.</p>';
+    box.innerHTML = '<div style="display:flex;flex-direction:column;gap:4px"><h2 style="margin:0;font-size:20px;font-weight:600">الرتب والصلاحيات</h2>' +
+      '<p style="margin:0;color:#9AA1AC;font-size:14px;line-height:1.7">أنتم الاثنين Owner ثابتين. من هنا تعيّن الأدمن والمشرفين والموظفين، والعميل رتبة عادية بدون بوابة.</p></div>' + rows;
+  }
+  document.addEventListener('change', function (e) {
+    const sel = e.target.closest('select[data-role-for]');
+    if (!sel) return;
+    // TODO(backend): PATCH /api/users/:id/role (Owner بس)
+    const r = Auth.setRole(ME.id, sel.getAttribute('data-role-for'), sel.value);
+    if (!r.ok) alert(r.error);
+    updateCounts(); renderPeople(); renderAll();
+  });
 
   document.addEventListener('click', function (e) {
     const btn = e.target.closest('[data-show-tasks]');
@@ -402,8 +454,11 @@
 
   // ---- مهمة جديدة ----
   const dlg = document.getElementById('task-dialog');
-  document.getElementById('new-task-btn').addEventListener('click', function () {
-    document.getElementById('nt-assignee').innerHTML = D.people.map((p) => '<option value="' + p.id + '">' + p.name + '</option>').join('');
+  const newBtn = document.getElementById('new-task-btn');
+  newBtn.style.display = isOwner ? 'inline-flex' : 'none';
+  newBtn.addEventListener('click', function () {
+    if (!isOwner) return;
+    document.getElementById('nt-assignee').innerHTML = '<option value="">مفتوحة (أي موظف ياخذها)</option>' + D.people.map((p) => '<option value="' + p.id + '">' + p.name + ' (' + p.title + ')</option>').join('');
     if (state.assignee) document.getElementById('nt-assignee').value = state.assignee;
     document.getElementById('nt-err').style.display = 'none';
     document.getElementById('nt-due').min = new Date().toISOString().slice(0, 10);
@@ -416,11 +471,12 @@
     const due = document.getElementById('nt-due').value;
     if (!title || !due) { document.getElementById('nt-err').style.display = ''; return; }
     const items = document.getElementById('nt-items').value.split('\n').map((x) => x.trim()).filter(Boolean).map((text) => ({ text, done: false }));
-    // TODO(backend): أرسل POST /api/tasks بدل الإضافة في الذاكرة.
+    // TODO(backend): أرسل POST /api/tasks (Owner بس).
+    if (!isOwner) return;
     const task = {
       id: 't' + Date.now(), title,
       project: document.getElementById('nt-project').value.trim() || 'عام',
-      assignee: document.getElementById('nt-assignee').value, due,
+      assignee: document.getElementById('nt-assignee').value || null, due,
       priority: document.getElementById('nt-prio').value, items
     };
     D.tasks.unshift(task);
@@ -429,6 +485,26 @@
     ['nt-title', 'nt-project', 'nt-due', 'nt-items'].forEach((id) => { document.getElementById(id).value = ''; });
     dlg.close();
     state.status = 'all';
+    updateCounts(); renderAll(); renderPeople();
+  });
+
+  // ---- ياخذ مهمة مفتوحة / الـ Owner يغيّر المسؤول ----
+  document.addEventListener('click', function (e) {
+    const claim = e.target.closest('[data-claim]');
+    if (!claim) return;
+    const t = D.tasks.find((x) => x.id === claim.getAttribute('data-claim'));
+    if (!t || t.assignee || !Auth.can('claimTask', ME)) return;
+    // TODO(backend): POST /api/tasks/:id/claim
+    t.assignee = ME.id; D.save();
+    updateCounts(); renderAll(); renderPeople();
+  });
+  document.addEventListener('change', function (e) {
+    const sel = e.target.closest('select[data-assign]');
+    if (!sel || !isOwner) return;
+    const t = D.tasks.find((x) => x.id === sel.getAttribute('data-assign'));
+    if (!t) return;
+    // TODO(backend): PATCH /api/tasks/:id { assignee } (Owner بس)
+    t.assignee = sel.value || null; D.save();
     updateCounts(); renderAll(); renderPeople();
   });
 

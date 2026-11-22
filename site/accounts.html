@@ -177,10 +177,13 @@
   </nav>
 </div>
 
+<script src="js/auth.js"></script>
 <script src="js/portal-data.js"></script>
+<script src="js/portal-shell.js"></script>
 <script>
 (function () {
   const D = PortalData;
+  if (!Auth.guard({ staff: true, perm: 'viewAccounts' })) return;
   const state = { month: '2026-11', form: { name: '', cat: 'site', amount: '', month: '2026-11' } };
   let nextId = D.moneyEntries.reduce((n, e) => Math.max(n, e.id), 0) + 1;
 

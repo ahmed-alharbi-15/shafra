@@ -39,6 +39,36 @@
 - المهام، قائمة الموظفين، الحسابات والدخل: تُجلب من الـ API وترجع فاضية أو 403 لمن ما له صلاحية. الأدمن بس يشوف الحسابات والدخل والمهام كلها؛ الموظف يشوف مهامه.
 - `site/api.js` فيه `requireLogin()`: استدعيها أول شي في كل صفحة بوابة، وعند 401/403 يرجّعه لـ `login.html`.
 
+## الحسابات والرتب (مبنية بالمتصفح، تنتظر باكند نايف)
+
+- **الرتب:** `owner` (أحمد ونايف، ثابتين) > `admin` > `moderator` > `employee` > `client`. تعريفها وصلاحياتها في `site/js/auth.js` (`ROLES` و`PERMS`).
+- **الدخول:** `login.html` فيه «تسجيل دخول» و«إنشاء حساب» (يطلع عميل)، و«تذكرني» (localStorage) وبدونه الجلسة تنتهي بقفل المتصفح (sessionStorage). بعد الدخول: موظف أو أعلى يروح `team.html`، والعميل `account.html`.
+- **حسابي (`account.html`) لكل الرتب:** الاسم والجوال، المجال واللغات (القوائم في `js/skills-data.js`)، تغيير الإيميل وكلمة المرور، وحذف الحساب.
+- **الخصوصية:** رقم الجوال يشوفه الـ Owner وصاحب الحساب بس. الاسم والإيميل والمجال واللغات تظهر لفريق البوابة.
+- **الصلاحيات:** Owner بس يضيف المهام ويحدد مين ياخذها ويعيّن الرتب. أي موظف ياخذ مهمة مفتوحة. الأدمن والـ Owner يشوفون الحسابات. العميل ما يشوف زر البوابة.
+- **حسابات Owner التجريبية:** `ahmed@shafra.local` و`naif@shafra.local`، والكلمة المؤقتة تنقال لهم برا الريبو. يغيّرونها من «حسابي» أول دخول. TODO(backend): الحسابات الحقيقية تجي من السيرفر وتُحذف بيانات `SEED_OWNERS` من `auth.js`.
+
+### عقد الـ API المطلوب من نايف
+
+كل endpoint يتحقق من التوكن والرتبة في السيرفر. الواجهة ما تُعتمد للأمان.
+
+| الطلب | الوصف | مين |
+|---|---|---|
+| `POST /api/auth/register` | `{name,email,phone?,password}` → عميل + توكن | الكل |
+| `POST /api/auth/login` | `{email,password,remember}` → توكن (طويل لو remember) | الكل |
+| `GET /api/me` / `PATCH /api/me` | `{name,phone,domains[],languages[]}` | صاحب الحساب |
+| `POST /api/me/email` | `{newEmail,password}` | صاحب الحساب |
+| `POST /api/me/password` | `{oldPassword,newPassword}` | صاحب الحساب |
+| `DELETE /api/me` | `{password}`، يرفض لو owner، والمهام ترجع مفتوحة | صاحب الحساب |
+| `GET /api/people` | موظفين (رتبة غير عميل)، `phone` ما يرجع إلا للـ owner ولصاحب الحساب | موظف+ |
+| `PATCH /api/users/:id/role` | `{role: admin\|moderator\|employee\|client}`، owner ما يتغير | owner |
+| `GET /api/tasks` | owner/admin/moderator: الكل. موظف: مهامه + المفتوحة | موظف+ |
+| `POST /api/tasks` | `{title,project,due,priority,assignee?,items[]}` | owner |
+| `PATCH /api/tasks/:id` | `{assignee}` | owner |
+| `POST /api/tasks/:id/claim` | ياخذ مهمة بدون مسؤول | موظف+ |
+| `PATCH /api/tasks/:id/items/:i` | `{done}` | المسؤول أو owner |
+| `GET/POST/DELETE /api/income` | الحسابات والدخل | owner، admin |
+
 ## الستاك والقواعد
 
 - HTML + CSS + JavaScript **بدون مكتبات وبدون build step**. النشر على **Vercel**.

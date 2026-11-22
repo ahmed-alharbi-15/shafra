@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>شفرة — حسابي</title>
+<meta name="description" content="حسابك في شفرة: بياناتك، الإيميل، كلمة المرور، المجال واللغات.">
+<meta name="theme-color" content="#0D0F12">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/shafra-icon.png">
+<link rel="apple-touch-icon" href="assets/shafra-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/styles.css">
+<script>try{if(sessionStorage.getItem('shafra_loaded'))document.documentElement.classList.add('no-loading');}catch(e){}</script>
+<link rel="stylesheet" href="css/transition.css">
+<link rel="stylesheet" href="css/loading.css">
+<style>
+.acc-card{padding:28px;background:#15181D;border:1px solid #262A31;border-radius:20px;display:flex;flex-direction:column;gap:18px}
+.acc-card h2{margin:0;font-size:20px;font-weight:600}
+.acc-lb{display:flex;flex-direction:column;gap:8px;font-size:14px;color:#B4BAC4}
+.acc-in{min-height:48px;padding:0 14px;border-radius:10px;border:1px solid #333943;background:#0F1215;color:#F2F3F5;font-size:15px;font-family:inherit;box-sizing:border-box;width:100%;text-align:right}
+.acc-btn{min-height:48px;padding:0 22px;border-radius:12px;border:0;background:var(--accent);color:#0D0F12;font-weight:600;font-size:15px;font-family:inherit;cursor:pointer;align-self:flex-start}
+.acc-btn.danger{background:#E5484D;color:#fff}
+.acc-btn.ghost{background:transparent;border:1px solid #333943;color:#D7DBE1}
+.acc-msg{margin:0;font-size:14px;min-height:0}
+.acc-msg.ok{color:var(--accent)} .acc-msg.err{color:#FFB547}
+.pick-chip{min-height:38px;padding:0 14px;border-radius:99px;border:1px solid #333943;background:transparent;color:#C9CED6;font-family:inherit;font-size:14px;cursor:pointer}
+.pick-chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#0D0F12;font-weight:600}
+.pick-box{display:flex;flex-wrap:wrap;gap:8px;max-height:260px;overflow:auto;padding:4px}
+</style>
+</head>
+<body>
+<div id="site-transition-bar" aria-hidden="true"></div>
+<div id="site-transition-dim" aria-hidden="true"></div>
+<span id="site-transition-label" class="mono" aria-hidden="true">loading…</span>
+<div id="site-loading" role="status" aria-live="polite" aria-label="جاري تحميل شفرة">
+  <div class="site-loading-glow" aria-hidden="true"></div>
+  <img src="assets/shafra-logo.png" alt="شفرة" width="260" height="158" class="site-loading-logo">
+  <div class="site-loading-bar">
+    <div class="site-loading-segs">
+      <div class="site-loading-track"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="site-loading-fill"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="site-loading-row">
+      <span class="site-loading-msgwrap"><span class="mono site-loading-caret-prefix">&gt;</span><span class="msg">نجهّز الكود</span><span class="site-loading-caret"></span></span>
+      <span class="mono site-loading-pct" dir="ltr"><span class="pct">0</span>%</span>
+    </div>
+  </div>
+  <div class="site-loading-coffee">
+    <svg width="56" height="56" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+      <g class="steam steam-a"><rect x="5" y="1" width="1" height="2" fill="#9AA1AC"></rect><rect x="8" y="0" width="1" height="2" fill="#9AA1AC"></rect></g>
+      <g class="steam steam-b"><rect x="6" y="2" width="1" height="2" fill="#9AA1AC"></rect><rect x="9" y="1" width="1" height="2" fill="#9AA1AC"></rect></g>
+      <rect x="3" y="5" width="9" height="1" fill="#2A1A10"></rect>
+      <rect x="3" y="6" width="9" height="7" fill="#B8F34A"></rect>
+      <rect x="4" y="13" width="7" height="1" fill="#B8F34A"></rect>
+      <rect x="12" y="7" width="2" height="1" fill="#B8F34A"></rect><rect x="13" y="8" width="1" height="3" fill="#B8F34A"></rect><rect x="12" y="11" width="2" height="1" fill="#B8F34A"></rect>
+      <rect x="4" y="7" width="1" height="4" fill="#D4FF7A"></rect>
+      <rect x="2" y="14" width="12" height="1" fill="#2A2645"></rect>
+    </svg>
+    <span>لحظة… نصب القهوة ونجهّز لك الشغل</span>
+  </div>
+</div>
+<div dir="rtl" style="min-height: 100vh">
+  <header style="border-bottom: 1px solid #22262D">
+    <div style="max-width: 1000px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+      <a href="index.html" class="logo-link" style="display: flex; align-items: center"><img src="assets/shafra-logo.png" alt="شفرة — الرئيسية" width="79" height="48" style="display: block; width: 79px; height: 48px"></a>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap">
+        <a id="portal-link" href="team.html" style="display: none; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 10px; background: var(--accent); color: #0D0F12; font-weight: 600; font-size: 14px; text-decoration: none">بوابة الفريق ←</a>
+        <a href="index.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #333943; color: #D7DBE1; font-size: 14px; text-decoration: none">الموقع</a>
+        <button type="button" id="logout" class="acc-btn ghost" style="min-height: 44px">تسجيل الخروج</button>
+      </div>
+    </div>
+  </header>
+
+  <main style="max-width: 1000px; margin: 0 auto; padding: 40px 24px 80px; display: flex; flex-direction: column; gap: 20px">
+    <section class="acc-card" style="flex-direction: row; align-items: center; gap: 18px; flex-wrap: wrap">
+      <span id="a-initial" style="width: 72px; height: 72px; border-radius: 20px; background: #1E2228; border: 1px solid #333943; display: inline-flex; align-items: center; justify-content: center; color: var(--accent); font-size: 30px; font-weight: 700"></span>
+      <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap"><h1 id="a-name" style="margin: 0; font-size: 26px; font-weight: 700"></h1><span id="a-role" style="font-size: 13px; padding: 4px 12px; border-radius: 99px; border: 1px solid #333943; color: #C9CED6"></span></div>
+        <span id="a-email" dir="ltr" style="color: #9AA1AC; font-size: 15px; text-align: right"></span>
+      </div>
+    </section>
+
+    <form id="f-info" class="acc-card" novalidate>
+      <h2>بياناتي</h2>
+      <label class="acc-lb">الاسم <input id="i-name" class="acc-in" type="text" autocomplete="name"></label>
+      <label class="acc-lb">رقم الجوال <span style="color: #6E7681">(شخصي: ما يشوفه غير مالك الموقع Owner)</span>
+        <input id="i-phone" class="acc-in" type="tel" dir="ltr" autocomplete="tel" placeholder="05xxxxxxxx"></label>
+      <p class="acc-msg" id="m-info" role="status"></p>
+      <button class="acc-btn" type="submit">حفظ</button>
+    </form>
+
+    <form id="f-skills" class="acc-card" novalidate>
+      <h2>مجالي ولغاتي</h2>
+      <p style="margin: 0; color: #9AA1AC; font-size: 14px; line-height: 1.8">اختر المجالات اللي تفهم فيها واللغات اللي تستخدمها. تظهر في ملفك لأعضاء الفريق.</p>
+      <label class="acc-lb">المجالات <span id="c-domains" style="color: #6E7681"></span>
+        <input id="s-domains" class="acc-in" type="search" placeholder="ابحث في المجالات…"></label>
+      <div id="pick-domains" class="pick-box" role="group" aria-label="المجالات"></div>
+      <label class="acc-lb">لغات البرمجة <span id="c-langs" style="color: #6E7681"></span>
+        <input id="s-langs" class="acc-in" type="search" dir="ltr" placeholder="Search languages…"></label>
+      <div id="pick-langs" class="pick-box" dir="ltr" role="group" aria-label="لغات البرمجة"></div>
+      <p class="acc-msg" id="m-skills" role="status"></p>
+      <button class="acc-btn" type="submit">حفظ المجال واللغات</button>
+    </form>
+
+    <form id="f-email" class="acc-card" novalidate>
+      <h2>تغيير الإيميل</h2>
+      <label class="acc-lb">الإيميل الجديد <input id="e-new" class="acc-in" type="email" dir="ltr" autocomplete="email"></label>
+      <label class="acc-lb">كلمة المرور الحالية <input id="e-pw" class="acc-in" type="password" dir="ltr" autocomplete="current-password"></label>
+      <p class="acc-msg" id="m-email" role="status"></p>
+      <button class="acc-btn" type="submit">تغيير الإيميل</button>
+    </form>
+
+    <form id="f-pw" class="acc-card" novalidate>
+      <h2>تغيير كلمة المرور</h2>
+      <label class="acc-lb">كلمة المرور الحالية <input id="p-old" class="acc-in" type="password" dir="ltr" autocomplete="current-password"></label>
+      <label class="acc-lb">كلمة المرور الجديدة <span style="color: #6E7681">(8 خانات أو أكثر)</span> <input id="p-new" class="acc-in" type="password" dir="ltr" autocomplete="new-password"></label>
+      <label class="acc-lb">أعد كتابتها <input id="p-new2" class="acc-in" type="password" dir="ltr" autocomplete="new-password"></label>
+      <p class="acc-msg" id="m-pw" role="status"></p>
+      <button class="acc-btn" type="submit">تغيير كلمة المرور</button>
+    </form>
+
+    <form id="f-del" class="acc-card" style="border-color: #5A2326" novalidate>
+      <h2 style="color: #FF8A8F">حذف الحساب</h2>
+      <p id="d-note" style="margin: 0; color: #B4BAC4; font-size: 14px; line-height: 1.8">حذف الحساب نهائي، وبياناتك تنمسح، وما تقدر ترجعه. المهام اللي كانت عليك ترجع مفتوحة.</p>
+      <label class="acc-lb">اكتب كلمة المرور للتأكيد <input id="d-pw" class="acc-in" type="password" dir="ltr" autocomplete="current-password"></label>
+      <label style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; color: #D7DBE1; cursor: pointer"><input id="d-ok" type="checkbox" style="width: 18px; height: 18px; margin: 0">أفهم إن الحذف نهائي</label>
+      <p class="acc-msg" id="m-del" role="status"></p>
+      <button class="acc-btn danger" id="d-btn" type="submit">حذف حسابي</button>
+    </form>
+  </main>
+</div>
+
+<script src="js/auth.js"></script>
+<script src="js/skills-data.js"></script>
+<script>
+(function () {
+  const me0 = Auth.guard();
+  if (!me0) return;
+  let me = me0;
+  const $ = (id) => document.getElementById(id);
+  const msg = (id, ok, text) => { const el = $(id); el.textContent = text; el.className = 'acc-msg ' + (ok ? 'ok' : 'err'); };
+
+  function paintHeader() {
+    me = Auth.byId(me.id) || me;
+    $('a-initial').textContent = (me.name || '؟').trim().charAt(0);
+    $('a-name').textContent = me.name;
+    $('a-email').textContent = me.email;
+    $('a-role').textContent = Auth.roleLabel(me.role);
+    $('portal-link').style.display = Auth.isStaff(me) ? 'inline-flex' : 'none';
+    if (me.role === 'owner') { $('d-btn').disabled = true; $('d-btn').style.opacity = '.5'; $('d-note').textContent = 'حساب Owner ثابت وما ينحذف من الموقع.'; }
+  }
+  paintHeader();
+  $('i-name').value = me.name; $('i-phone').value = me.phone || '';
+
+  $('logout').addEventListener('click', function () { Auth.logout('index.html'); });
+
+  // TODO(backend): PATCH /api/me { name, phone }
+  $('f-info').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const r = Auth.updateProfile(me.id, { name: $('i-name').value, phone: $('i-phone').value });
+    msg('m-info', r.ok, r.ok ? 'انحفظت بياناتك.' : r.error);
+    if (r.ok) paintHeader();
+  });
+
+  // ---- المجالات واللغات ----
+  const sel = { domains: new Set(me.domains || []), langs: new Set(me.languages || []) };
+  function paintPick(boxId, list, set, query, countId) {
+    const q = query.trim().toLowerCase();
+    // المختارة أول شي
+    const items = list.filter((x) => !q || x.toLowerCase().indexOf(q) !== -1).sort((a, b) => (set.has(b) ? 1 : 0) - (set.has(a) ? 1 : 0));
+    $(boxId).innerHTML = items.map((x) => '<button type="button" class="pick-chip" aria-pressed="' + set.has(x) + '" data-v="' + x.replace(/"/g, '&quot;') + '">' + x.replace(/</g, '&lt;') + '</button>').join('') || '<span style="color:#6E7681;font-size:14px">ما فيه نتائج.</span>';
+    $(countId).textContent = set.size ? '(' + set.size + ' مختار)' : '';
+  }
+  const repaint = () => {
+    paintPick('pick-domains', SkillsData.domains, sel.domains, $('s-domains').value, 'c-domains');
+    paintPick('pick-langs', SkillsData.languages, sel.langs, $('s-langs').value, 'c-langs');
+  };
+  repaint();
+  $('s-domains').addEventListener('input', repaint);
+  $('s-langs').addEventListener('input', repaint);
+  function bindPick(boxId, set) {
+    $(boxId).addEventListener('click', function (e) {
+      const b = e.target.closest('.pick-chip'); if (!b) return;
+      const v = b.getAttribute('data-v');
+      set.has(v) ? set.delete(v) : set.add(v);
+      b.setAttribute('aria-pressed', set.has(v) ? 'true' : 'false');
+      $(boxId === 'pick-domains' ? 'c-domains' : 'c-langs').textContent = set.size ? '(' + set.size + ' مختار)' : '';
+    });
+  }
+  bindPick('pick-domains', sel.domains); bindPick('pick-langs', sel.langs);
+  // TODO(backend): PATCH /api/me { domains, languages }
+  $('f-skills').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const r = Auth.updateProfile(me.id, { domains: Array.from(sel.domains), languages: Array.from(sel.langs) });
+    msg('m-skills', r.ok, r.ok ? 'انحفظ مجالك ولغاتك.' : r.error);
+  });
+
+  // TODO(backend): POST /api/me/email
+  $('f-email').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const r = Auth.changeEmail(me.id, $('e-new').value, $('e-pw').value);
+    msg('m-email', r.ok, r.ok ? 'تغيّر الإيميل.' : r.error);
+    if (r.ok) { $('e-new').value = ''; $('e-pw').value = ''; paintHeader(); }
+  });
+
+  // TODO(backend): POST /api/me/password
+  $('f-pw').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if ($('p-new').value !== $('p-new2').value) { msg('m-pw', false, 'كلمتين المرور مو متطابقتين.'); return; }
+    const r = Auth.changePassword(me.id, $('p-old').value, $('p-new').value);
+    msg('m-pw', r.ok, r.ok ? 'تغيّرت كلمة المرور.' : r.error);
+    if (r.ok) { $('p-old').value = ''; $('p-new').value = ''; $('p-new2').value = ''; }
+  });
+
+  // TODO(backend): DELETE /api/me
+  $('f-del').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!$('d-ok').checked) { msg('m-del', false, 'أكّد إنك فاهم إن الحذف نهائي.'); return; }
+    const r = Auth.deleteAccount(me.id, $('d-pw').value);
+    if (!r.ok) { msg('m-del', false, r.error); return; }
+    location.href = 'index.html';
+  });
+})();
+</script>
+<script src="js/transition.js"></script>
+<script src="js/loading.js"></script>
+</body>
+</html>

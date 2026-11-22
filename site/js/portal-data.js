@@ -3,25 +3,21 @@
    بطلبات API حقيقية من سيرفر FastAPI لاحقًا. كل */ // TODO(backend) تحت يشير لمكان يحتاج ربط حقيقي.
 
 const PortalData = {
-  // TODO(backend): اجلب الموظفين من /api/people بدل هذي المصفوفة.
-  people: [
-    {
-      id: 'ahmed', name: 'أحمد الحربي', initial: 'أ', role: 'Frontend Developer', status: 'متاح',
-      skills: ['HTML', 'CSS', 'JavaScript', 'Flutter'], admin: true,
-      title: 'شريك مؤسس — مطوّر واجهات', joined: '[تاريخ الانضمام]',
-      duties: ['تصميم وبرمجة واجهات المواقع والتطبيقات', 'تطبيقات الجوال بـ Flutter', 'رفع المشاريع على Vercel ومتابعة الأداء', 'التواصل مع العملاء على التصميم'],
-      meetings: { attended: 0, total: 0 },
-      history: []
-    },
-    {
-      id: 'partner', name: 'نايف الحربي', initial: 'ن', role: 'Backend Developer', status: 'مشغول',
-      skills: ['Python', 'FastAPI', 'PostgreSQL'], admin: true,
-      title: 'شريك مؤسس — مطوّر خوادم', joined: '[تاريخ الانضمام]',
-      duties: ['بناء الـ API وقواعد البيانات', 'تسجيل الدخول والصلاحيات', 'رفع السيرفرات على Render', 'حماية البيانات والنسخ الاحتياطي'],
-      meetings: { attended: 0, total: 0 },
-      history: []
-    }
-  ],
+  // الموظفين = كل حساب رتبته مو «عميل». يجي من Auth (حاليًا من المتصفح).
+  // TODO(backend): اجلبهم من GET /api/people (الرقم يرجع للـ Owner وصاحب الحساب بس).
+  get people() {
+    const viewer = Auth.current();
+    return Auth.users().filter(Auth.isStaff).map(function (u) {
+      return {
+        id: u.id, name: u.name, initial: (u.name || '؟').trim().charAt(0), email: u.email,
+        phone: Auth.canSeePhone(viewer, u) ? (u.phone || '') : null,
+        roleKey: u.role, title: Auth.roleLabel(u.role), role: (u.domains && u.domains[0]) || Auth.roleLabel(u.role),
+        admin: u.role === 'owner' || u.role === 'admin', status: 'متاح',
+        domains: u.domains || [], languages: u.languages || [], skills: u.languages || [],
+        joined: u.createdAt, duties: [], meetings: { attended: 0, total: 0 }, history: []
+      };
+    });
+  },
 
   // TODO(backend): اجلب المهام من /api/tasks، وخلّ toggle/addItem يرسلوا PATCH/POST حقيقي.
   tasks: [],
