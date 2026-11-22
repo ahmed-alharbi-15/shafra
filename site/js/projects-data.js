@@ -1,5 +1,6 @@
 /* شفرة — مصفوفة المشاريع الموحّدة. يقرأها projects/project.html عبر ?id=
-   أي قيمة بين أقواس مربعة [...] محتوى حقيقي ما وصل بعد — لا تُستبدل باختراع، فقط تُحدَّث هنا. */
+   أي قيمة بين أقواس مربعة [...] محتوى حقيقي ما وصل بعد — لا تُستبدل باختراع، فقط تُحدَّث هنا.
+   الصور: ضعها في assets/images/projects/<id>/ واكتب مسارها في heroImage و gallery ({src, alt}). الصفحة تخفي أي نص بين أقواس مربعة في الملاحظات والمعرض ولا تعرضه للزوار. */
 
 const ProjectsData = [
   {
@@ -11,8 +12,9 @@ const ProjectsData = [
     title: 'سفرة',
     summary: 'منصة عربية لاكتشاف السفر والأكل — تتصفح الدول والمدن، تعرف وش تاكل فيها، وتطبخ وصفاتها في بيتك.',
     metaDescription: 'سفرة: منصة عربية لاكتشاف السفر والأكل — تتصفح الدول والمدن، تعرف وش تاكل فيها، وتطبخ وصفاتها في بيتك.',
-    meta: { type: 'موقع + سيرفر', audience: 'السعودية والعالم العربي', year: '[السنة]', url: '[رابط الموقع]' },
-    heroNote: '[ضع هنا لقطة شاشة حقيقية من الصفحة الرئيسية]',
+    meta: { type: 'موقع + سيرفر', audience: 'السعودية والعالم العربي', year: '[السنة]', url: 'https://sofrh.vercel.app/' },
+    heroNote: '',
+    heroImage: 'assets/images/projects/sofrah/home.png',
     challenge: { title: 'محتوى سفر وأكل عربي، مرتب وسهل', body: 'أغلب محتوى السفر والطبخ بالإنجليزي أو مبعثر بين حسابات. احتجنا منصة عربية واحدة تجمع الدول والمدن والأكلات، وتبقى سريعة رغم مئات الصور.' },
     solution: { title: 'واجهة خفيفة + سيرفر مستقل', body: 'واجهة بـ HTML و CSS و JavaScript بدون أي مكتبات، وسيرفر FastAPI مع قاعدة PostgreSQL، والصور كلها على Cloudinary بدل التخزين المحلي — أكثر من ٣٠٠ صورة بدون ما يثقل الموقع.' },
     features: [
@@ -25,7 +27,11 @@ const ProjectsData = [
       frontend: { owner: 'أحمد الحربي', items: ['HTML', 'CSS', 'JavaScript', 'Vercel', 'Cloudinary'] },
       backend: { owner: 'نايف الحربي', items: ['Python', 'FastAPI', 'PostgreSQL', 'Render'] }
     },
-    gallery: ['[لقطة: صفحة دولة]', '[لقطة: صفحة وصفة]', '[لقطة: نسخة الجوال]']
+    gallery: [
+      { src: 'assets/images/projects/sofrah/country.png', alt: 'صفحة دولة في سفرة' },
+      { src: 'assets/images/projects/sofrah/recipe.png', alt: 'صفحة وصفة في سفرة' },
+      { src: 'assets/images/projects/sofrah/mobile.png', alt: 'سفرة على الجوال' }
+    ]
   },
   {
     id: 'city-challenge',
