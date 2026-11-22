@@ -28,7 +28,7 @@
 .acc-msg.ok{color:var(--accent)} .acc-msg.err{color:#FFB547}
 .pick-chip{min-height:38px;padding:0 14px;border-radius:99px;border:1px solid #333943;background:transparent;color:#C9CED6;font-family:inherit;font-size:14px;cursor:pointer}
 .pick-chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#0D0F12;font-weight:600}
-.pick-box{display:flex;flex-wrap:wrap;gap:8px;max-height:260px;overflow:auto;padding:4px}
+.pick-box{display:flex;flex-wrap:wrap;gap:8px;max-height:260px;overflow:auto;padding:4px;scrollbar-width:thin;scrollbar-color:#333943 transparent}
 </style>
 </head>
 <body>
@@ -92,7 +92,7 @@
       <button class="acc-btn" type="submit">حفظ</button>
     </form>
 
-    <form id="f-skills" class="acc-card" novalidate>
+    <form id="f-skills" class="acc-card" style="display: none" novalidate>
       <h2>مجالي ولغاتي</h2>
       <p style="margin: 0; color: #9AA1AC; font-size: 14px; line-height: 1.8">اختر المجالات اللي تفهم فيها واللغات اللي تستخدمها. تظهر في ملفك لأعضاء الفريق.</p>
       <label class="acc-lb">المجالات <span id="c-domains" style="color: #6E7681"></span>
@@ -150,6 +150,7 @@
     $('a-email').textContent = me.email;
     $('a-role').textContent = Auth.roleLabel(me.role);
     $('portal-link').style.display = Auth.isStaff(me) ? 'inline-flex' : 'none';
+    $('f-skills').style.display = Auth.isStaff(me) ? 'flex' : 'none'; // المجال واللغات للموظفين بس
     if (me.role === 'owner') { $('d-btn').disabled = true; $('d-btn').style.opacity = '.5'; $('d-note').textContent = 'حساب Owner ثابت وما ينحذف من الموقع.'; }
   }
   paintHeader();
