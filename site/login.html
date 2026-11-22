@@ -118,6 +118,7 @@
         return;
       }
       // TODO(backend): استبدل هذا بطلب POST /api/auth/login حقيقي.
+      try { localStorage.setItem('shafra_demo_login', '1'); } catch (e) {}
       window.location.href = 'team.html';
     });
   })();
