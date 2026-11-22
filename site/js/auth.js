@@ -90,8 +90,9 @@ const Auth = (function () {
     try { list = JSON.parse(localStorage.getItem(KEY_USERS) || '[]'); } catch (e) { list = []; }
     if (!Array.isArray(list)) list = [];
     let changed = false;
+    const hasApi = list.some((u) => u.source === 'api');
     SEED_OWNERS.forEach(function (seed) {
-      if (!list.some((u) => u.id === seed.id)) {
+      if (!hasApi && !list.some((u) => u.id === seed.id)) {
         list.unshift(Object.assign({ phone: '', createdAt: '2026-11-01' }, seed));
         changed = true;
       }
@@ -159,8 +160,23 @@ const Auth = (function () {
     return { ok: true, user: u };
   }
 
+  // يحوّل مستخدم الباكند (نايف) لحساب محلي للجلسة. التوكن الحقيقي يحفظه api.js.
+  // TODO(backend): الباكند يرجع is_admin بس. لما يضيف حقل role (owner/admin/moderator/employee/client) استخدمه هنا.
+  function adoptApi(u, remember) {
+    const id = 'b' + u.id;
+    const rec = {
+      id, apiId: u.id, source: 'api', name: u.name, email: String(u.email || '').toLowerCase(), phone: u.phone || '',
+      role: u.role_key || (u.is_admin ? 'owner' : 'employee'), domains: u.domains || [], languages: u.skills || [],
+      createdAt: u.joined || new Date().toISOString().slice(0, 10)
+    };
+    const list = readUsers().filter((x) => x.id !== id && !(x.id === 'ahmed' && !x.source) && !(x.id === 'partner' && !x.source));
+    list.push(rec); writeUsers(list);
+    setSession(id, !!remember);
+    return rec;
+  }
+
   function logout(redirect) {
-    try { sessionStorage.removeItem(KEY_SESSION); localStorage.removeItem(KEY_SESSION); } catch (e) {}
+    try { sessionStorage.removeItem(KEY_SESSION); localStorage.removeItem(KEY_SESSION); localStorage.removeItem('token'); } catch (e) {}
     if (redirect !== false) location.href = typeof redirect === 'string' ? redirect : 'index.html';
   }
 
@@ -247,7 +263,7 @@ const Auth = (function () {
     ROLES, STAFF, PERMS,
     users: readUsers, byId: (id) => readUsers().find((u) => u.id === id) || null,
     current, can, isStaff, homeFor, canSeePhone, guard,
-    register, login, logout, updateProfile, changeEmail, changePassword, deleteAccount, setRole,
+    adoptApi, register, login, logout, updateProfile, changeEmail, changePassword, deleteAccount, setRole,
     roleLabel: (r) => ROLES[r] || r
   };
 })();
