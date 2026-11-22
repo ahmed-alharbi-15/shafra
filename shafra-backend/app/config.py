@@ -1,3 +1,4 @@
+import json
 from functools import lru_cache
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -20,6 +21,10 @@ class Settings(BaseSettings):
     ADMIN_PASSWORD: str = ""
     ADMIN_NAME: str = "أحمد الحربي"
 
+    # حسابات Owner (المالكين): تنشأ تلقائيًا وتتحمي من الإيقاف. كلمات المرور تنكتب في Render فقط، مو في الكود.
+    # الشكل (سطر واحد): [{"name":"...","email":"...","password":"..."}, {"name":"...","email":"...","password":"..."}]
+    OWNERS: str = ""
+
     @property
     def database_url(self) -> str:
         url = self.DATABASE_URL
@@ -29,6 +34,19 @@ class Settings(BaseSettings):
         elif url.startswith("postgresql://"):
             url = url.replace("postgresql://", "postgresql+psycopg://", 1)
         return url
+
+    @property
+    def owner_accounts(self) -> list[dict]:
+        if not self.OWNERS.strip():
+            return []
+        try:
+            data = json.loads(self.OWNERS)
+        except ValueError:
+            return []
+        return [o for o in data if isinstance(o, dict) and o.get("email") and o.get("password")]
+
+    def is_owner_email(self, email: str) -> bool:
+        return email.lower() in {str(o["email"]).lower() for o in self.owner_accounts}
 
     @property
     def cors_origins(self) -> list[str]:

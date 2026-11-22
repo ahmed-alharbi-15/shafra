@@ -75,6 +75,7 @@ class MemberOut(BaseModel):
     initial: str
     email: str
     is_admin: bool
+    is_owner: bool = False
     is_active: bool
     role: str
     title: str

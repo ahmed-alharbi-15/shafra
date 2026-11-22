@@ -34,11 +34,35 @@ def create_first_admin() -> None:
         db.commit()
 
 
+def create_owners() -> None:
+    """ينشئ حسابات Owner من متغير OWNERS. الموجود ما تتغير كلمة مروره، بس يتأكد إنه أدمن وفعّال."""
+    with SessionLocal() as db:
+        for o in settings.owner_accounts:
+            email = str(o["email"]).lower()
+            user = db.scalar(select(User).where(User.email == email))
+            if user:
+                user.is_admin = True
+                user.is_active = True
+                continue
+            db.add(
+                User(
+                    name=o.get("name") or email.split("@")[0],
+                    email=email,
+                    hashed_password=hash_password(str(o["password"])),
+                    is_admin=True,
+                    role=o.get("role", ""),
+                    title=o.get("title", "شريك مؤسس"),
+                )
+            )
+        db.commit()
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # ينشئ الجداول تلقائيًا أول ما يشتغل السيرفر
     Base.metadata.create_all(bind=engine)
     create_first_admin()
+    create_owners()
     yield
 
 

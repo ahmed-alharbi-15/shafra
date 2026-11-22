@@ -5,6 +5,7 @@ from datetime import date
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
+from .config import get_settings
 from .models import Task, TaskItem, User
 from .schemas import HistoryRow, ItemOut, MemberOut, OpenTaskRow, ProfileOut, TaskOut
 
@@ -65,6 +66,7 @@ def member_out(db: Session, user: User) -> MemberOut:
         initial=initial_of(user.name),
         email=user.email,
         is_admin=user.is_admin,
+        is_owner=get_settings().is_owner_email(user.email),
         is_active=user.is_active,
         role=user.role,
         title=user.title,

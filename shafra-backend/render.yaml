@@ -21,6 +21,8 @@ services:
         sync: false
       - key: ADMIN_PASSWORD
         sync: false
+      - key: OWNERS
+        sync: false
       - key: ADMIN_NAME
         value: أحمد الحربي
 

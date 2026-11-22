@@ -161,12 +161,12 @@ const Auth = (function () {
   }
 
   // يحوّل مستخدم الباكند (نايف) لحساب محلي للجلسة. التوكن الحقيقي يحفظه api.js.
-  // TODO(backend): الباكند يرجع is_admin بس. لما يضيف حقل role (owner/admin/moderator/employee/client) استخدمه هنا.
+  // الباكند يرجع is_owner و is_admin. TODO(backend): لما يضيف رتبة moderator/client استخدم role_key.
   function adoptApi(u, remember) {
     const id = 'b' + u.id;
     const rec = {
       id, apiId: u.id, source: 'api', name: u.name, email: String(u.email || '').toLowerCase(), phone: u.phone || '',
-      role: u.role_key || (u.is_admin ? 'owner' : 'employee'), domains: u.domains || [], languages: u.skills || [],
+      role: u.role_key || (u.is_owner ? 'owner' : (u.is_admin ? 'admin' : 'employee')), domains: u.domains || [], languages: u.skills || [],
       createdAt: u.joined || new Date().toISOString().slice(0, 10)
     };
     const list = readUsers().filter((x) => x.id !== id && !(x.id === 'ahmed' && !x.source) && !(x.id === 'partner' && !x.source));

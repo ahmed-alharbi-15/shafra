@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from ..config import get_settings
 from ..database import get_db
 from ..models import User
 from ..schemas import MemberCreate, MemberOut, MemberUpdate, PasswordReset, ProfileOut
@@ -9,6 +10,13 @@ from ..security import get_current_user, hash_password, require_admin
 from ..serializers import member_out, profile_out
 
 router = APIRouter(prefix="/api/team", tags=["Team"])
+
+
+def guard_owner(target: User, actor: User) -> None:
+    """حساب Owner ما يعدله إلا Owner ثاني أو صاحبه نفسه"""
+    cfg = get_settings()
+    if cfg.is_owner_email(target.email) and not cfg.is_owner_email(actor.email):
+        raise HTTPException(status_code=403, detail="حساب Owner محمي، يعدله Owner فقط")
 
 
 @router.get("", response_model=list[MemberOut])
@@ -45,6 +53,7 @@ def update_member(user_id: int, data: MemberUpdate, admin: User = Depends(requir
     user = db.get(User, user_id)
     if not user:
         raise HTTPException(status_code=404, detail="الموظف غير موجود")
+    guard_owner(user, admin)
     values = data.model_dump(exclude_unset=True)
     if user.id == admin.id and (values.get("is_admin") is False or values.get("is_active") is False):
         raise HTTPException(status_code=400, detail="ما تقدر تشيل صلاحيتك أو توقف حسابك بنفسك")
@@ -61,11 +70,12 @@ def update_member(user_id: int, data: MemberUpdate, admin: User = Depends(requir
 
 
 @router.post("/{user_id}/reset-password", status_code=204)
-def reset_password(user_id: int, data: PasswordReset, _: User = Depends(require_admin), db: Session = Depends(get_db)):
+def reset_password(user_id: int, data: PasswordReset, admin: User = Depends(require_admin), db: Session = Depends(get_db)):
     """«نسيت كلمة المرور؟» — الأدمن يحط له كلمة مرور جديدة"""
     user = db.get(User, user_id)
     if not user:
         raise HTTPException(status_code=404, detail="الموظف غير موجود")
+    guard_owner(user, admin)
     user.hashed_password = hash_password(data.new_password)
     db.commit()
 
@@ -78,5 +88,7 @@ def deactivate_member(user_id: int, admin: User = Depends(require_admin), db: Se
         raise HTTPException(status_code=404, detail="الموظف غير موجود")
     if user.id == admin.id:
         raise HTTPException(status_code=400, detail="ما تقدر توقف حسابك")
+    if get_settings().is_owner_email(user.email):
+        raise HTTPException(status_code=403, detail="حساب Owner محمي وما ينوقف")
     user.is_active = False
     db.commit()
