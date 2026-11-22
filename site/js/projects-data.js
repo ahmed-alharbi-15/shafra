@@ -29,6 +29,7 @@ const ProjectsData = [
     },
     gallery: [
       { src: 'assets/images/projects/sofrah/country.png', alt: 'صفحة دولة في سفرة' },
+      { src: 'assets/images/projects/sofrah/activities.png', alt: 'صفحة الفعاليات في سفرة' },
       { src: 'assets/images/projects/sofrah/recipe.png', alt: 'صفحة وصفة في سفرة' },
       { src: 'assets/images/projects/sofrah/mobile.png', alt: 'سفرة على الجوال' }
     ]
