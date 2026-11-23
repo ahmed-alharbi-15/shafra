@@ -272,6 +272,9 @@ if (Auth.guard({ staff: true })) PortalData.ready.then(function () {
         const opts = '<option value=""' + (t.assignee ? '' : ' selected') + '>مفتوحة للجميع</option>' + D.people.map((p) => '<option value="' + p.id + '"' + (p.id === t.assignee ? ' selected' : '') + '>' + esc(p.name) + ' (' + esc(p.title) + ')</option>').join('');
         controlsHtml += '<div style="border-top:1px solid #22262D;padding:12px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap"><label style="display:flex;align-items:center;gap:10px;font-size:14px;color:#B4BAC4">المسؤول عن المهمة<select data-assign="' + t.id + '" style="min-height:40px;padding:0 10px;border-radius:10px;border:1px solid #333943;background:#0D0F12;color:#F2F3F5;font-family:inherit;font-size:14px">' + opts + '</select></label></div>';
       }
+      if (Auth.can('deleteTask', ME)) {
+        controlsHtml += '<div style="border-top:1px solid #22262D;padding:10px 22px;display:flex;justify-content:flex-end"><button type="button" data-delete-task="' + t.id + '" style="min-height:40px;padding:0 16px;border-radius:10px;border:1px solid #6B2D2D;background:transparent;color:#FFB4B4;font-family:inherit;font-size:14px;cursor:pointer">حذف المهمة</button></div>';
+      }
       const open = !!state.open[t.id];
       const itemsHtml = t.items.map(function (it, idx) {
         const textStyle = it.done ? 'font-size:15px;color:#6E7681;text-decoration:line-through' : 'font-size:15px;color:#E4E7EB';
@@ -429,6 +432,18 @@ if (Auth.guard({ staff: true })) PortalData.ready.then(function () {
       showView('tasks');
       renderAll();
     }
+  });
+
+  // ---- حذف مهمة (Owner والمشرف) ----
+  document.addEventListener('click', async function (e) {
+    const del = e.target.closest('[data-delete-task]');
+    if (!del || !Auth.can('deleteTask', ME)) return;
+    const id = del.getAttribute('data-delete-task');
+    const t = D.tasks.find((x) => String(x.id) === id);
+    if (!t || !confirm('تحذف المهمة «' + t.title + '»؟ ما تقدر تسترجعها.')) return;
+    del.disabled = true;
+    if (await D.deleteTask(id)) { updateCounts(); renderAll(); renderPeople(); }
+    else del.disabled = false;
   });
 
   // ---- tabs ----

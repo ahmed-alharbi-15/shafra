@@ -22,7 +22,7 @@ PERMS = {
     # المشرف يضيف المهام ويوزعها ويتابع الموظفين؛ الحذف والرتب والمال للـ Owner
     "createTask": ("owner", "admin", "moderator"),
     "assignTask": ("owner", "admin", "moderator"),
-    "deleteTask": ("owner",),
+    "deleteTask": ("owner", "admin", "moderator"),
     "claimTask": ("owner", "admin", "moderator", "employee"),
     "seePhones": ("owner",),
     "manageRoles": ("owner",),

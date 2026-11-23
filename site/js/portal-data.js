@@ -115,6 +115,13 @@ const PortalData = {
       assignee: data.assignee ? Number(data.assignee) : null, items: data.items.map((i) => i.text)
     } })));
   },
+  deleteTask(taskId) {
+    return this.run(async () => {
+      await Auth.request('/api/tasks/' + taskId, { method: 'DELETE' });
+      this.tasks = this.tasks.filter((t) => String(t.id) !== String(taskId));
+      return true;
+    });
+  },
   setAssignee(taskId, assignee) {
     return this.run(async () => this._replaceTask(await Auth.request('/api/tasks/' + taskId, { method: 'PATCH', body: { assignee: assignee ? Number(assignee) : null } })));
   },

@@ -28,7 +28,7 @@ const Auth = (function () {
     viewAllTasks: ['owner', 'admin', 'moderator'],
     createTask:   ['owner', 'admin', 'moderator'], // يضيف مهمة جديدة
     assignTask:   ['owner', 'admin', 'moderator'], // يوزّع المهام ويتابع الموظفين
-    deleteTask:   ['owner'],
+    deleteTask:   ['owner', 'admin', 'moderator'], // يحذف مهمة
     claimTask:    ['owner', 'admin', 'moderator', 'employee'],
     seePhones:    ['owner'],
     manageRoles:  ['owner']
