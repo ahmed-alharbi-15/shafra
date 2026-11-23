@@ -19,8 +19,10 @@ PERMS = {
     "viewPortal": ("owner", "admin", "moderator", "employee"),
     "viewAccounts": ("owner", "admin"),
     "viewAllTasks": ("owner", "admin", "moderator"),
-    "createTask": ("owner",),
-    "assignTask": ("owner",),
+    # المشرف يضيف المهام ويوزعها ويتابع الموظفين؛ الحذف والرتب والمال للـ Owner
+    "createTask": ("owner", "admin", "moderator"),
+    "assignTask": ("owner", "admin", "moderator"),
+    "deleteTask": ("owner",),
     "claimTask": ("owner", "admin", "moderator", "employee"),
     "seePhones": ("owner",),
     "manageRoles": ("owner",),

@@ -254,7 +254,7 @@ if (Auth.guard({ staff: true })) PortalData.ready.then(function () {
     const scoped = scopedTasks().filter((t) => state.status === 'all' || D.statusOf(t) === state.status);
     const list = document.getElementById('task-list');
     if (scoped.length === 0) {
-      list.innerHTML = '<p style="margin:24px 0;text-align:center;color:#9AA1AC">' + (visibleTasks().length === 0 ? (isOwner ? 'ما فيه مهام للحين. اضغط «مهمة جديدة» وأضف أول مهمة.' : 'ما فيه مهام لك للحين. لما يضيف المالك مهمة تطلع هنا.') : 'ما فيه مهام بهذي الحالة.') + '</p>';
+      list.innerHTML = '<p style="margin:24px 0;text-align:center;color:#9AA1AC">' + (visibleTasks().length === 0 ? (isOwner ? 'ما فيه مهام للحين. اضغط «مهمة جديدة» وأضف أول مهمة.' : 'ما فيه مهام لك للحين. لما يضيف المشرف أو المالك مهمة تطلع هنا.') : 'ما فيه مهام بهذي الحالة.') + '</p>';
       return;
     }
     list.innerHTML = scoped.map(function (t, ti) {
@@ -386,14 +386,19 @@ if (Auth.guard({ staff: true })) PortalData.ready.then(function () {
   // إدارة الرتب: Owner بس. يعيّن أدمن / مشرف / موظف لأي حساب مسجّل.
   function renderRoleManager() {
     let box = document.getElementById('role-manager');
-    if (!isOwner) { if (box) box.remove(); return; }
+    if (!Auth.can('manageRoles', ME)) { if (box) box.remove(); return; }
     if (!box) {
       box = document.createElement('section');
       box.id = 'role-manager';
       box.style.cssText = 'display:flex;flex-direction:column;gap:14px;padding:24px;background:#15181D;border:1px solid #262A31;border-radius:16px';
       document.getElementById('view-people').appendChild(box);
     }
-    const others = Auth.users().filter((u) => u.role !== 'owner');
+    const everyone = Auth.users();
+    const others = everyone.filter((u) => u.role !== 'owner');
+    const cnt = (r) => everyone.filter((u) => u.role === r).length;
+    const loggedIn = everyone.filter((u) => u.lastLogin).length;
+    const stat = (label, n, hot) => '<div style="flex:1 1 120px;padding:14px 16px;background:#0F1215;border:1px solid ' + (hot ? 'var(--accent)' : '#262A31') + ';border-radius:12px;display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;color:#9AA1AC">' + label + '</span><span class="mono" style="font-size:24px;font-weight:700;color:' + (hot ? 'var(--accent)' : '#F2F3F5') + '">' + n + '</span></div>';
+    const stats = '<div style="display:flex;flex-wrap:wrap;gap:10px">' + stat('كل الحسابات', everyone.length, true) + stat('سجّلوا دخول', loggedIn) + stat('عملاء', cnt('client')) + stat('موظفين', cnt('employee')) + stat('مشرفين', cnt('moderator') + cnt('admin')) + '</div>';
     const rows = others.length ? others.map(function (u) {
       const opts = ROLE_OPTS.map((r) => '<option value="' + r + '"' + (u.role === r ? ' selected' : '') + '>' + Auth.roleLabel(r) + '</option>').join('');
       return '<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0;border-top:1px solid #22262D">' +
@@ -402,7 +407,7 @@ if (Auth.guard({ staff: true })) PortalData.ready.then(function () {
         '<select data-role-for="' + u.id + '" aria-label="رتبة ' + esc(u.name) + '" style="min-height:42px;padding:0 12px;border-radius:10px;border:1px solid #333943;background:#0D0F12;color:#F2F3F5;font-family:inherit;font-size:14px">' + opts + '</select></div>';
     }).join('') : '<p style="margin:0;color:#9AA1AC;font-size:14px">ما فيه حسابات ثانية للحين. أي أحد يسجّل من الموقع يطلع هنا، وتختار رتبته.</p>';
     box.innerHTML = '<div style="display:flex;flex-direction:column;gap:4px"><h2 style="margin:0;font-size:20px;font-weight:600">الرتب والصلاحيات</h2>' +
-      '<p style="margin:0;color:#9AA1AC;font-size:14px;line-height:1.7">أنتم الاثنين Owner ثابتين. من هنا تعيّن الأدمن والمشرفين والموظفين، والعميل رتبة عادية بدون بوابة.</p></div>' + rows;
+      '<p style="margin:0;color:#9AA1AC;font-size:14px;line-height:1.7">أنتم الاثنين Owner ثابتين. من هنا تعيّن الأدمن والمشرفين والموظفين، والعميل رتبة عادية بدون بوابة. لما تحوّل عميل لموظف تظهر له البوابة.</p></div>' + stats + rows;
   }
   document.addEventListener('change', function (e) {
     const sel = e.target.closest('select[data-role-for]');

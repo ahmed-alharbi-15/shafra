@@ -1,4 +1,6 @@
+import json
 from functools import lru_cache
+from pathlib import Path
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -37,6 +39,19 @@ class Settings(BaseSettings):
     @property
     def cors_origins(self) -> list[str]:
         return [o.strip().rstrip("/") for o in self.CORS_ORIGINS.split(",") if o.strip()]
+
+    @property
+    def owner_profiles(self) -> dict[str, dict]:
+        """الـ Owners المعروفين (owners.json): الإيميل والاسم بدون باسورد. الباسورد ينحط بسكربت set_owner_password."""
+        try:
+            data = json.loads((Path(__file__).resolve().parent.parent / "owners.json").read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            return {}
+        return {str(o["email"]).strip().lower(): o for o in data if isinstance(o, dict) and o.get("email")}
+
+    def is_owner_email(self, email: str) -> bool:
+        e = email.strip().lower()
+        return e in self.owner_profiles or e in {x[0] for x in self.owners}
 
     @property
     def owners(self) -> list[tuple[str, str, str]]:

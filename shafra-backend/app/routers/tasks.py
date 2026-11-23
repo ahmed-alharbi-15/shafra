@@ -80,7 +80,7 @@ def patch_task(task_id: int, data: TaskPatch, _: User = Depends(require("assignT
 
 
 @router.delete("/{task_id}", status_code=204)
-def delete_task(task_id: int, _: User = Depends(require("createTask")), db: Session = Depends(get_db)):
+def delete_task(task_id: int, _: User = Depends(require("deleteTask")), db: Session = Depends(get_db)):
     db.delete(_load(task_id, db))
     db.commit()
 

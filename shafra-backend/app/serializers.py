@@ -55,6 +55,7 @@ def user_out(user: User, viewer: User | None = None) -> UserOut:
         status=user.status,
         meetings=Meetings(attended=user.meetings_attended, total=user.meetings_total),
         created_at=user.created_at,
+        last_login_at=user.last_login_at if (viewer is not None and can("manageRoles", viewer)) else None,
     )
 
 

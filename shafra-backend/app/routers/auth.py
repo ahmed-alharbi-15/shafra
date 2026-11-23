@@ -1,7 +1,10 @@
+from datetime import datetime, timezone
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select, update
 from sqlalchemy.orm import Session
 
+from ..config import get_settings
 from ..database import get_db
 from ..models import Task, User
 from ..schemas import DeleteMe, EmailChange, LoginIn, MeUpdate, PasswordChange, RegisterIn, TokenOut, UserOut
@@ -15,6 +18,8 @@ router = APIRouter(tags=["Auth & Me"])
 def register(data: RegisterIn, db: Session = Depends(get_db)):
     """تسجيل عام — أي أحد يسجل يصير «عميل»، والـ Owner يغيّر رتبته بعدين"""
     email = data.email.lower()
+    if get_settings().is_owner_email(email):
+        raise HTTPException(status_code=400, detail="هذا الإيميل محجوز.")
     if db.scalar(select(User).where(User.email == email)):
         raise HTTPException(status_code=400, detail="هذا الإيميل مسجّل من قبل.")
     user = User(name=data.name, email=email, phone=data.phone or "", hashed_password=hash_password(data.password), role="client")
@@ -29,6 +34,8 @@ def login(data: LoginIn, db: Session = Depends(get_db)):
     user = db.scalar(select(User).where(User.email == data.email.lower()))
     if not user or not verify_password(data.password, user.hashed_password):
         raise HTTPException(status_code=401, detail="الإيميل أو كلمة المرور غلط.")
+    user.last_login_at = datetime.now(timezone.utc)
+    db.commit()
     return TokenOut(access_token=create_access_token(user.id, data.remember), user=user_out(user))
 
 

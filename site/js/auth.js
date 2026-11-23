@@ -26,8 +26,9 @@ const Auth = (function () {
     viewPortal:   ['owner', 'admin', 'moderator', 'employee'],
     viewAccounts: ['owner', 'admin'],
     viewAllTasks: ['owner', 'admin', 'moderator'],
-    createTask:   ['owner'],
-    assignTask:   ['owner'],
+    createTask:   ['owner', 'admin', 'moderator'], // يضيف مهمة جديدة
+    assignTask:   ['owner', 'admin', 'moderator'], // يوزّع المهام ويتابع الموظفين
+    deleteTask:   ['owner'],
     claimTask:    ['owner', 'admin', 'moderator', 'employee'],
     seePhones:    ['owner'],
     manageRoles:  ['owner']
@@ -68,7 +69,7 @@ const Auth = (function () {
       id: String(u.id), apiId: u.id, name: u.name, email: u.email, phone: u.phone || '',
       phoneHidden: u.phone === null, role: u.role, domains: u.domains || [], languages: u.languages || [],
       status: u.status || 'متاح', meetings: u.meetings || { attended: 0, total: 0 }, history: u.history || [],
-      createdAt: String(u.created_at || '').slice(0, 10)
+      createdAt: String(u.created_at || '').slice(0, 10), lastLogin: u.last_login_at || null
     };
   }
 

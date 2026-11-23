@@ -5,7 +5,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .database import Base
 
-SCHEMA_VERSION = "2"
+SCHEMA_VERSION = "3"
 
 ROLES = ("owner", "admin", "moderator", "employee", "client")
 STAFF = ("owner", "admin", "moderator", "employee")
@@ -37,6 +37,7 @@ class User(Base):
     meetings_attended: Mapped[int] = mapped_column(Integer, default=0)
     meetings_total: Mapped[int] = mapped_column(Integer, default=0)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+    last_login_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
     tasks: Mapped[list["Task"]] = relationship(back_populates="assignee")
 

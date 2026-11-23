@@ -115,6 +115,7 @@ class UserOut(BaseModel):
     status: str
     meetings: Meetings
     created_at: datetime
+    last_login_at: datetime | None = None  # للـ Owner بس
 
 
 class PersonOut(UserOut):

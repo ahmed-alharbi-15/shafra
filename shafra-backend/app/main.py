@@ -18,19 +18,22 @@ OLD_TABLES = ["task_items", "tasks", "payments", "income", "works", "users", "ap
 
 
 def migrate_schema() -> None:
-    """لو قاعدة البيانات فيها جداول من نسخة قديمة، يمسحها وينشئها من جديد (مرة وحدة بس)"""
+    """يجهّز الجداول بدون ما يمسح بيانات.
+    الاستثناء الوحيد: قاعدة قديمة جدًا (نسخة 1 فيها users.is_admin) تنمسح مرة وحدة وتنشأ من جديد."""
     insp = inspect(engine)
     tables = set(insp.get_table_names())
-    current = None
-    if "app_meta" in tables:
-        with engine.connect() as conn:
-            current = conn.execute(text("SELECT value FROM app_meta WHERE key = 'schema_version'")).scalar()
-    if tables & set(OLD_TABLES) and current != SCHEMA_VERSION:
+    if "users" in tables and "is_admin" in {c["name"] for c in insp.get_columns("users")}:
         with engine.begin() as conn:
             for t in OLD_TABLES:
                 if t in tables:
                     conn.execute(text(f'DROP TABLE IF EXISTS "{t}" CASCADE' if engine.dialect.name == "postgresql" else f'DROP TABLE IF EXISTS "{t}"'))
     Base.metadata.create_all(bind=engine)
+    # أعمدة أضيفت بعد النسخة 2: نضيفها للجدول الموجود بدل مسحه
+    cols = {c["name"] for c in inspect(engine).get_columns("users")}
+    ts = "TIMESTAMP WITH TIME ZONE" if engine.dialect.name == "postgresql" else "DATETIME"
+    with engine.begin() as conn:
+        if "last_login_at" not in cols:
+            conn.execute(text(f"ALTER TABLE users ADD COLUMN last_login_at {ts}"))
     with SessionLocal() as db:
         row = db.get(AppMeta, "schema_version")
         if row is None:
@@ -41,13 +44,20 @@ def migrate_schema() -> None:
 
 
 def seed_owners() -> None:
-    """ينشئ حسابات الـ Owner من متغيرات البيئة، ويتأكد إن رتبتهم Owner"""
+    """يتأكد إن حسابات الـ Owner رتبتها owner. الحساب ينشأ من متغيرات البيئة (لو فيها باسورد)،
+    أو بسكربت python -m app.set_owner_password (الأسماء والإيميلات في owners.json)."""
+    profiles = settings.owner_profiles
     with SessionLocal() as db:
         for email, password, name in settings.owners:
+            name = (profiles.get(email) or {}).get("name") or name
             user = db.scalar(select(User).where(User.email == email))
             if user is None:
                 db.add(User(name=name, email=email, hashed_password=hash_password(password), role="owner"))
             elif user.role != "owner":
+                user.role = "owner"
+        for email in profiles:
+            user = db.scalar(select(User).where(User.email == email))
+            if user is not None and user.role != "owner":
                 user.role = "owner"
         db.commit()
 

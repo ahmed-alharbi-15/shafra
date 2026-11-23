@@ -54,3 +54,10 @@ uvicorn app.main:app --reload
 | `PATCH /api/tasks/:id/items/:i` | `{done}` — `i` ترتيب العمل من 0 | المسؤول أو Owner |
 | `GET` / `POST` / `DELETE /api/income` | `{name,cat,amount,month}` | Owner، أدمن |
 | `GET /api/works` | الأعمال (اختياري، الموقع حاليًا يقرأ من projects-data.js) | الكل |
+
+## تعديلات أحمد فوق نسخة نايف
+- المشرف (`moderator`) يضيف المهام ويوزعها (`createTask`/`assignTask`)؛ حذف المهمة (`deleteTask`)، الدخل، والرتب للـ Owner فقط.
+- `last_login_at` في `users` (يظهر للـ Owner في `/api/users`)، وصفحة الفريق تعرض عدد الحسابات وكم واحد سجّل دخول.
+- `migrate_schema` ما يمسح البيانات إلا لقاعدة نسخة 1 القديمة (فيها `users.is_admin`) مرة وحدة؛ بعدها يضيف الأعمدة الناقصة فقط.
+- `owners.json`: أسماء وإيميلات الـ Owners (مو سر، وإيميلاتهم محجوزة من التسجيل العام). الباسوردات بسكربت:
+  `DATABASE_URL="<رابط القاعدة>" python3 -m app.set_owner_password` (أو بمتغيرات `ADMIN_*` / `OWNER2_*` القديمة).
