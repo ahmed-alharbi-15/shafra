@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>شفرة — تسجيل الدخول</title>
+<meta name="description" content="سجّل دخولك أو أنشئ حساب في شفرة.">
+<meta name="theme-color" content="#0D0F12">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/shafra-icon.png">
+<link rel="apple-touch-icon" href="assets/shafra-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/styles.css">
+<script>try{if(sessionStorage.getItem('shafra_loaded'))document.documentElement.classList.add('no-loading');}catch(e){}</script>
+<link rel="stylesheet" href="css/transition.css">
+<link rel="stylesheet" href="css/loading.css">
+</head>
+<body>
+<div id="site-transition-bar" aria-hidden="true"></div>
+<div id="site-transition-dim" aria-hidden="true"></div>
+<span id="site-transition-label" class="mono" aria-hidden="true">loading…</span>
+<div id="site-loading" role="status" aria-live="polite" aria-label="جاري تحميل شفرة">
+  <div class="site-loading-glow" aria-hidden="true"></div>
+  <img src="assets/shafra-logo.png" alt="شفرة" width="260" height="158" class="site-loading-logo">
+  <div class="site-loading-bar">
+    <div class="site-loading-segs">
+      <div class="site-loading-track"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="site-loading-fill"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="site-loading-row">
+      <span class="site-loading-msgwrap"><span class="mono site-loading-caret-prefix">&gt;</span><span class="msg">نجهّز الكود</span><span class="site-loading-caret"></span></span>
+      <span class="mono site-loading-pct" dir="ltr"><span class="pct">0</span>%</span>
+    </div>
+  </div>
+  <div class="site-loading-coffee">
+    <svg width="56" height="56" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+      <g class="steam steam-a"><rect x="5" y="1" width="1" height="2" fill="#9AA1AC"></rect><rect x="8" y="0" width="1" height="2" fill="#9AA1AC"></rect></g>
+      <g class="steam steam-b"><rect x="6" y="2" width="1" height="2" fill="#9AA1AC"></rect><rect x="9" y="1" width="1" height="2" fill="#9AA1AC"></rect></g>
+      <rect x="3" y="5" width="9" height="1" fill="#2A1A10"></rect>
+      <rect x="3" y="6" width="9" height="7" fill="#B8F34A"></rect>
+      <rect x="4" y="13" width="7" height="1" fill="#B8F34A"></rect>
+      <rect x="12" y="7" width="2" height="1" fill="#B8F34A"></rect><rect x="13" y="8" width="1" height="3" fill="#B8F34A"></rect><rect x="12" y="11" width="2" height="1" fill="#B8F34A"></rect>
+      <rect x="4" y="7" width="1" height="4" fill="#D4FF7A"></rect>
+      <rect x="2" y="14" width="12" height="1" fill="#2A2645"></rect>
+    </svg>
+    <span>لحظة… نصب القهوة ونجهّز لك الشغل</span>
+  </div>
+</div>
+<div dir="rtl" style="min-height: 100vh">
+
+  <div style="max-width: 1200px; margin: 0 auto; padding: 18px 24px; display: flex">
+    <a href="index.html" style="display: inline-flex; align-items: center; min-height: 44px; color: #B4BAC4; text-decoration: none; font-size: 15px">→ رجوع للموقع</a>
+  </div>
+
+  <section class="herobg" style="min-height: 720px; display: flex; align-items: center; justify-content: center; padding: 64px 24px; box-sizing: border-box">
+    <div class="rise d2" style="width: min(100%, 440px); padding: 36px; background: #15181D; border: 1px solid #262A31; border-radius: 24px; display: flex; flex-direction: column; gap: 22px; box-sizing: border-box">
+      <img src="assets/shafra-logo.png" alt="شفرة" width="105" height="64" style="display: block; width: 105px; height: 64px; align-self: center">
+      <div style="display: flex; flex-direction: column; gap: 6px; text-align: center">
+        <h1 id="h-title" style="margin: 0; font-size: 26px; font-weight: 700">أهلًا بك</h1>
+        <p id="h-sub" style="margin: 0; color: #9AA1AC; font-size: 15px">سجّل دخولك أو أنشئ حساب جديد</p>
+      </div>
+      <div role="tablist" aria-label="نوع العملية" style="display: flex; gap: 6px; padding: 4px; background: #0F1215; border: 1px solid #262A31; border-radius: 14px">
+        <button type="button" role="tab" id="tab-login" data-mode="login" style="flex: 1; min-height: 44px; border-radius: 10px; border: 0; font-family: inherit; font-size: 15px; cursor: pointer">تسجيل دخول</button>
+        <button type="button" role="tab" id="tab-register" data-mode="register" style="flex: 1; min-height: 44px; border-radius: 10px; border: 0; font-family: inherit; font-size: 15px; cursor: pointer">إنشاء حساب</button>
+      </div>
+
+      <form id="login-form" style="display: flex; flex-direction: column; gap: 16px" novalidate>
+        <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #B4BAC4">الإيميل
+          <input id="f-email" type="email" dir="ltr" autocomplete="username" placeholder="name@example.com" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid #333943; background: #0F1215; color: #F2F3F5; font-size: 15px; font-family: inherit; box-sizing: border-box; width: 100%; text-align: right">
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #B4BAC4">كلمة المرور
+          <span style="position: relative; display: flex">
+            <input id="f-pw" type="password" dir="ltr" autocomplete="current-password" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid #333943; background: #0F1215; color: #F2F3F5; font-size: 15px; font-family: inherit; box-sizing: border-box; width: 100%; text-align: right; padding-left: 52px">
+            <button type="button" class="toggle-pw" aria-label="إظهار كلمة المرور" style="position: absolute; left: 2px; top: 2px; width: 44px; height: 44px; border: 0; background: transparent; color: #9AA1AC; display: inline-flex; align-items: center; justify-content: center; cursor: pointer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </button>
+          </span>
+        </label>
+        <label style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; color: #D7DBE1; cursor: pointer"><input id="f-remember" type="checkbox" checked style="width: 18px; height: 18px; margin: 0">تذكرني (ما تحتاج تسجّل دخول مرة ثانية)</label>
+        <p id="f-err" role="alert" style="display: none; margin: 0; color: #FFB547; font-size: 14px"></p>
+        <button type="submit" style="min-height: 52px; border-radius: 12px; border: 0; background: var(--accent); color: #0D0F12; font-weight: 600; font-size: 16px; font-family: inherit; cursor: pointer">دخول</button>
+      </form>
+
+      <form id="register-form" style="display: none; flex-direction: column; gap: 16px" novalidate>
+        <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #B4BAC4">الاسم
+          <input id="r-name" type="text" autocomplete="name" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid #333943; background: #0F1215; color: #F2F3F5; font-size: 15px; font-family: inherit; box-sizing: border-box; width: 100%; text-align: right">
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #B4BAC4">الإيميل
+          <input id="r-email" type="email" dir="ltr" autocomplete="email" placeholder="name@example.com" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid #333943; background: #0F1215; color: #F2F3F5; font-size: 15px; font-family: inherit; box-sizing: border-box; width: 100%; text-align: right">
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #B4BAC4">رقم الجوال <span style="color: #6E7681">(اختياري، ما يشوفه غير مالك الموقع)</span>
+          <input id="r-phone" type="tel" dir="ltr" autocomplete="tel" placeholder="05xxxxxxxx" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid #333943; background: #0F1215; color: #F2F3F5; font-size: 15px; font-family: inherit; box-sizing: border-box; width: 100%; text-align: right">
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #B4BAC4">كلمة المرور <span style="color: #6E7681">(8 خانات أو أكثر)</span>
+          <span style="position: relative; display: flex">
+            <input id="r-pw" type="password" dir="ltr" autocomplete="new-password" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid #333943; background: #0F1215; color: #F2F3F5; font-size: 15px; font-family: inherit; box-sizing: border-box; width: 100%; text-align: right; padding-left: 52px">
+            <button type="button" class="toggle-pw" aria-label="إظهار كلمة المرور" style="position: absolute; left: 2px; top: 2px; width: 44px; height: 44px; border: 0; background: transparent; color: #9AA1AC; display: inline-flex; align-items: center; justify-content: center; cursor: pointer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </button>
+          </span>
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #B4BAC4">أعد كتابة كلمة المرور
+          <input id="r-pw2" type="password" dir="ltr" autocomplete="new-password" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid #333943; background: #0F1215; color: #F2F3F5; font-size: 15px; font-family: inherit; box-sizing: border-box; width: 100%; text-align: right">
+        </label>
+        <label style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; color: #D7DBE1; cursor: pointer"><input id="r-remember" type="checkbox" checked style="width: 18px; height: 18px; margin: 0">تذكرني</label>
+        <p id="r-err" role="alert" style="display: none; margin: 0; color: #FFB547; font-size: 14px"></p>
+        <button type="submit" style="min-height: 52px; border-radius: 12px; border: 0; background: var(--accent); color: #0D0F12; font-weight: 600; font-size: 16px; font-family: inherit; cursor: pointer">إنشاء الحساب</button>
+      </form>
+    </div>
+  </section>
+
+  <footer style="border-top: 1px solid #22262D">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 32px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; color: #8C939E; font-size: 14px">
+      <span style="display: flex; align-items: center; gap: 14px"><img src="assets/shafra-logo.png" alt="" width="56" height="34" style="display: block; flex: none; width: 56px; height: 34px; opacity: .7"> مواقع، تطبيقات، داشبورد ومشاريع طلاب</span>
+      <span class="mono" dir="ltr">© 2026 Shafra</span>
+    </div>
+  </footer>
+</div>
+
+<script src="js/auth.js"></script>
+<script>
+  (function () {
+    // لو داخل من قبل، يوديه لصفحته
+    const me = Auth.current();
+    const params = new URLSearchParams(location.search);
+    const next = params.get('next');
+    function go(user) {
+      const safe = next && /^[a-z0-9_-]+\.html(\?[^#]*)?$/i.test(next) ? next : null;
+      location.href = (safe && (Auth.isStaff(user) || !/^(team|accounts|profile)\.html/.test(safe))) ? safe : Auth.homeFor(user);
+    }
+    if (me) { go(me); return; }
+
+    const loginForm = document.getElementById('login-form');
+    const regForm = document.getElementById('register-form');
+    const tabs = { login: document.getElementById('tab-login'), register: document.getElementById('tab-register') };
+
+    function setMode(mode) {
+      const reg = mode === 'register';
+      loginForm.style.display = reg ? 'none' : 'flex';
+      regForm.style.display = reg ? 'flex' : 'none';
+      Object.keys(tabs).forEach(function (k) {
+        const on = k === mode;
+        tabs[k].style.background = on ? 'var(--accent)' : 'transparent';
+        tabs[k].style.color = on ? '#0D0F12' : '#B4BAC4';
+        tabs[k].style.fontWeight = on ? '600' : '500';
+        tabs[k].setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      document.getElementById('h-title').textContent = reg ? 'أنشئ حسابك' : 'أهلًا بك';
+      document.getElementById('h-sub').textContent = reg ? 'حساب مجاني، يعطيك ملف شخصي خاص فيك' : 'سجّل دخولك لحسابك';
+    }
+    tabs.login.addEventListener('click', function () { setMode('login'); });
+    tabs.register.addEventListener('click', function () { setMode('register'); });
+    setMode(params.get('mode') === 'register' ? 'register' : 'login');
+
+    document.querySelectorAll('.toggle-pw').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const input = btn.parentElement.querySelector('input');
+        const show = input.type === 'password';
+        input.type = show ? 'text' : 'password';
+        btn.setAttribute('aria-label', show ? 'إخفاء كلمة المرور' : 'إظهار كلمة المرور');
+      });
+    });
+
+    function showErr(id, msg) { const el = document.getElementById(id); el.textContent = msg; el.style.display = ''; }
+    document.querySelectorAll('input').forEach(function (el) {
+      el.addEventListener('input', function () { document.getElementById('f-err').style.display = 'none'; document.getElementById('r-err').style.display = 'none'; });
+    });
+
+    // السيرفر المجاني في Render ينام، وأول طلب ممكن ياخذ دقيقة
+    async function busy(form, errId, label, job) {
+      const btn = form.querySelector('button[type=submit]');
+      const old = btn.textContent;
+      btn.disabled = true; btn.style.opacity = '.7'; btn.textContent = label;
+      const slow = setTimeout(function () { showErr(errId, 'السيرفر يصحى من النوم، ممكن ياخذ دقيقة…'); document.getElementById(errId).style.color = '#9AA1AC'; }, 4000);
+      try { return await job(); }
+      finally {
+        clearTimeout(slow);
+        document.getElementById(errId).style.color = '#FFB547';
+        btn.disabled = false; btn.style.opacity = ''; btn.textContent = old;
+      }
+    }
+
+    loginForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const email = document.getElementById('f-email').value.trim();
+      const pw = document.getElementById('f-pw').value;
+      if (!email || !pw) { showErr('f-err', 'اكتب الإيميل وكلمة المرور.'); return; }
+      const r = await busy(loginForm, 'f-err', 'جاري الدخول…', function () {
+        return Auth.login(email, pw, document.getElementById('f-remember').checked);
+      });
+      if (!r.ok) { showErr('f-err', r.error); return; }
+      document.getElementById('f-err').style.display = 'none';
+      go(r.user);
+    });
+
+    regForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const pw = document.getElementById('r-pw').value;
+      if (document.getElementById('r-name').value.trim().length < 2) { showErr('r-err', 'اكتب اسمك.'); return; }
+      if (pw.length < 8) { showErr('r-err', 'كلمة المرور لازم 8 خانات أو أكثر.'); return; }
+      if (pw !== document.getElementById('r-pw2').value) { showErr('r-err', 'كلمتين المرور مو متطابقتين.'); return; }
+      const r = await busy(regForm, 'r-err', 'جاري إنشاء الحساب…', function () {
+        return Auth.register({
+          name: document.getElementById('r-name').value, email: document.getElementById('r-email').value,
+          phone: document.getElementById('r-phone').value, password: pw, remember: document.getElementById('r-remember').checked
+        });
+      });
+      if (!r.ok) { showErr('r-err', r.error); return; }
+      document.getElementById('r-err').style.display = 'none';
+      go(r.user);
+    });
+  })();
+</script>
+<script src="js/transition.js"></script>
+<script src="js/loading.js"></script>
+</body>
+</html>
